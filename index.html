@@ -894,7 +894,7 @@
     position: fixed;
     inset: 0;
     z-index: 1000;
-    background: rgba(10,10,12,0.95);
+    background: rgba(10,10,12,0.97);
     display: none;
     align-items: center;
     justify-content: center;
@@ -905,20 +905,24 @@
 
   .lightbox-content {
     position: relative;
-    max-width: 90vw;
-    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    height: 100%;
   }
 
   .lightbox-content img {
-    max-width: 100%;
+    max-width: 90vw;
     max-height: 85vh;
     object-fit: contain;
     border-radius: 8px;
+    margin: auto;
   }
 
   .lightbox-content iframe {
-    width: 100%;
+    width: 90vw;
+    max-width: 1200px;
     aspect-ratio: 16/9;
     border: none;
     border-radius: 8px;
@@ -926,10 +930,10 @@
 
   .lightbox-close {
     position: absolute;
-    top: -3rem;
-    right: 0;
-    width: 36px;
-    height: 36px;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: rgba(255,255,255,0.1);
     border: none;
@@ -938,11 +942,63 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     transition: background 0.2s;
+    z-index: 10;
   }
 
   .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(30,30,35,0.7);
+    border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+  }
+
+  .lightbox-nav:hover {
+    background: rgba(50,50,55,0.85);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .lightbox-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .lightbox-nav svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
+
+  .lightbox-counter {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: rgba(20,20,22,0.8);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    z-index: 10;
+  }
 
   /* ─── CONDICIONES ─── */
   #condiciones { background: var(--bg2); }
@@ -1207,6 +1263,15 @@
     .video-grid { grid-template-columns: 1fr; }
 
     .panorama-item .visor-360 { height: 260px; }
+
+    .lightbox { padding: 1rem; }
+    .lightbox-content img { max-width: 95vw; max-height: 80vh; }
+    .lightbox-content iframe { width: 95vw; }
+    .lightbox-nav { width: 42px; height: 42px; }
+    .lightbox-prev { left: 0.75rem; }
+    .lightbox-next { right: 0.75rem; }
+    .lightbox-close { top: 0.75rem; right: 0.75rem; width: 38px; height: 38px; }
+    .lightbox-counter { bottom: 0.75rem; }
 
     .footer-inner { flex-direction: column; text-align: center; }
 
@@ -1482,56 +1547,56 @@
 
     <div class="portfolio-section-title reveal">Fotografía previa</div>
     <div class="gallery-grid reveal">
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-09-32-03_resize.avif')">
-        <img src="images/portfolio/2023-12-22-09-32-03_resize.avif" alt="Fotografía previa 1" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 09-32-03_resize.JPG')">
+        <img src="images/portfolio/previas/2023-12-22 09-32-03_resize.JPG" alt="Fotografía previa 1" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-09-35-25_resize.avif')">
-        <img src="images/portfolio/2023-12-22-09-35-25_resize.avif" alt="Fotografía previa 2" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 09-35-25_resize.JPG')">
+        <img src="images/portfolio/previas/2023-12-22 09-35-25_resize.JPG" alt="Fotografía previa 2" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-09-54-09_resize.avif')">
-        <img src="images/portfolio/2023-12-22-09-54-09_resize.avif" alt="Fotografía previa 3" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 09-54-09_resize.jpg')">
+        <img src="images/portfolio/previas/2023-12-22 09-54-09_resize.jpg" alt="Fotografía previa 3" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-10-12-59_resize.avif')">
-        <img src="images/portfolio/2023-12-22-10-12-59_resize.avif" alt="Fotografía previa 4" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 10-12-59_resize.jpg')">
+        <img src="images/portfolio/previas/2023-12-22 10-12-59_resize.jpg" alt="Fotografía previa 4" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-10-47-17---IMG_2598_resize.avif')">
-        <img src="images/portfolio/2023-12-22-10-47-17---IMG_2598_resize.avif" alt="Fotografía previa 5" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 10-47-17 - IMG_2598_resize.JPG')">
+        <img src="images/portfolio/previas/2023-12-22 10-47-17 - IMG_2598_resize.JPG" alt="Fotografía previa 5" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-11-30-15---IMG_2738_resize.avif')">
-        <img src="images/portfolio/2023-12-22-11-30-15---IMG_2738_resize.avif" alt="Fotografía previa 6" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 11-30-15 - IMG_2738_resize.JPG')">
+        <img src="images/portfolio/previas/2023-12-22 11-30-15 - IMG_2738_resize.JPG" alt="Fotografía previa 6" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-11-49-27---IMG_2782a_resize.avif')">
-        <img src="images/portfolio/2023-12-22-11-49-27---IMG_2782a_resize.avif" alt="Fotografía previa 7" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 11-49-27 - IMG_2782a_resize.jpg')">
+        <img src="images/portfolio/previas/2023-12-22 11-49-27 - IMG_2782a_resize.jpg" alt="Fotografía previa 7" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-11-56-25---IMG_2807_resize.avif')">
-        <img src="images/portfolio/2023-12-22-11-56-25---IMG_2807_resize.avif" alt="Fotografía previa 8" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 11-56-25 - IMG_2807_resize.JPG')">
+        <img src="images/portfolio/previas/2023-12-22 11-56-25 - IMG_2807_resize.JPG" alt="Fotografía previa 8" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
     </div>
 
     <div class="portfolio-section-title reveal" style="margin-top: 3rem;">Fotografía en eventos</div>
     <div class="gallery-grid reveal" style="grid-template-columns: repeat(4,1fr);">
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2022-11-26-23-36-44---IMG_9849_resize.avif')">
-        <img src="images/portfolio/2022-11-26-23-36-44---IMG_9849_resize.avif" alt="Evento 1" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2022-11-26 23-36-44 - IMG_9849_resize.JPG')">
+        <img src="images/portfolio/eventos/2022-11-26 23-36-44 - IMG_9849_resize.JPG" alt="Evento 1" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2024-11-16-22-31-26---IMG_5097_resize.avif')">
-        <img src="images/portfolio/2024-11-16-22-31-26---IMG_5097_resize.avif" alt="Evento 2" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2024-11-16 22-31-26 - IMG_5097_resize.JPG')">
+        <img src="images/portfolio/eventos/2024-11-16 22-31-26 - IMG_5097_resize.JPG" alt="Evento 2" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2024-11-16-22-59-10---IMG_5225a_resize.avif')">
-        <img src="images/portfolio/2024-11-16-22-59-10---IMG_5225a_resize.avif" alt="Evento 3" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2024-11-16 22-59-10 - IMG_5225a_resize.jpg')">
+        <img src="images/portfolio/eventos/2024-11-16 22-59-10 - IMG_5225a_resize.jpg" alt="Evento 3" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/2024-11-17-02-45-14---IMG_5513_stitch1-topaz-face_resize.avif')">
-        <img src="images/portfolio/2024-11-17-02-45-14---IMG_5513_stitch1-topaz-face_resize.avif" alt="Evento panorama" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2024-11-17 02-45-14 - IMG_5513_stitch1-topaz-face_resize.jpg')">
+        <img src="images/portfolio/eventos/2024-11-17 02-45-14 - IMG_5513_stitch1-topaz-face_resize.jpg" alt="Evento panorama" loading="lazy">
         <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
       </div>
     </div>
@@ -1765,9 +1830,17 @@
 
 <!-- ─── LIGHTBOX ─── -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <div class="lightbox-content" id="lightboxContent">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  </div>
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" onclick="navigateLightbox(-1)" aria-label="Anterior">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+  </button>
+  <div class="lightbox-content" id="lightboxContent"></div>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" onclick="navigateLightbox(1)" aria-label="Siguiente">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
 </div>
 
 <script>
@@ -1817,34 +1890,106 @@
     a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
   });
 
-  // Lightbox - images
+  // ═══════════════════════════════════════════════════════════════════════════
+  // LIGHTBOX CON NAVEGACIÓN
+  // ═══════════════════════════════════════════════════════════════════════════
+  let currentImageIndex = -1;
+  let galleryImages = [];
+  let isVideoMode = false;
+
+  // Recolectar todas las imágenes del portfolio al cargar
+  function collectGalleryImages() {
+    galleryImages = [];
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      const onclickAttr = item.getAttribute('onclick');
+      if (onclickAttr && onclickAttr.includes('openLightbox')) {
+        const match = onclickAttr.match(/openLightbox\('([^']+)'\)/);
+        if (match) galleryImages.push(match[1]);
+      }
+    });
+  }
+
+  // Ejecutar recolección cuando el DOM esté listo
+  collectGalleryImages();
+
+  // Abrir lightbox con imagen específica
   function openLightbox(src) {
+    isVideoMode = false;
+    currentImageIndex = galleryImages.indexOf(src);
+    
     const lb = document.getElementById('lightbox');
     const content = document.getElementById('lightboxContent');
-    content.innerHTML = `<button class="lightbox-close" onclick="closeLightbox()">×</button><img src="${src}" alt="">`;
+    const counter = document.getElementById('lightboxCounter');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+    
+    content.innerHTML = `<img src="${src}" alt="">`;
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Actualizar contador y botones
+    if (currentImageIndex >= 0) {
+      counter.style.display = 'block';
+      counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+      prevBtn.style.display = currentImageIndex > 0 ? 'flex' : 'none';
+      nextBtn.style.display = currentImageIndex < galleryImages.length - 1 ? 'flex' : 'none';
+    } else {
+      counter.style.display = 'none';
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+    }
+  }
+
+  // Navegar entre imágenes
+  function navigateLightbox(direction) {
+    if (isVideoMode || currentImageIndex < 0) return;
+    
+    const newIndex = currentImageIndex + direction;
+    if (newIndex >= 0 && newIndex < galleryImages.length) {
+      currentImageIndex = newIndex;
+      const content = document.getElementById('lightboxContent');
+      const counter = document.getElementById('lightboxCounter');
+      const prevBtn = document.getElementById('lightboxPrev');
+      const nextBtn = document.getElementById('lightboxNext');
+      
+      content.innerHTML = `<img src="${galleryImages[currentImageIndex]}" alt="">`;
+      counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+      prevBtn.style.display = currentImageIndex > 0 ? 'flex' : 'none';
+      nextBtn.style.display = currentImageIndex < galleryImages.length - 1 ? 'flex' : 'none';
+    }
   }
 
   // Lightbox - videos
   function openVideo(url) {
+    isVideoMode = true;
     const lb = document.getElementById('lightbox');
     const content = document.getElementById('lightboxContent');
-    content.innerHTML = `<button class="lightbox-close" onclick="closeLightbox()">×</button><iframe src="${url}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    const counter = document.getElementById('lightboxCounter');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+    
+    content.innerHTML = `<iframe src="${url}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Ocultar navegación en modo video
+    counter.style.display = 'none';
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
   }
 
-  // YouTube - intenta cargar en modal, si falla muestra enlace
+  // YouTube
   function openYouTube(url) {
+    isVideoMode = true;
     const lb = document.getElementById('lightbox');
     const content = document.getElementById('lightboxContent');
-    // Extraer video ID de URL embed (https://www.youtube.com/embed/VIDEO_ID)
+    const counter = document.getElementById('lightboxCounter');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
     const videoId = url.split('/embed/')[1].split('?')[0];
 
     content.innerHTML = `
-      <button class="lightbox-close" onclick="closeLightbox()">×</button>
-      <div style="width: 100%; height: 70vh; position: relative;">
+      <div style="width: 90vw; max-width: 1200px; aspect-ratio: 16/9; position: relative;">
         <iframe
           width="100%"
           height="100%"
@@ -1854,32 +1999,37 @@
           allowfullscreen
           style="border-radius: 8px;">
         </iframe>
-        <div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
-          <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="background: rgba(255,255,255,0.9); color: #000; padding: 8px 12px; border-radius: 20px; text-decoration: none; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px;">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
-            Abrir en YouTube
-          </a>
-        </div>
       </div>
     `;
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    counter.style.display = 'none';
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
   }
 
   function closeLightbox(e) {
-    if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+    if (e && e.target !== document.getElementById('lightbox')) return;
     const lb = document.getElementById('lightbox');
     lb.classList.remove('active');
     document.getElementById('lightboxContent').innerHTML = '';
     document.body.style.overflow = '';
+    currentImageIndex = -1;
+    isVideoMode = false;
   }
 
-  // Close lightbox on Escape
+  // Teclado: Escape cierra, flechas navegan
   document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('active')) return;
+    
     if (e.key === 'Escape') {
-      document.getElementById('lightbox').classList.remove('active');
-      document.getElementById('lightboxContent').innerHTML = '';
-      document.body.style.overflow = '';
+      closeLightbox();
+    } else if (e.key === 'ArrowLeft') {
+      navigateLightbox(-1);
+    } else if (e.key === 'ArrowRight') {
+      navigateLightbox(1);
     }
   });
 
