@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEO Producciones | Fotografía profesional</title>
+<meta name="description" content="Desde 2006, NEO Producciones brinda servicios de fotografía para eventos, books, fotografía comercial e inmobiliaria en Buenos Aires.">
+<link rel="icon" href="images/logo/logo_obturador.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #141416;
+    --bg2: #1c1c1f;
+    --card: #212124;
+    --card2: #282828;
+    --gold: #d8c5b8;
+    --gold2: #cda78d;
+    --gold3: #b8906e;
+    --text: #eeeff5;
+    --text-muted: rgba(238,239,245,0.55);
+    --border: rgba(216,197,184,0.12);
+    --border2: rgba(216,197,184,0.06);
+    --accent-gradient: linear-gradient(135deg, #E3E3E3 0%, #cda78d 100%);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 70px;
+    background: rgba(20,20,22,0.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .nav-logo img {
+    height: 42px;
+    width: 42px;
+    object-fit: contain;
+  }
+
+  .nav-logo span {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); background: rgba(216,197,184,0.07); }
+
+  .btn-nav {
+    background: var(--accent-gradient) !important;
+    color: #111 !important;
+    -webkit-text-fill-color: #111 !important;
+    padding: 0.45rem 1.2rem !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+  }
+
+  .btn-nav:hover { opacity: 0.88; background: unset; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 70px; left: 0; right: 0;
+    background: rgba(20,20,22,0.97);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+    z-index: 99;
+    padding: 1.5rem 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border2);
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--gold); }
+
+  /* ─── HERO ─── */
+  #inicio {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 70px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/secciones/camara.jpg');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.04);
+    animation: zoomOut 18s ease-out forwards;
+  }
+
+  @keyframes zoomOut {
+    from { transform: scale(1.04); }
+    to { transform: scale(1); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(20,20,22,0.35) 0%,
+      rgba(20,20,22,0.5) 40%,
+      rgba(20,20,22,0.85) 80%,
+      rgba(20,20,22,1) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    max-width: 860px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold2);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s ease forwards;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s ease forwards;
+  }
+
+  .hero-title .gradient-text {
+    background: linear-gradient(135deg, #E3E3E3 0%, #d8c5b8 30%, #cda78d 70%, #b8906e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s ease forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s ease forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent-gradient);
+    color: #111;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--gold);
+    border: 1.5px solid rgba(216,197,184,0.4);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); background: rgba(216,197,184,0.06); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s ease forwards;
+  }
+
+  .hero-scroll span {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold2), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 6rem 2rem;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold2);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-title .grad {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: var(--accent-gradient);
+    margin-bottom: 2rem;
+    border-radius: 2px;
+  }
+
+  /* ─── HISTORIA ─── */
+  #nosotros { background: var(--bg2); }
+
+  .historia-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .historia-img {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .historia-img img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .historia-img:hover img { transform: scale(1.03); }
+
+  .historia-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .historia-text p {
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-item { }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-top: 0.25rem;
+  }
+
+  /* ─── FILOSOFIA ─── */
+  .filosofia-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 5rem;
+  }
+
+  .filosofia-text p {
+    color: var(--text-muted);
+    line-height: 1.75;
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+  }
+
+  .filosofia-img {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .filosofia-img img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%);
+    transition: transform 0.6s ease, filter 0.4s ease;
+  }
+
+  .filosofia-img:hover img { transform: scale(1.03); filter: grayscale(0%); }
+
+  .filosofia-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  /* ─── SERVICIOS ─── */
+  #servicios { background: var(--bg); }
+
+  .servicios-intro {
+    max-width: 600px;
+    margin-bottom: 4rem;
+  }
+
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: var(--border2);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .servicio-card {
+    background: var(--card);
+    padding: 2.5rem;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .servicio-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .servicio-card:hover { background: var(--card2); }
+  .servicio-card:hover::before { opacity: 1; }
+
+  .servicio-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 1rem;
+    opacity: 0.35;
+    transition: opacity 0.3s;
+  }
+
+  .servicio-card:hover .servicio-num { opacity: 0.7; }
+
+  .servicio-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .servicio-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* ─── DETALLE EVENTOS ─── */
+  .evento-section {
+    padding: 5rem 2rem;
+  }
+
+  .evento-section:nth-child(even) { background: var(--bg2); }
+  .evento-section:nth-child(odd) { background: var(--bg); }
+
+  .evento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .evento-grid.reverse { direction: rtl; }
+  .evento-grid.reverse > * { direction: ltr; }
+
+  .evento-img {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .evento-img img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s;
+  }
+
+  .evento-img:hover img { transform: scale(1.03); }
+
+  .evento-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .event-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .event-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .event-item-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(216,197,184,0.1);
+    border: 1px solid rgba(216,197,184,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gold2);
+  }
+
+  .event-item-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: var(--text);
+  }
+
+  .event-item-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ─── PROCESO ─── */
+  #proceso { background: var(--bg2); }
+
+  .proceso-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border2);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .proceso-step {
+    background: var(--card);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .proceso-step:hover { background: var(--card2); }
+
+  .proceso-step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    opacity: 0.2;
+    transition: opacity 0.3s;
+  }
+
+  .proceso-step:hover .proceso-step-num { opacity: 0.5; }
+
+  .proceso-step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .proceso-step-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ─── PORTFOLIO ─── */
+  #portfolio { background: var(--bg); }
+
+  .portfolio-intro {
+    max-width: 580px;
+    margin-bottom: 3.5rem;
+  }
+
+  .portfolio-section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold2);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.25rem;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .portfolio-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--card);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .gallery-item:hover img { transform: scale(1.07); }
+
+  .gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20,20,22,0.55);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+  .gallery-item-overlay svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+  }
+
+  /* Video grid */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .video-thumb {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--card);
+    aspect-ratio: 16/9;
+  }
+
+  .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .video-thumb:hover img { transform: scale(1.04); }
+
+  .video-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20,20,22,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+  }
+
+  .video-thumb:hover .video-thumb-overlay { background: rgba(20,20,22,0.25); }
+
+  .play-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(216,197,184,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .video-thumb:hover .play-btn { transform: scale(1.1); background: white; }
+
+  .play-btn svg {
+    width: 22px;
+    height: 22px;
+    color: #111;
+    margin-left: 3px;
+  }
+
+  .video-title {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.5rem 1rem 0.75rem;
+    background: linear-gradient(to top, rgba(20,20,22,0.9), transparent);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(10,10,12,0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .lightbox.active { display: flex; }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    width: 100%;
+  }
+
+  .lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .lightbox-content iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: background 0.2s;
+  }
+
+  .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+  /* ─── CONDICIONES ─── */
+  #condiciones { background: var(--bg2); }
+
+  .condiciones-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border2);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .condicion-card {
+    background: var(--card);
+    padding: 2.5rem;
+    transition: background 0.3s;
+  }
+
+  .condicion-card:hover { background: var(--card2); }
+
+  .condicion-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(216,197,184,0.08);
+    border: 1px solid rgba(216,197,184,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    color: var(--gold2);
+  }
+
+  .condicion-icon svg { width: 22px; height: 22px; }
+
+  .condicion-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .condicion-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ─── CONTACTO ─── */
+  #contacto {
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contacto-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/secciones/contacto.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.06;
+  }
+
+  .contacto-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .contacto-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    transition: background 0.3s, border-color 0.3s, transform 0.2s;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .contacto-card:hover {
+    background: var(--card2);
+    border-color: rgba(216,197,184,0.3);
+    transform: translateY(-2px);
+  }
+
+  .contacto-icon {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: rgba(216,197,184,0.08);
+    border: 1px solid rgba(216,197,184,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold2);
+  }
+
+  .contacto-icon svg { width: 22px; height: 22px; }
+
+  .contacto-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .contacto-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .contacto-cta {
+    margin-top: 3.5rem;
+    text-align: center;
+    padding: 3rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+
+  .contacto-cta p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  .contacto-cta h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .footer-logo img { height: 32px; }
+
+  .footer-logo span {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .footer-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .footer-social a:hover { border-color: var(--gold2); color: var(--gold2); }
+  .footer-social a svg { width: 16px; height: 16px; }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    .historia-grid,
+    .filosofia-grid,
+    .evento-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    .evento-grid.reverse { direction: ltr; }
+
+    .servicios-grid { grid-template-columns: 1fr; }
+
+    .proceso-steps { grid-template-columns: repeat(2, 1fr); }
+
+    .condiciones-grid { grid-template-columns: 1fr; }
+
+    .contacto-grid { grid-template-columns: 1fr; }
+
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .video-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 4rem 1.25rem; }
+
+    .proceso-steps { grid-template-columns: 1fr; }
+
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .video-grid { grid-template-columns: 1fr; }
+
+    .footer-inner { flex-direction: column; text-align: center; }
+
+    .hero-title { font-size: 2.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#inicio" class="nav-logo">
+    <img src="images/logo/NEO Producciones Obturador.png" alt="NEO Producciones">
+    <span>NEO Producciones</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contacto" class="btn-nav">Contacto</a></li>
+  </ul>
+
+  <div class="nav-hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
+  <a href="#servicios" onclick="toggleMenu()">Servicios</a>
+  <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
+  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Buenos Aires · Desde 2006</p>
+    <h1 class="hero-title">
+      <span class="gradient-text">Fotografía</span><br>
+      profesional
+    </h1>
+    <p class="hero-sub">Capturamos los momentos más significativos de tu vida con casi dos décadas de experiencia y dedicación.</p>
+    <div class="hero-ctas">
+      <a href="#portfolio" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Ver Portfolio
+      </a>
+      <a href="#contacto" class="btn-outline">Solicitar presupuesto</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Desplazá</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── NOSOTROS ─── -->
+<section id="nosotros">
+  <div class="container">
+
+    <!-- Historia -->
+    <div class="historia-grid">
+      <div class="reveal">
+        <p class="section-label">Quiénes somos</p>
+        <h2 class="section-title">Nuestra<br><span class="grad">Historia</span></h2>
+        <div class="divider"></div>
+        <div class="historia-text">
+          <p>Desde 2006, NEO Producciones ha sido testigo de los momentos más significativos en la vida de nuestros clientes. Con casi dos décadas de experiencia, hemos perfeccionado el arte de transformar instantes fugaces en memorias tangibles que perduran por generaciones.</p>
+          <p>Es un emprendimiento personal de fotografía de Jorge O. Tripodi, con un equipo dedicado que brinda servicios para eventos, books, fotografía comercial, de inmuebles y muchos más, siempre acordes a tus necesidades.</p>
+        </div>
+        <div class="stat-row">
+          <div class="stat-item">
+            <div class="stat-num">+20</div>
+            <div class="stat-label">Años de trayectoria</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4K</div>
+            <div class="stat-label">Calidad de video</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">6h</div>
+            <div class="stat-label">Cobertura ilimitada</div>
+          </div>
+        </div>
+      </div>
+      <div class="historia-img reveal reveal-delay-2">
+        <img src="images/secciones/acerca.jpg" alt="NEO Producciones - Fotografía">
+      </div>
+    </div>
+
+    <!-- Filosofía -->
+    <div class="filosofia-grid">
+      <div class="filosofia-img reveal">
+        <img src="images/secciones/Filosofía.jpg" alt="Filosofía de trabajo">
+      </div>
+      <div class="reveal reveal-delay-2">
+        <p class="section-label">Nuestra visión</p>
+        <h2 class="section-title">Nuestra<br><span class="grad">Filosofía</span></h2>
+        <div class="divider"></div>
+        <div class="filosofia-text">
+          <p>En NEO Producciones creemos que cada fotografía cuenta una historia única. El fotógrafo experto no solo captura imágenes; inmortaliza emociones, gestos y miradas que definen los momentos especiales de tu vida.</p>
+          <p>Trabajamos con pasión y dedicación, convirtiendo cada sesión fotográfica en una experiencia memorable por sí misma.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── SERVICIOS ─── -->
+<section id="servicios">
+  <div class="container">
+    <div class="servicios-intro reveal">
+      <p class="section-label">Lo que hacemos</p>
+      <h2 class="section-title">Nuestros<br><span class="grad">Servicios</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="servicios-grid">
+      <div class="servicio-card reveal">
+        <div class="servicio-num">01</div>
+        <div class="servicio-title">Fotografía de Eventos Sociales</div>
+        <p class="servicio-desc">Cumpleaños de 15 y 18, aniversarios, casamientos, Bar/Bat Mitzvah y celebraciones familiares. Capturamos la esencia de cada momento especial.</p>
+      </div>
+      <div class="servicio-card reveal reveal-delay-1">
+        <div class="servicio-num">02</div>
+        <div class="servicio-title">Eventos Corporativos</div>
+        <p class="servicio-desc">Conferencias, lanzamientos de productos, reuniones, ferias comerciales y eventos de networking con un enfoque profesional y discreto.</p>
+      </div>
+      <div class="servicio-card reveal reveal-delay-2">
+        <div class="servicio-num">03</div>
+        <div class="servicio-title">Producciones Audiovisuales</div>
+        <p class="servicio-desc">Videos conmemorativos, institucionales y montajes especiales. Nuestra edición profesional transforma fotografías y videos en historias memorables.</p>
+      </div>
+      <div class="servicio-card reveal reveal-delay-3">
+        <div class="servicio-num">04</div>
+        <div class="servicio-title">Fotografía de Producto e Inmobiliaria</div>
+        <p class="servicio-desc">Imágenes de alta calidad para catálogos, publicidad y marketing inmobiliario que resaltan las mejores características de sus productos o propiedades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EVENTOS SOCIALES ─── -->
+<section class="evento-section">
+  <div class="container">
+    <div class="evento-grid">
+      <div class="evento-img reveal">
+        <img src="images/secciones/eventos.jpg" alt="Eventos Sociales">
+      </div>
+      <div class="reveal reveal-delay-2">
+        <p class="section-label">Celebraciones</p>
+        <h2 class="section-title">Eventos<br><span class="grad">Sociales</span></h2>
+        <div class="divider"></div>
+        <div class="event-items">
+          <div class="event-item">
+            <div class="event-item-num">1</div>
+            <div>
+              <div class="event-item-title">Fotografía Previa</div>
+              <p class="event-item-desc">Sesión en locaciones especiales que reflejen la personalidad del homenajeado o pareja. Ideal para crear recuerdos únicos antes del gran día.</p>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-item-num">2</div>
+            <div>
+              <div class="event-item-title">Video Homenaje</div>
+              <p class="event-item-desc">Nuestra "especialidad de la casa". Montajes emotivos con fotos y videos desde la infancia hasta la actualidad, creando un momento inolvidable durante el festejo.</p>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-item-num">3</div>
+            <div>
+              <div class="event-item-title">Cobertura Total</div>
+              <p class="event-item-desc">Capturamos cada instante de manera ilimitada durante 6 horas. Incluye fotografías y fragmentos de video de los momentos clave del evento.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 2.5rem;">
+          <a href="#contacto" class="btn-primary">Consultar disponibilidad</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EVENTOS CORPORATIVOS ─── -->
+<section class="evento-section">
+  <div class="container">
+    <div class="evento-grid reverse">
+      <div class="evento-img reveal">
+        <img src="images/secciones/Evento_corp.jpg" alt="Eventos Corporativos">
+      </div>
+      <div class="reveal reveal-delay-2">
+        <p class="section-label">Empresas</p>
+        <h2 class="section-title">Eventos<br><span class="grad">Corporativos</span></h2>
+        <div class="divider"></div>
+        <div class="event-items">
+          <div class="event-item">
+            <div class="event-item-num">1</div>
+            <div>
+              <div class="event-item-title">Sesión Previa Corporativa</div>
+              <p class="event-item-desc">Coordinamos fotografías profesionales en sus instalaciones o locación relevante. Ideal para material promocional, presentaciones y perfiles corporativos.</p>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-item-num">2</div>
+            <div>
+              <div class="event-item-title">Video Corporativo Profesional</div>
+              <p class="event-item-desc">Producimos videos que destacan la historia, logros y visión de su empresa. Adaptados para proyección durante el evento o uso en redes sociales.</p>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-item-num">3</div>
+            <div>
+              <div class="event-item-title">Cobertura Integral</div>
+              <p class="event-item-desc">Documentación fotográfica completa y captación de video de discursos, demostraciones y networking durante todo el evento.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 2.5rem;">
+          <a href="#contacto" class="btn-primary">Solicitar presupuesto</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESO ─── -->
+<section id="proceso">
+  <div class="container">
+    <div class="reveal" style="max-width: 580px; margin-bottom: 3rem;">
+      <p class="section-label">Cómo trabajamos</p>
+      <h2 class="section-title">Proceso de<br><span class="grad">Trabajo</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="proceso-steps">
+      <div class="proceso-step reveal">
+        <div class="proceso-step-num">01</div>
+        <div class="proceso-step-title">Consulta Inicial</div>
+        <p class="proceso-step-desc">Conversamos sobre tus necesidades específicas y diseñamos un servicio personalizado para tu evento o proyecto fotográfico.</p>
+      </div>
+      <div class="proceso-step reveal reveal-delay-1">
+        <div class="proceso-step-num">02</div>
+        <div class="proceso-step-title">Planificación</div>
+        <p class="proceso-step-desc">Definimos fechas para sesiones previas, coordinamos detalles técnicos y establecemos un cronograma claro para cada etapa del servicio.</p>
+      </div>
+      <div class="proceso-step reveal reveal-delay-2">
+        <div class="proceso-step-num">03</div>
+        <div class="proceso-step-title">Ejecución</div>
+        <p class="proceso-step-desc">Realizamos las sesiones previas, preparamos los materiales audiovisuales y garantizamos una cobertura profesional durante el evento.</p>
+      </div>
+      <div class="proceso-step reveal reveal-delay-3">
+        <div class="proceso-step-num">04</div>
+        <div class="proceso-step-title">Entrega</div>
+        <p class="proceso-step-desc">Seleccionamos y editamos el material. Entrega segura a través de Google Drive para fácil acceso y distribución.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PORTFOLIO ─── -->
+<section id="portfolio">
+  <div class="container">
+    <div class="portfolio-intro reveal">
+      <p class="section-label">Nuestro trabajo</p>
+      <h2 class="section-title"><span class="grad">Portfolio</span></h2>
+      <div class="divider"></div>
+      <p style="color: var(--text-muted); font-size: 1rem;">Cada imagen cuenta una historia. Nuestro compromiso es capturar la esencia y emoción de cada evento, con un estilo que combina elegancia y naturalidad.</p>
+    </div>
+
+    <div class="portfolio-section-title reveal">Fotografía previa</div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-09-32-03_resize.avif')">
+        <img src="images/portfolio/2023-12-22-09-32-03_resize.avif" alt="Fotografía previa 1" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-09-35-25_resize.avif')">
+        <img src="images/portfolio/2023-12-22-09-35-25_resize.avif" alt="Fotografía previa 2" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-09-54-09_resize.avif')">
+        <img src="images/portfolio/2023-12-22-09-54-09_resize.avif" alt="Fotografía previa 3" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-10-12-59_resize.avif')">
+        <img src="images/portfolio/2023-12-22-10-12-59_resize.avif" alt="Fotografía previa 4" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-10-47-17---IMG_2598_resize.avif')">
+        <img src="images/portfolio/2023-12-22-10-47-17---IMG_2598_resize.avif" alt="Fotografía previa 5" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-11-30-15---IMG_2738_resize.avif')">
+        <img src="images/portfolio/2023-12-22-11-30-15---IMG_2738_resize.avif" alt="Fotografía previa 6" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-11-49-27---IMG_2782a_resize.avif')">
+        <img src="images/portfolio/2023-12-22-11-49-27---IMG_2782a_resize.avif" alt="Fotografía previa 7" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2023-12-22-11-56-25---IMG_2807_resize.avif')">
+        <img src="images/portfolio/2023-12-22-11-56-25---IMG_2807_resize.avif" alt="Fotografía previa 8" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+    </div>
+
+    <div class="portfolio-section-title reveal" style="margin-top: 3rem;">Fotografía en eventos</div>
+    <div class="gallery-grid reveal" style="grid-template-columns: repeat(4,1fr);">
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2022-11-26-23-36-44---IMG_9849_resize.avif')">
+        <img src="images/portfolio/2022-11-26-23-36-44---IMG_9849_resize.avif" alt="Evento 1" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2024-11-16-22-31-26---IMG_5097_resize.avif')">
+        <img src="images/portfolio/2024-11-16-22-31-26---IMG_5097_resize.avif" alt="Evento 2" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2024-11-16-22-59-10---IMG_5225a_resize.avif')">
+        <img src="images/portfolio/2024-11-16-22-59-10---IMG_5225a_resize.avif" alt="Evento 3" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/portfolio/2024-11-17-02-45-14---IMG_5513_stitch1-topaz-face_resize.avif')">
+        <img src="images/portfolio/2024-11-17-02-45-14---IMG_5513_stitch1-topaz-face_resize.avif" alt="Evento panorama" loading="lazy">
+        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
+      </div>
+    </div>
+
+    <div class="portfolio-section-title reveal" style="margin-top: 3rem;">Video montaje con música &amp; corporativos</div>
+    <div class="video-grid reveal">
+      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/1056932047?autoplay=1')">
+    <img src="images/logo/encabezado.png" alt="Jessyca y Juan" loading="lazy">
+        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="video-title">Jessyca y Juan (4K)</div>
+      </div>
+      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/874028752?autoplay=1')">
+    <img src="images/logo/encabezado.png" alt="Kuky 80 años" loading="lazy">
+        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="video-title">Kuky 80 años (4K)</div>
+      </div>
+      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/608951360?autoplay=1')">
+    <img src="images/logo/encabezado.png" alt="Constanza 15 años" loading="lazy">
+        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="video-title">Constanza — 15 años</div>
+      </div>
+      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/372260688?autoplay=1')">
+    <img src="images/logo/encabezado.png" alt="Guada y Franco" loading="lazy">
+        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="video-title">Guada y Franco</div>
+      </div>
+      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/703657225?autoplay=1')">
+    <img src="images/logo/encabezado.png" alt="Briana 4 años" loading="lazy">
+        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="video-title">Briana 4 años y Bautismo</div>
+      </div>
+      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/1066422074?autoplay=1')">
+        <img src="https://i.vimeocdn.com/video/1994134834-d35624585f1ef0cb0742ce8fe323120cca91e0ef31d85c5a2d94d1600ab19c3d-d?f=webp" alt="Lautaro 1 año" loading="lazy">
+        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="video-title">Lautaro 1 año</div>
+      </div>
+      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/709958518?autoplay=1')">
+    <img src="images/logo/encabezado.png" alt="Bar Mitzva" loading="lazy">
+        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="video-title">Saludos para Alan (Bar Mitzva)</div>
+      </div>
+      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/1066421993?autoplay=1')">
+    <img src="images/logo/encabezado.png" alt="Priscila 15 años" loading="lazy">
+        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="video-title">Priscila — 15 años</div>
+      </div>
+      <div class="video-thumb" onclick="openVideo('https://www.youtube.com/embed/_CtuFKRt46Y?autoplay=1')">
+        <img src="https://i.ytimg.com/vi/_CtuFKRt46Y/maxresdefault.jpg" alt="DevSecOps Day" loading="lazy">
+        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="video-title">Corporativo — DevSecOps Day</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── CONDICIONES ─── -->
+<section id="condiciones">
+  <div class="container">
+    <div class="reveal" style="max-width: 540px; margin-bottom: 0.5rem;">
+      <p class="section-label">Lo que debés saber</p>
+      <h2 class="section-title">Condiciones de<br><span class="grad">Contratación</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="condiciones-grid">
+      <div class="condicion-card reveal">
+        <div class="condicion-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75"/></svg>
+        </div>
+        <div class="condicion-title">Reserva y Pago</div>
+        <p class="condicion-desc">Para confirmar tu fecha, se requiere un depósito del 50% del presupuesto total. El saldo restante debe abonarse antes de la entrega final del material editado.</p>
+      </div>
+      <div class="condicion-card reveal reveal-delay-1">
+        <div class="condicion-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+        </div>
+        <div class="condicion-title">Entrega del Material</div>
+        <p class="condicion-desc">Todas las fotografías y videos seleccionados se entregan en alta resolución a través de un enlace seguro en Google Drive, listo para compartir o imprimir.</p>
+      </div>
+      <div class="condicion-card reveal reveal-delay-2">
+        <div class="condicion-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+        </div>
+        <div class="condicion-title">Servicios Adicionales</div>
+        <p class="condicion-desc">Ofrecemos opciones como alquiler de proyector, impresiones en diversos formatos, souvenirs personalizados y tiempo extra de cobertura durante el evento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACTO ─── -->
+<section id="contacto">
+  <div class="contacto-bg"></div>
+  <div class="container contacto-inner">
+    <div class="reveal" style="max-width: 540px;">
+      <p class="section-label">Escribinos</p>
+      <h2 class="section-title">Contactanos</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="contacto-grid">
+      <a href="https://wa.me/541140686925" target="_blank" class="contacto-card reveal">
+        <div class="contacto-icon">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <div>
+          <div class="contacto-label">Teléfono / WhatsApp</div>
+          <div class="contacto-value">(011) 15-4068-6925</div>
+        </div>
+      </a>
+      <a href="mailto:jorgeotripodi@hotmail.com" class="contacto-card reveal reveal-delay-1">
+        <div class="contacto-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+        </div>
+        <div>
+          <div class="contacto-label">Correo Electrónico</div>
+          <div class="contacto-value">jorgeotripodi@hotmail.com</div>
+        </div>
+      </a>
+      <a href="https://www.facebook.com/neoproduccionestm/" target="_blank" class="contacto-card reveal reveal-delay-2">
+        <div class="contacto-icon">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </div>
+        <div>
+          <div class="contacto-label">Facebook</div>
+          <div class="contacto-value">neoproduccionestm</div>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/neo_producciones_tm/" target="_blank" class="contacto-card reveal reveal-delay-3">
+        <div class="contacto-icon">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </div>
+        <div>
+          <div class="contacto-label">Instagram</div>
+          <div class="contacto-value">@neo_producciones_tm</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="contacto-cta reveal">
+      <h3>¿Listo para capturar tus momentos?</h3>
+      <p>Contactanos para una consulta personalizada. Respondemos en menos de 24 horas y te ofrecemos un presupuesto adaptado a tus necesidades.</p>
+      <a href="https://wa.me/541140686925" target="_blank" class="btn-primary">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escribinos por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <a href="#inicio" class="footer-logo">
+      <img src="images/logo/NEO Producciones Obturador.png" alt="NEO Producciones">
+      <span>NEO Producciones™</span>
+    </a>
+    <p class="footer-copy">© <span id="year"></span> NEO Producciones · Buenos Aires, Argentina</p>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/neoproduccionestm/" target="_blank" aria-label="Facebook">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/neo_producciones_tm/" target="_blank" aria-label="Instagram">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── LIGHTBOX ─── -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-content" id="lightboxContent">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  </div>
+</div>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Close menu on nav link click
+  document.querySelectorAll('nav .nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+  });
+
+  // Lightbox - images
+  function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    const content = document.getElementById('lightboxContent');
+    content.innerHTML = `<button class="lightbox-close" onclick="closeLightbox()">✕</button><img src="${src}" alt="">`;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Lightbox - videos
+  function openVideo(url) {
+    const lb = document.getElementById('lightbox');
+    const content = document.getElementById('lightboxContent');
+    content.innerHTML = `<button class="lightbox-close" onclick="closeLightbox()">✕</button><iframe src="${url}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('active');
+    document.getElementById('lightboxContent').innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  // Close lightbox on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.getElementById('lightbox').classList.remove('active');
+      document.getElementById('lightboxContent').innerHTML = '';
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav active link highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
+    });
+  }, { passive: true });
+</script>
+
+</body>
+</html>
