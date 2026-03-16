@@ -8,6 +8,8 @@
 <link rel="icon" href="images/logo/logo_obturador.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 <style>
   :root {
     --bg: #141416;
@@ -822,6 +824,71 @@
     font-weight: 500;
   }
 
+  /* Visor 360 */
+  .panorama-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .panorama-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+
+  .panorama-item .visor-360 {
+    width: 100%;
+    height: 320px;
+  }
+
+  .panorama-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(to top, rgba(20,20,22,0.95), rgba(20,20,22,0.7) 60%, transparent);
+    z-index: 10;
+  }
+
+  .panorama-label-titulo {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .panorama-label-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .panorama-badge {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    background: rgba(216,197,184,0.12);
+    border: 1px solid rgba(216,197,184,0.25);
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--gold2);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .panorama-badge svg {
+    width: 14px;
+    height: 14px;
+  }
+
   /* Lightbox */
   .lightbox {
     position: fixed;
@@ -1127,6 +1194,7 @@
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 
     .video-grid { grid-template-columns: 1fr 1fr; }
+    .panorama-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {
@@ -1137,6 +1205,8 @@
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 
     .video-grid { grid-template-columns: 1fr; }
+
+    .panorama-item .visor-360 { height: 260px; }
 
     .footer-inner { flex-direction: column; text-align: center; }
 
@@ -1466,6 +1536,63 @@
       </div>
     </div>
 
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+         SECCIÓN INACTIVA: Fotografía Inmobiliaria 360°
+         Para activar: descomentar el bloque HTML y agregar imágenes en images/360/
+         Imágenes requeridas: living.jpg, cocina.jpg, dormitorio.jpg, terraza.jpg
+         ═══════════════════════════════════════════════════════════════════════════ -->
+    <!--
+    <div class="portfolio-section-title reveal" style="margin-top: 3rem;">Fotografía Inmobiliaria 360°</div>
+    <p class="reveal" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Recorridos virtuales inmersivos capturados con cámara Insta360 X4, ideales para mostrar propiedades inmobiliarias con total interactividad.</p>
+    <div class="panorama-grid reveal">
+      <div class="panorama-item">
+        <div class="panorama-badge">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          360°
+        </div>
+        <div id="panorama-1" class="visor-360"></div>
+        <div class="panorama-label">
+          <div class="panorama-label-titulo">Living principal</div>
+          <div class="panorama-label-desc">Departamento tipo penthouse · Palermo</div>
+        </div>
+      </div>
+      <div class="panorama-item">
+        <div class="panorama-badge">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          360°
+        </div>
+        <div id="panorama-2" class="visor-360"></div>
+        <div class="panorama-label">
+          <div class="panorama-label-titulo">Cocina integrada</div>
+          <div class="panorama-label-desc">Departamento tipo penthouse · Palermo</div>
+        </div>
+      </div>
+      <div class="panorama-item">
+        <div class="panorama-badge">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          360°
+        </div>
+        <div id="panorama-3" class="visor-360"></div>
+        <div class="panorama-label">
+          <div class="panorama-label-titulo">Dormitorio principal</div>
+          <div class="panorama-label-desc">Departamento tipo penthouse · Palermo</div>
+        </div>
+      </div>
+      <div class="panorama-item">
+        <div class="panorama-badge">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          360°
+        </div>
+        <div id="panorama-4" class="visor-360"></div>
+        <div class="panorama-label">
+          <div class="panorama-label-titulo">Terraza con vista</div>
+          <div class="panorama-label-desc">Departamento tipo penthouse · Palermo</div>
+        </div>
+      </div>
+    </div>
+    -->
+    <!-- FIN SECCIÓN INACTIVA: Fotografía Inmobiliaria 360° -->
+
     <div class="portfolio-section-title reveal" style="margin-top: 3rem;">Video montaje con música &amp; corporativos</div>
     <div class="video-grid reveal">
       <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/1056932047?autoplay=1')">
@@ -1650,6 +1777,39 @@
   // Mobile menu
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Inicializar visores 360 con Pannellum
+  function initPanoramas() {
+    const panoramas = [
+      { id: 'panorama-1', img: 'images/360/living.jpg' },
+      { id: 'panorama-2', img: 'images/360/cocina.jpg' },
+      { id: 'panorama-3', img: 'images/360/dormitorio.jpg' },
+      { id: 'panorama-4', img: 'images/360/terraza.jpg' }
+    ];
+
+    panoramas.forEach(p => {
+      const el = document.getElementById(p.id);
+      if (el && typeof pannellum !== 'undefined') {
+        pannellum.viewer(p.id, {
+          type: 'equirectangular',
+          panorama: p.img,
+          autoLoad: true,
+          autoRotate: -2,
+          compass: false,
+          showZoomCtrl: true,
+          showFullscreenCtrl: true,
+          hotSpotDebug: false
+        });
+      }
+    });
+  }
+
+  // Ejecutar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPanoramas);
+  } else {
+    initPanoramas();
   }
 
   // Close menu on nav link click
