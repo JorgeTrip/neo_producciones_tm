@@ -6,38 +6,8 @@ function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-// Inicialización de los visores de imágenes 360 interactivos mediante Pannellum
-function initPanoramas() {
-  const panoramas = [
-    { id: 'panorama-1', img: 'images/360/living.webp' },
-    { id: 'panorama-2', img: 'images/360/cocina.webp' },
-    { id: 'panorama-3', img: 'images/360/dormitorio.webp' },
-    { id: 'panorama-4', img: 'images/360/terraza.webp' }
-  ];
-
-  panoramas.forEach(p => {
-    const el = document.getElementById(p.id);
-    if (el && typeof pannellum !== 'undefined') {
-      pannellum.viewer(p.id, {
-        type: 'equirectangular',
-        panorama: p.img,
-        autoLoad: true,
-        autoRotate: -2,
-        compass: false,
-        showZoomCtrl: true,
-        showFullscreenCtrl: true,
-        hotSpotDebug: false
-      });
-    }
-  });
-}
-
-// Inicialización de Pannellum cuando el DOM esté completamente cargado
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initPanoramas);
-} else {
-  initPanoramas();
-}
+// Referencia global al visor interactivo de Pannellum activo
+let activePanoramaViewer = null;
 
 // Cerrar el menú móvil al hacer clic en cualquiera de los enlaces de navegación
 document.querySelectorAll('nav .nav-links a').forEach(a => {
@@ -171,9 +141,60 @@ function openYouTube(url) {
   nextBtn.style.display = 'none';
 }
 
+// Abre el Lightbox y renderiza un visor 360 interactivo mediante Pannellum
+function openPanorama(imgSrc, titulo) {
+  isVideoMode = false;
+  currentImageIndex = -1; // Desactivar navegación secuencial en modo panorama
+
+  const lb = document.getElementById('lightbox');
+  const content = document.getElementById('lightboxContent');
+  const counter = document.getElementById('lightboxCounter');
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+
+  // Inyectar el contenedor del visor y el título
+  content.innerHTML = `
+    <div id="panorama-viewer"></div>
+    <div class="panorama-title-float">${titulo}</div>
+  `;
+  
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // Ocultar elementos de navegación secuencial
+  counter.style.display = 'none';
+  prevBtn.style.display = 'none';
+  nextBtn.style.display = 'none';
+
+  // Inicializar Pannellum de manera diferida en el contenedor inyectado
+  if (typeof pannellum !== 'undefined') {
+    activePanoramaViewer = pannellum.viewer('panorama-viewer', {
+      type: 'equirectangular',
+      panorama: imgSrc,
+      autoLoad: true,
+      autoRotate: -1.5,
+      compass: false,
+      showZoomCtrl: true,
+      showFullscreenCtrl: true,
+      hotSpotDebug: false
+    });
+  }
+}
+
 // Cierre del Lightbox y detención de la reproducción de contenido multimedia
 function closeLightbox(e) {
   if (e && e.target !== document.getElementById('lightbox')) return;
+  
+  // Destruir la instancia activa del panorama para liberar recursos
+  if (activePanoramaViewer) {
+    try {
+      activePanoramaViewer.destroy();
+    } catch (err) {
+      console.warn("No se pudo destruir el panorama:", err);
+    }
+    activePanoramaViewer = null;
+  }
+
   const lb = document.getElementById('lightbox');
   lb.classList.remove('active');
   document.getElementById('lightboxContent').innerHTML = '';
