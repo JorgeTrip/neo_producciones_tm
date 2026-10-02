@@ -1,3 +1,5 @@
+* 2026-10-02 [d4baba5] fix: Se actualiza credito de autoria en modal Acerca de (Jorge O. Tripodi)
+* 2026-10-02 [37659ba] feat: Se agrega modal Acerca de y pipeline de versionado CI/CD (Jorge O. Tripodi)
 * 2026-10-02 [c75a73b] refactor: Se modulariza proyecto, estilos y scripts conforme a reglas de gobernanza (Jorge O. Tripodi)
 * 2026-07-07 [5ba519a] fix: Se actualiza identificador de Google Analytics en index.html (Jorge O. Tripodi)
 * 2026-07-07 [f31e031] feat: Se agrega archivo de verificación de Google Search Console y guía SEO (Jorge O. Tripodi)
