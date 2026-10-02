@@ -1,0 +1,194 @@
+/**
+ * Estilos del Modal Acerca de y Visor de Novedades (Changelog).
+ * Aplica el estilo Grises Pro (Apple), efectos glassmorphism y Skeleton Screens.
+ */
+
+/* Botón disparador circular en la barra de navegación */
+.btn-ayuda-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(44, 44, 46, 0.65);
+  border: 1px solid rgba(216, 197, 184, 0.2);
+  color: var(--gold);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  margin-left: 0.5rem;
+}
+
+.btn-ayuda-nav:hover {
+  background: rgba(216, 197, 184, 0.18);
+  border-color: var(--gold2);
+  transform: scale(1.06);
+}
+
+/* Telón de fondo del modal */
+.modal-acerca-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(18, 18, 20, 0.75);
+  backdrop-filter: blur(14px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-acerca-backdrop.activo {
+  display: flex;
+  opacity: 1;
+}
+
+/* Tarjeta principal modal */
+.modal-acerca-tarjeta {
+  background: #1C1C1E;
+  border: 1px solid rgba(216, 197, 184, 0.18);
+  border-radius: 20px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  animation: modalAparicion 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalAparicion {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Encabezado y pie del modal */
+.modal-acerca-header {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(216, 197, 184, 0.08);
+}
+
+.modal-acerca-titulo {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modal-acerca-cerrar {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+  transition: color 0.2s;
+}
+
+.modal-acerca-cerrar:hover { color: var(--text); }
+
+/* Cuerpo con scroll suave */
+.modal-acerca-cuerpo {
+  padding: 1.5rem;
+  overflow-y: auto;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Elementos visuales interiores */
+.modal-acerca-badge-version {
+  display: inline-block;
+  background: rgba(216, 197, 184, 0.12);
+  color: var(--gold);
+  border: 1px solid rgba(216, 197, 184, 0.25);
+  padding: 0.2rem 0.65rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+
+.modal-acerca-acciones {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.btn-secundario {
+  background: #2C2C2E;
+  color: var(--text);
+  border: 1px solid rgba(216, 197, 184, 0.15);
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secundario:hover {
+  background: #3A3A3C;
+  color: var(--gold);
+}
+
+/* Lista de commits del Changelog */
+.lista-cambios {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.item-cambio {
+  background: rgba(44, 44, 46, 0.5);
+  border: 1px solid rgba(216, 197, 184, 0.08);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.item-cambio-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.item-cambio-hash {
+  font-family: monospace;
+  color: var(--gold2);
+}
+
+.item-cambio-msg {
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+/* Skeleton Screens (La Tríada de Jorge - Regla #4) */
+.skeleton-tarjeta {
+  background: linear-gradient(90deg, #242426 25%, #2F2F32 50%, #242426 75%);
+  background-size: 200% 100%;
+  animation: skeletonBrillo 1.5s infinite;
+  border-radius: 10px;
+  height: 60px;
+  margin-bottom: 0.75rem;
+}
+
+@keyframes skeletonBrillo {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
