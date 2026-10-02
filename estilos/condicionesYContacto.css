@@ -1,0 +1,154 @@
+/**
+ * Estilos de Condiciones de Contratación y Sección de Contacto.
+ * Muestra requisitos de reserva y accesos directos a WhatsApp, correo y redes.
+ */
+/* ─── CONDICIONES ─── */
+#condiciones { background: var(--bg2); }
+
+.condiciones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border2);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.condicion-card {
+  background: var(--card);
+  padding: 2.5rem;
+  transition: background 0.3s;
+}
+
+.condicion-card:hover { background: var(--card2); }
+
+.condicion-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(216,197,184,0.08);
+  border: 1px solid rgba(216,197,184,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  color: var(--gold2);
+}
+
+.condicion-icon svg { width: 22px; height: 22px; }
+
+.condicion-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.condicion-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ─── CONTACTO ─── */
+#contacto {
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.contacto-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/secciones/contacto.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.06;
+}
+
+.contacto-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.contacto-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.contacto-card:hover {
+  background: var(--card2);
+  border-color: rgba(216,197,184,0.3);
+  transform: translateY(-2px);
+}
+
+.contacto-icon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: rgba(216,197,184,0.08);
+  border: 1px solid rgba(216,197,184,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold2);
+}
+
+.contacto-icon svg { width: 22px; height: 22px; }
+
+.contacto-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.contacto-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.contacto-cta {
+  margin-top: 3.5rem;
+  text-align: center;
+  padding: 3rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.contacto-cta p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+.contacto-cta h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}

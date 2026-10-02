@@ -1,0 +1,140 @@
+/**
+ * Estilos para Eventos Sociales, Eventos Corporativos y Proceso de Trabajo.
+ * Define la grilla de características por servicio y los pasos secuenciales de trabajo.
+ */
+/* ─── DETALLE EVENTOS ─── */
+.evento-section {
+  padding: 5rem 2rem;
+}
+
+.evento-section:nth-child(even) { background: var(--bg2); }
+.evento-section:nth-child(odd) { background: var(--bg); }
+
+.evento-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.evento-grid.reverse { direction: rtl; }
+.evento-grid.reverse > * { direction: ltr; }
+
+.evento-img {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.evento-img img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s;
+}
+
+.evento-img:hover img { transform: scale(1.03); }
+
+.evento-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.event-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.event-item {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.event-item-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(216,197,184,0.1);
+  border: 1px solid rgba(216,197,184,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold2);
+}
+
+.event-item-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: var(--text);
+}
+
+.event-item-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ─── PROCESO ─── */
+#proceso { background: var(--bg2); }
+
+.proceso-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border2);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.proceso-step {
+  background: var(--card);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.proceso-step:hover { background: var(--card2); }
+
+.proceso-step-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  opacity: 0.2;
+  transition: opacity 0.3s;
+}
+
+.proceso-step:hover .proceso-step-num { opacity: 0.5; }
+
+.proceso-step-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.proceso-step-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}

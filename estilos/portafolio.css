@@ -1,0 +1,142 @@
+/**
+ * Estilos de la Galería de Trabajos y Producciones Audiovisuales.
+ * Controla la grilla adaptativa de fotografías y previsualizaciones de video.
+ */
+/* ─── PORTFOLIO ─── */
+#portfolio { background: var(--bg); }
+
+.portfolio-intro {
+  max-width: 580px;
+  margin-bottom: 3.5rem;
+}
+
+.portfolio-section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold2);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.portfolio-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+  background: var(--card);
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img { transform: scale(1.07); }
+
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20,20,22,0.55);
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+.gallery-item-overlay svg {
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+
+/* Video grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.video-thumb {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--card);
+  aspect-ratio: 16/9;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.video-thumb:hover img { transform: scale(1.04); }
+
+.video-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20,20,22,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.video-thumb:hover .video-thumb-overlay { background: rgba(20,20,22,0.25); }
+
+.play-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(216,197,184,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.video-thumb:hover .play-btn { transform: scale(1.1); background: white; }
+
+.play-btn svg {
+  width: 22px;
+  height: 22px;
+  color: #111;
+  margin-left: 3px;
+}
+
+.video-title {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.5rem 1rem 0.75rem;
+  background: linear-gradient(to top, rgba(20,20,22,0.9), transparent);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}

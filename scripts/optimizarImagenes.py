@@ -20,13 +20,15 @@ def optimizarImagenes():
     Escanea la carpeta de imágenes de manera recursiva y convierte
     archivos PNG, JPG y JPEG al formato WebP.
     """
-    # Se define la ruta de la carpeta 'images' relativa al directorio de este script.
+    # Se define la ruta de la carpeta de imágenes relativa al directorio de este script.
     directorio_base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    dir_imagenes = os.path.join(directorio_base, "images")
+    dir_imagenes = os.path.join(directorio_base, "imagenes")
+    if not os.path.exists(dir_imagenes):
+        dir_imagenes = os.path.join(directorio_base, "images")
     
     print(f"Buscando imágenes de forma recursiva en: {dir_imagenes}")
     if not os.path.exists(dir_imagenes):
-        print("Error: No se encontró la carpeta 'images'. Verifica la estructura del proyecto.")
+        print("Error: No se encontró la carpeta 'imagenes' ni 'images'. Verifica la estructura del proyecto.")
         return
         
     # Se realiza la importación diferida de Pillow (PIL).

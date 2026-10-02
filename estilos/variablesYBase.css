@@ -1,0 +1,80 @@
+/**
+ * Sistema de Variables Globales y Reset Base.
+ * Define la paleta cromática, tipografías del sistema y estilos estructurales comunes.
+ */
+:root {
+  --bg: #141416;
+  --bg2: #1c1c1f;
+  --card: #212124;
+  --card2: #282828;
+  --gold: #d8c5b8;
+  --gold2: #cda78d;
+  --gold3: #b8906e;
+  --text: #eeeff5;
+  --text-muted: rgba(238,239,245,0.55);
+  --border: rgba(216,197,184,0.12);
+  --border2: rgba(216,197,184,0.06);
+  --accent-gradient: linear-gradient(135deg, #E3E3E3 0%, #cda78d 100%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; width: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+
+/* ─── SECTIONS ─── */
+section {
+  padding: 6rem 0;
+}
+
+.container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.section-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold2);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.section-title .grad {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.divider {
+  width: 48px;
+  height: 2px;
+  background: var(--accent-gradient);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}

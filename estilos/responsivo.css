@@ -1,0 +1,52 @@
+/**
+ * Adaptabilidad y Reglas Responsivas Globales.
+ * Ajusta márgenes, tamaños y tipografías para dispositivos móviles y tabletas.
+ */
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-inner { padding: 0 1.5rem; }
+
+  .historia-grid,
+  .filosofia-grid,
+  .evento-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+  .evento-grid.reverse { direction: ltr; }
+
+  .servicios-grid { grid-template-columns: 1fr; }
+
+  .proceso-steps { grid-template-columns: repeat(2, 1fr); }
+
+  .condiciones-grid { grid-template-columns: 1fr; }
+
+  .contacto-grid { grid-template-columns: 1fr; }
+
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .video-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  section { padding: 4rem 0; }
+  .container { padding: 0 1.25rem; }
+
+  .proceso-steps { grid-template-columns: 1fr; }
+
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .video-grid { grid-template-columns: 1fr; }
+
+  .lightbox { padding: 1rem; }
+  .lightbox-content img { max-width: 95vw; max-height: 80vh; }
+  .lightbox-content iframe { width: 95vw; }
+  .lightbox-nav { width: 42px; height: 42px; }
+  .lightbox-prev { left: 0.75rem; }
+  .lightbox-next { right: 0.75rem; }
+  .lightbox-close { top: 0.75rem; right: 0.75rem; width: 38px; height: 38px; }
+  .lightbox-counter { bottom: 0.75rem; }
+
+  .footer-inner { flex-direction: column; text-align: center; }
+
+  .hero-title { font-size: 2.6rem; }
+}

@@ -1,0 +1,16 @@
+/**
+ * Orquestador Central de Hojas de Estilo - NEO Producciones.
+ * Importa de manera secuencial los submódulos de estilos desacoplados,
+ * garantizando modularidad y mantenimiento limpio.
+ */
+
+@import url('variablesYBase.css');
+@import url('navegacion.css');
+@import url('hero.css');
+@import url('nosotrosYServicios.css');
+@import url('eventosYProceso.css');
+@import url('portafolio.css');
+@import url('visorMultimedia.css');
+@import url('condicionesYContacto.css');
+@import url('pieDePagina.css');
+@import url('responsivo.css');

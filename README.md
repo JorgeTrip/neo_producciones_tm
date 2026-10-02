@@ -1,61 +1,74 @@
-# NEO Producciones — Sitio Web
+# NEO Producciones — Sitio Web Oficial
 
-## Estructura del proyecto
-
-```
-/
-├── index.html          ← página principal
-├── images/             ← todas las imágenes locales
-│   ├── ...
-└── README.md
-```
-
-## Archivos necesarios en la carpeta `images/`
-
-Estos archivos están en la carpeta que descargaste de Gamma
-(`NEO Producciones _ Fotografía profesional_files/`).
-Copialos a la carpeta `images/` de este proyecto.
-
-### Logo e identidad
-- `NEO-Producciones-Obturador.png`
-- `NEO-Producciones-Obturador.svg`
-
-### Fotos del sitio (secciones Nosotros y Servicios)
-- `acerca.jpg`
-- `19saDMGzYA4Lk7mo_w0wU.png`  ← imagen Eventos Sociales
-- `J1_lOP7ENC1KidBf2DjjU.jpg`  ← imagen Eventos Corporativos
-- `3n3pRcaSXN6x6un_wmxcK.jpg`  ← imagen Hero / Contacto
-
-### Portfolio — Fotografía previa
-- `2023-12-22-09-32-03_resize.jpg`
-- `2023-12-22-09-35-25_resize.jpg`
-- `2023-12-22-09-54-09_resize.jpg`
-- `2023-12-22-10-12-59_resize.jpg`
-- `2023-12-22-10-47-17---IMG_2598_resize.jpg`
-- `2023-12-22-11-30-15---IMG_2738_resize.jpg`
-- `2023-12-22-11-49-27---IMG_2782a_resize.jpg`
-- `2023-12-22-11-56-25---IMG_2807_resize.jpg`
-
-### Portfolio — Fotografía en eventos
-- `2022-11-26-23-36-44---IMG_9849_resize.jpg`
-- `2024-11-16-22-31-26---IMG_5097_resize.jpg`
-- `2024-11-16-22-59-10---IMG_5225a_resize.jpg`
-- `2024-11-17-02-45-14---IMG_5513_stitch1-topaz-face_resize.jpg`
-
-### Thumbnails de video
-- `44a.jpg`
-- `Claudio-2022-04-23-at-16.04.01.jpeg`
-- `2012-09-24-15-41-28---20120924154128.jpg`
-- `2018-09-08-20-16-58---2018-09-08-20-16-58---IMG_9803_resize.jpg`
-- `2019-06-08-17-39-53---IMG_6844_resize.jpg`
-- `1994134718-5ced2cc7c3f97f43c353f7b8248518761d9c068eacc800114c3f5efa84e300a5-d.webp`
+Portal web oficial de **NEO Producciones**, estudio de fotografía profesional y producción audiovisual en Buenos Aires, liderado por Jorge O. Tripodi.
 
 ---
 
-## Deploy en Netlify
+## 🏛️ Arquitectura Modular del Proyecto
 
-1. Subí este repositorio a GitHub
-2. En Netlify: **Add new site → Import an existing project → GitHub**
-3. Seleccioná el repo, dejá todo por defecto y hacé click en **Deploy**
+El proyecto está diseñado bajo principios estrictos de modularización y desacoplamiento, garantizando que ningún archivo exceda el límite de **200 líneas de código**.
 
-Para el formulario de contacto, podés agregar `data-netlify="true"` al tag `<form>` si en algún momento agregás un formulario HTML.
+```text
+/
+├── index.html                  ← Orquestador declarativo principal (<150 líneas)
+├── styles.css                  ← Punto de entrada global de estilos
+├── script.js                   ← Punto de entrada de scripts para navegadores
+│
+├── estilos/                    ← Submódulos de CSS desacoplados (<200 líneas c/u)
+│   ├── variablesYBase.css      ← Variables de tema, reset y tipografías
+│   ├── navegacion.css          ← Menú de cabecera y versión móvil
+│   ├── hero.css                ← Sección inicial y llamadas a la acción
+│   ├── nosotrosYServicios.css  ← Historia, filosofía y servicios
+│   ├── eventosYProceso.css     ← Coberturas sociales/corporativas y flujo
+│   ├── portafolio.css          ← Grillas de fotos y miniaturas de video
+│   ├── visorMultimedia.css     ← Modal lightbox y controles
+│   ├── condicionesYContacto.css← Términos y canales de comunicación
+│   ├── pieDePagina.css         ← Copyright, redes sociales y scroll reveal
+│   ├── responsivo.css          ← Reglas adaptativas para tabletas y móviles
+│   └── principal.css           ← Orquestador central de hojas de estilo
+│
+├── componentes/                ← Componentes declarativos en JavaScript
+│   ├── SeccionNosotros.js      ← Vista de quiénes somos y contadores
+│   ├── SeccionServicios.js     ← Catálogo de servicios profesionales
+│   ├── SeccionEventos.js       ← Detalles de eventos sociales y empresas
+│   ├── SeccionProceso.js       ← Pasos secuenciales de trabajo
+│   ├── SeccionPortafolio.js    ← Renderizado reactivo de la galería
+│   ├── SeccionCondiciones.js   ← Condiciones de contratación
+│   └── SeccionContacto.js      ← Tarjetas de contacto y WhatsApp
+│
+├── scripts/                    ← Módulos de lógica y utilidades
+│   ├── utilidadesDom.js        ← Creación segura de nodos (Cero innerHTML)
+│   ├── datosPortafolio.js      ← Datos de imágenes, panoramas 360 y videos
+│   ├── inicializarComponentes.js ← Montaje declarativo en el DOM
+│   ├── menuNavegacion.js       ← Interactividad del menú y scroll spy
+│   ├── visorMultimedia.js      ← Lightbox seguro para imágenes y videos
+│   ├── visorPanoramico.js      ← Integración del visor 360° con Pannellum
+│   ├── animacionesScroll.js    ← Observador de intersección para reveal
+│   ├── principal.js            ← Punto de entrada de módulos ES6
+│   ├── optimizarImagenes.py    ← Script en Python de compresión a WebP
+│   └── README.md               ← Documentación técnica del optimizador
+│
+└── images/                     ← Recursos gráficos optimizados en WebP/SVG
+    ├── logo/                   ← Identidad visual y favicons
+    ├── secciones/              ← Fotografías de apoyo de secciones
+    ├── portfolio/              ← Galería de fotos (previas, eventos, 360)
+    └── social/                 ← Iconografía de redes sociales
+```
+
+---
+
+## 🔒 Auditoría de Seguridad y Calidad
+
+El proyecto cumple al 100% con la suite centralizada de auditoría:
+- **Regla de Hierro**: 0 archivos que superen las 200 líneas.
+- **Análisis SAST**: 0 vulnerabilidades (cero uso de `innerHTML` directo).
+- **Nomenclatura**: 100% en español con PascalCase para componentes y camelCase para funciones y estilos.
+
+---
+
+## 🚀 Despliegue en Netlify
+
+1. El repositorio está listo para despliegue estático continuo.
+2. Configuración predeterminada:
+   - **Publish directory:** `.`
+   - **Build command:** *(sin comando de compilación requerido)*

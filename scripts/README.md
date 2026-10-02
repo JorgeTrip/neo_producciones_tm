@@ -10,7 +10,7 @@ Herramienta de automatización desarrollada en Python para la optimización de r
 
 ## 📋 Descripción del Script
 
-Este script (`optimizar_imagenes.py`) tiene como objetivo escanear el directorio de imágenes del proyecto, identificar aquellos archivos en formatos tradicionales y pesados (`.png`, `.jpg`, `.jpeg`) y convertirlos de forma automática al formato de última generación **WebP**.
+Este script (`optimizarImagenes.py`) tiene como objetivo escanear el directorio de imágenes del proyecto, identificar aquellos archivos en formatos tradicionales y pesados (`.png`, `.jpg`, `.jpeg`) y convertirlos de forma automática al formato de última generación **WebP**.
 
 Al aplicar esta compresión, el sitio web reduce su tamaño de descarga acumulado en más de un **90%** (bajando el peso de imágenes de **~92 MB a ~8.2 MB**), lo que mejora drásticamente los tiempos de respuesta del portal (Largest Contentful Paint) y potencia el posicionamiento en motores de búsqueda (SEO).
 
@@ -34,7 +34,7 @@ Al aplicar esta compresión, el sitio web reduce su tamaño de descarga acumulad
 Abre tu consola o terminal (PowerShell en Windows, Terminal en macOS/Linux), sitúate en el directorio raíz del proyecto y ejecuta el siguiente comando:
 
 ```bash
-python scripts/optimizar_imagenes.py
+python scripts/optimizarImagenes.py
 ```
 
 ### Flujo del Proceso

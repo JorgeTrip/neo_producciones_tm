@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Analytics (GA4) -->
+  <!-- Analítica web Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN1BCKKZCE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,10 +16,9 @@
   <title>NEO Producciones | Fotografía Profesional en Buenos Aires</title>
   <meta name="description" content="Desde 2006, NEO Producciones brinda servicios de fotografía profesional para eventos sociales y corporativos, books y publicidad en Buenos Aires.">
   <meta name="robots" content="index, follow">
-  <meta name="google-site-verification" content="TOKEN_DE_VERIFICACION_PLACEHOLDER">
   <link rel="canonical" href="https://neoproduccionestm.netlify.app/">
 
-  <!-- Open Graph / Facebook / WhatsApp -->
+  <!-- Metadatos de Open Graph / Redes Sociales -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="NEO Producciones | Fotografía Profesional en Buenos Aires">
   <meta property="og:description" content="Desde 2006, NEO Producciones brinda servicios de fotografía profesional para eventos sociales y corporativos, books y publicidad en Buenos Aires.">
@@ -28,59 +27,56 @@
   <meta property="og:site_name" content="NEO Producciones">
   <meta property="og:locale" content="es_AR">
 
-  <!-- Twitter -->
+  <!-- Tarjetas Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NEO Producciones | Fotografía Profesional en Buenos Aires">
   <meta name="twitter:description" content="Desde 2006, NEO Producciones brinda servicios de fotografía profesional para eventos sociales y corporativos, books y publicidad en Buenos Aires.">
   <meta name="twitter:image" content="https://neoproduccionestm.netlify.app/images/logo/NEO-Producciones-Obturador.png">
 
+  <!-- Iconos del sitio y tipografías -->
   <link rel="icon" href="images/logo/logo_obturador.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="estilos/principal.css">
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
+<!-- Navegación Principal -->
 <nav>
   <div class="nav-inner">
     <a href="#inicio" class="nav-logo">
       <img src="images/logo/NEO Producciones Obturador.webp" alt="NEO Producciones Logo">
       <span>NEO Producciones</span>
     </a>
-
     <ul class="nav-links">
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#contacto" class="btn-nav">Contacto</a></li>
     </ul>
-
-    <div class="nav-hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <div class="nav-hamburger" onclick="conmutarMenu()" aria-label="Menú">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
 
+<!-- Menú Desplegable Móvil -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
-  <a href="#servicios" onclick="toggleMenu()">Servicios</a>
-  <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
-  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+  <a href="#nosotros" onclick="conmutarMenu()">Nosotros</a>
+  <a href="#servicios" onclick="conmutarMenu()">Servicios</a>
+  <a href="#portfolio" onclick="conmutarMenu()">Portfolio</a>
+  <a href="#contacto" onclick="conmutarMenu()">Contacto</a>
 </div>
 
-<!-- ─── HERO ─── -->
+<!-- Sección Hero de Bienvenida -->
 <section id="inicio">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Buenos Aires · Desde 2006</p>
-    <h1 class="hero-title">
-      <span class="gradient-text">Fotografía</span><br>
-      profesional
-    </h1>
+    <h1 class="hero-title"><span class="gradient-text">Fotografía</span><br>profesional</h1>
     <p class="hero-sub">Capturamos los momentos más significativos de tu vida con casi dos décadas de experiencia y dedicación.</p>
     <div class="hero-ctas">
       <a href="#portfolio" class="btn-primary">
@@ -90,542 +86,19 @@
       <a href="#contacto" class="btn-outline">Solicitar presupuesto</a>
     </div>
   </div>
-  <div class="hero-scroll">
-    <span>Desplazá</span>
-    <div class="scroll-line"></div>
-  </div>
+  <div class="hero-scroll"><span>Desplazá</span><div class="scroll-line"></div></div>
 </section>
 
-<!-- ─── NOSOTROS ─── -->
-<section id="nosotros">
-  <div class="container">
+<!-- Puntos de Anclaje de Componentes Declarativos -->
+<section id="nosotros"></section>
+<section id="servicios"></section>
+<div id="contenedor-eventos"></div>
+<section id="proceso"></section>
+<section id="portfolio"></section>
+<section id="condiciones"></section>
+<section id="contacto"></section>
 
-    <!-- Historia -->
-    <div class="historia-grid">
-      <div class="reveal">
-        <p class="section-label">Quiénes somos</p>
-        <h2 class="section-title">Nuestra<br><span class="grad">Historia</span></h2>
-        <div class="divider"></div>
-        <div class="historia-text">
-          <p>Desde 2006, NEO Producciones ha sido testigo de los momentos más significativos en la vida de nuestros clientes. Con casi dos décadas de experiencia, hemos perfeccionado el arte de transformar instantes fugaces en memorias tangibles que perduran por generaciones.</p>
-          <p>Es un emprendimiento personal de fotografía de Jorge O. Tripodi, con un equipo dedicado que brinda servicios para eventos, books, fotografía comercial, de inmuebles y muchos más, siempre acordes a tus necesidades.</p>
-        </div>
-        <div class="stat-row">
-          <div class="stat-item">
-            <div class="stat-num">+20</div>
-            <div class="stat-label">Años de trayectoria</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">4K</div>
-            <div class="stat-label">Calidad de video</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">6h</div>
-            <div class="stat-label">Cobertura ilimitada</div>
-          </div>
-        </div>
-      </div>
-      <div class="historia-img reveal reveal-delay-2">
-        <img src="images/secciones/acerca.webp" alt="Jorge O. Tripodi - Fotógrafo de NEO Producciones">
-      </div>
-    </div>
-
-    <!-- Filosofía -->
-    <div class="filosofia-grid">
-      <div class="filosofia-img reveal">
-        <img src="images/secciones/Filosofía.webp" alt="Filosofía de trabajo y equipamiento de NEO Producciones">
-      </div>
-      <div class="reveal reveal-delay-2">
-        <p class="section-label">Nuestra visión</p>
-        <h2 class="section-title">Nuestra<br><span class="grad">Filosofía</span></h2>
-        <div class="divider"></div>
-        <div class="filosofia-text">
-          <p>En NEO Producciones creemos que cada fotografía cuenta una historia única. El fotógrafo experto no solo captura imágenes; inmortaliza emociones, gestos y miradas que definen los momentos especiales de tu vida.</p>
-          <p>Trabajamos con pasión y dedicación, convirtiendo cada sesión fotográfica en una experiencia memorable por sí misma.</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── SERVICIOS ─── -->
-<section id="servicios">
-  <div class="container">
-    <div class="servicios-intro reveal">
-      <p class="section-label">Lo que hacemos</p>
-      <h2 class="section-title">Nuestros<br><span class="grad">Servicios</span></h2>
-      <div class="divider"></div>
-    </div>
-    <div class="servicios-grid">
-      <div class="servicio-card reveal">
-        <div class="servicio-num">01</div>
-        <div class="servicio-title">Fotografía de Eventos Sociales</div>
-        <p class="servicio-desc">Cumpleaños de 15 y 18, aniversarios, casamientos, Bar/Bat Mitzvah y celebraciones familiares. Capturamos la esencia de cada momento especial.</p>
-      </div>
-      <div class="servicio-card reveal reveal-delay-1">
-        <div class="servicio-num">02</div>
-        <div class="servicio-title">Eventos Corporativos</div>
-        <p class="servicio-desc">Conferencias, lanzamientos de productos, reuniones, ferias comerciales y eventos de networking con un enfoque profesional y discreto.</p>
-      </div>
-      <div class="servicio-card reveal reveal-delay-2">
-        <div class="servicio-num">03</div>
-        <div class="servicio-title">Producciones Audiovisuales</div>
-        <p class="servicio-desc">Videos conmemorativos, institucionales y montajes especiales. Nuestra edición profesional transforma fotografías y videos en historias memorables.</p>
-      </div>
-      <div class="servicio-card reveal reveal-delay-3">
-        <div class="servicio-num">04</div>
-        <div class="servicio-title">Fotografía de Producto e Inmobiliaria</div>
-        <p class="servicio-desc">Imágenes de alta calidad para catálogos, publicidad y marketing inmobiliario que resaltan las mejores características de sus productos o propiedades.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── EVENTOS SOCIALES ─── -->
-<section class="evento-section">
-  <div class="container">
-    <div class="evento-grid">
-      <div class="evento-img reveal">
-        <img src="images/secciones/eventos.webp" alt="Fiesta y fotografía en Eventos Sociales - NEO Producciones">
-      </div>
-      <div class="reveal reveal-delay-2">
-        <p class="section-label">Celebraciones</p>
-        <h2 class="section-title">Eventos<br><span class="grad">Sociales</span></h2>
-        <div class="divider"></div>
-        <div class="event-items">
-          <div class="event-item">
-            <div class="event-item-num">1</div>
-            <div>
-              <h3 class="event-item-title">Fotografía Previa</h3>
-              <p class="event-item-desc">Sesión en locaciones especiales que reflejen la personalidad del homenajeado o pareja. Ideal para crear recuerdos únicos antes del gran día.</p>
-            </div>
-          </div>
-          <div class="event-item">
-            <div class="event-item-num">2</div>
-            <div>
-              <h3 class="event-item-title">Video Homenaje</h3>
-              <p class="event-item-desc">Nuestra "especialidad de la casa". Montajes emotivos con fotos y videos desde la infancia hasta la actualidad, creando un momento inolvidable durante el festejo.</p>
-            </div>
-          </div>
-          <div class="event-item">
-            <div class="event-item-num">3</div>
-            <div>
-              <h3 class="event-item-title">Cobertura Total</h3>
-              <p class="event-item-desc">Capturamos cada instante de manera ilimitada durante 6 horas. Incluye fotografías y fragmentos de video de los momentos clave del evento.</p>
-            </div>
-          </div>
-        </div>
-        <div style="margin-top: 2.5rem;">
-          <a href="#contacto" class="btn-primary">Consultar disponibilidad</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── EVENTOS CORPORATIVOS ─── -->
-<section class="evento-section">
-  <div class="container">
-    <div class="evento-grid reverse">
-      <div class="evento-img reveal">
-        <img src="images/secciones/Evento_corp.webp" alt="Fotografía Corporativa Profesional - NEO Producciones">
-      </div>
-      <div class="reveal reveal-delay-2">
-        <p class="section-label">Empresas</p>
-        <h2 class="section-title">Eventos<br><span class="grad">Corporativos</span></h2>
-        <div class="divider"></div>
-        <div class="event-items">
-          <div class="event-item">
-            <div class="event-item-num">1</div>
-            <div>
-              <h3 class="event-item-title">Sesión Previa Corporativa</h3>
-              <p class="event-item-desc">Coordinamos fotografías profesionales en sus instalaciones o locación relevante. Ideal para material promocional, presentaciones y perfiles corporativos.</p>
-            </div>
-          </div>
-          <div class="event-item">
-            <div class="event-item-num">2</div>
-            <div>
-              <h3 class="event-item-title">Video Corporativo Profesional</h3>
-              <p class="event-item-desc">Producimos videos que destacan la historia, logros y visión de su empresa. Adaptados para proyección durante el evento o uso en redes sociales.</p>
-            </div>
-          </div>
-          <div class="event-item">
-            <div class="event-item-num">3</div>
-            <div>
-              <h3 class="event-item-title">Cobertura Integral</h3>
-              <p class="event-item-desc">Documentación fotográfica completa y captación de video de discursos, demostraciones y networking durante todo el evento.</p>
-            </div>
-          </div>
-        </div>
-        <div style="margin-top: 2.5rem;">
-          <a href="#contacto" class="btn-primary">Solicitar presupuesto</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── PROCESO ─── -->
-<section id="proceso">
-  <div class="container">
-    <div class="reveal" style="max-width: 580px; margin-bottom: 3rem;">
-      <p class="section-label">Cómo trabajamos</p>
-      <h2 class="section-title">Proceso de<br><span class="grad">Trabajo</span></h2>
-      <div class="divider"></div>
-    </div>
-    <div class="proceso-steps">
-      <div class="proceso-step reveal">
-        <div class="proceso-step-num">01</div>
-        <h3 class="proceso-step-title">Consulta Inicial</h3>
-        <p class="proceso-step-desc">Conversamos sobre tus necesidades específicas y diseñamos un servicio personalizado para tu evento o proyecto fotográfico.</p>
-      </div>
-      <div class="proceso-step reveal reveal-delay-1">
-        <div class="proceso-step-num">02</div>
-        <h3 class="proceso-step-title">Planificación</h3>
-        <p class="proceso-step-desc">Definimos fechas para sesiones previas, coordinamos detalles técnicos y establecemos un cronograma claro para cada etapa del servicio.</p>
-      </div>
-      <div class="proceso-step reveal reveal-delay-2">
-        <div class="proceso-step-num">03</div>
-        <h3 class="proceso-step-title">Ejecución</h3>
-        <p class="proceso-step-desc">Realizamos las sesiones previas, preparamos los materiales audiovisuales y garantizamos una cobertura profesional durante el evento.</p>
-      </div>
-      <div class="proceso-step reveal reveal-delay-3">
-        <div class="proceso-step-num">04</div>
-        <h3 class="proceso-step-title">Entrega</h3>
-        <p class="proceso-step-desc">Seleccionamos y editamos el material. Entrega segura a través de Google Drive para fácil acceso y distribución.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── PORTFOLIO ─── -->
-<section id="portfolio">
-  <div class="container">
-    <div class="portfolio-intro reveal">
-      <p class="section-label">Nuestro trabajo</p>
-      <h2 class="section-title"><span class="grad">Portfolio</span></h2>
-      <div class="divider"></div>
-      <p style="color: var(--text-muted); font-size: 1rem;">Cada imagen cuenta una historia. Nuestro compromiso es capturar la esencia y emoción de cada evento, con un estilo que combina elegancia y naturalidad.</p>
-    </div>
-
-    <div class="portfolio-section-title reveal">Fotografía previa</div>
-    <div class="gallery-grid reveal">
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 09-32-03_resize.webp')">
-        <img src="images/portfolio/previas/2023-12-22 09-32-03_resize.webp" alt="Book de fotos previo de 15 años en exteriores por NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 09-35-25_resize.webp')">
-        <img src="images/portfolio/previas/2023-12-22 09-35-25_resize.webp" alt="Sesión de fotos artística en parque para quinceañera - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 09-54-09_resize.webp')">
-        <img src="images/portfolio/previas/2023-12-22 09-54-09_resize.webp" alt="Fotografía previa de 15 años, pose y book en locación exterior" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 10-12-59_resize.webp')">
-        <img src="images/portfolio/previas/2023-12-22 10-12-59_resize.webp" alt="Book de fotos previo creativo, sesión en Buenos Aires" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 10-47-17 - IMG_2598_resize.webp')">
-        <img src="images/portfolio/previas/2023-12-22 10-47-17 - IMG_2598_resize.webp" alt="Sesión previa de quince años en exteriores por NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 11-30-15 - IMG_2738_resize.webp')">
-        <img src="images/portfolio/previas/2023-12-22 11-30-15 - IMG_2738_resize.webp" alt="Retrato artístico de quinceañera en exteriores - fotógrafo profesional" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 11-49-27 - IMG_2782a_resize.webp')">
-        <img src="images/portfolio/previas/2023-12-22 11-49-27 - IMG_2782a_resize.webp" alt="Fotografía previa en exteriores con luz natural - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/previas/2023-12-22 11-56-25 - IMG_2807_resize.webp')">
-        <img src="images/portfolio/previas/2023-12-22 11-56-25 - IMG_2807_resize.webp" alt="Fotografía previa artística y book de fotos - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-    </div>
-
-    <div class="portfolio-section-title reveal" style="margin-top: 3rem;">Fotografía en eventos</div>
-    <div class="gallery-grid reveal" style="grid-template-columns: repeat(4,1fr);">
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2022-11-26 23-36-44 - IMG_9849_resize.webp')">
-        <img src="images/portfolio/eventos/2022-11-26 23-36-44 - IMG_9849_resize.webp" alt="Fiesta de 15 años - Cobertura fotográfica en salón por NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2024-11-16 22-31-26 - IMG_5097_resize.webp')">
-        <img src="images/portfolio/eventos/2024-11-16 22-31-26 - IMG_5097_resize.webp" alt="Fotografía de fiesta de cumpleaños en vivo - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2024-11-16 22-59-10 - IMG_5225a_resize.webp')">
-        <img src="images/portfolio/eventos/2024-11-16 22-59-10 - IMG_5225a_resize.webp" alt="Fiesta y celebración de 15 años, fotografía artística de novios o homenajeada" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2024-11-17 02-45-14 - IMG_5513_stitch1-topaz-face_resize.webp')">
-        <img src="images/portfolio/eventos/2024-11-17 02-45-14 - IMG_5513_stitch1-topaz-face_resize.webp" alt="Panorámica del salón de fiestas en evento social - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2025-02-15 21-14-23 - IMG_7997.webp')">
-        <img src="images/portfolio/eventos/2025-02-15 21-14-23 - IMG_7997.webp" alt="Cobertura fotográfica en vivo de show musical en salón - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2025-02-15 21-15-46 - IMG_8004.webp')">
-        <img src="images/portfolio/eventos/2025-02-15 21-15-46 - IMG_8004.webp" alt="Detalle del brindis y torta en casamiento - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2025-02-15 21-24-42 - IMG_8044.webp')">
-        <img src="images/portfolio/eventos/2025-02-15 21-24-42 - IMG_8044.webp" alt="Show de luces y baile en vivo casamiento - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2025-02-15 21-25-49 - IMG_8054.webp')">
-        <img src="images/portfolio/eventos/2025-02-15 21-25-49 - IMG_8054.webp" alt="Pista de baile animada con invitados - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2025-02-15 21-34-19 - IMG_8078.webp')">
-        <img src="images/portfolio/eventos/2025-02-15 21-34-19 - IMG_8078.webp" alt="Detalle artístico de novios y brindis en evento social - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2025-02-15 21-48-15 - IMG_7881.webp')">
-        <img src="images/portfolio/eventos/2025-02-15 21-48-15 - IMG_7881.webp" alt="Entrada de los novios al salón de eventos - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2025-02-15 21-54-52 - IMG_7896.webp')">
-        <img src="images/portfolio/eventos/2025-02-15 21-54-52 - IMG_7896.webp" alt="Baile principal o vals de novios en salón - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2026-06-13 22-17-40 - IMG_9559.webp')">
-        <img src="images/portfolio/eventos/2026-06-13 22-17-40 - IMG_9559.webp" alt="Recepción de invitados y fotos en el banner - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2026-06-13 22-20-23 - IMG_9563.webp')">
-        <img src="images/portfolio/eventos/2026-06-13 22-20-23 - IMG_9563.webp" alt="Mesa de souvenirs y decoración de quinceaños - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2026-06-13 22-22-10 - IMG_9566-topaz-sharpen-face.webp')">
-        <img src="images/portfolio/eventos/2026-06-13 22-22-10 - IMG_9566-topaz-sharpen-face.webp" alt="Fiesta de quince años, retrato de la homenajeada en salón - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2026-06-13 22-50-44 - IMG_9610.webp')">
-        <img src="images/portfolio/eventos/2026-06-13 22-50-44 - IMG_9610.webp" alt="Show interactivo y baile en vivo en fiesta - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2026-06-13 22-54-32 - IMG_9612.webp')">
-        <img src="images/portfolio/eventos/2026-06-13 22-54-32 - IMG_9612.webp" alt="Pista de baile y luces LED, fiesta de quince años - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2026-06-13 23-57-03 - 20260613_235703.webp')">
-        <img src="images/portfolio/eventos/2026-06-13 23-57-03 - 20260613_235703.webp" alt="Baile con cotillón luminoso de invitados - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2026-06-14 00-03-58 - IMG_9710.webp')">
-        <img src="images/portfolio/eventos/2026-06-14 00-03-58 - IMG_9710.webp" alt="Foto grupal de fin de fiesta en el salón - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2026-06-14 00-04-11 - 20260614_000411.webp')">
-        <img src="images/portfolio/eventos/2026-06-14 00-04-11 - 20260614_000411.webp" alt="Carnaval carioca e invitados bailando - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('images/portfolio/eventos/2026-06-14 00-56-38 - IMG_9771.webp')">
-        <img src="images/portfolio/eventos/2026-06-14 00-56-38 - IMG_9771.webp" alt="Retrato final o fin de fiesta del evento - NEO Producciones" loading="lazy">
-        <div class="gallery-item-overlay"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg></div>
-      </div>
-    </div>
-
-    <div class="portfolio-section-title reveal" style="margin-top: 3rem;">Fotografía Interactiva &amp; Recorridos 360°</div>
-    <p class="reveal" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Experiencias inmersivas capturadas con tecnología Insta360 X4. Esta técnica es ideal tanto para recorridos virtuales de arquitectura e inmobiliaria como para registrar la escala y la energía de eventos masivos, capturando salones completos y grandes multitudes de forma interactiva.</p>
-    <div class="gallery-grid reveal">
-      <div class="gallery-item panorama-item" onclick="openPanorama('images/portfolio/360/2025-02-15 19-40-37 - IMG_20250215_194037_00_008.webp', 'Exterior de la Parroquia San Bernardo (CABA)')">
-        <img src="images/portfolio/360/2025-02-15 19-40-37 - IMG_20250215_194037_00_008.webp" alt="Exterior de la Parroquia San Bernardo en Buenos Aires - Fotografía Interactiva 360°" loading="lazy">
-        <div class="panorama-badge">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          360°
-        </div>
-        <div class="gallery-item-overlay">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
-        </div>
-      </div>
-      <div class="gallery-item panorama-item" onclick="openPanorama('images/portfolio/360/2025-02-15 21-47-25 - IMG_20250215_214725_00_010.webp', 'Interior de la Parroquia San Bernardo con Novios')">
-        <img src="images/portfolio/360/2025-02-15 21-47-25 - IMG_20250215_214725_00_010.webp" alt="Selfie 360 interactiva en el interior de la Parroquia San Bernardo con los novios" loading="lazy">
-        <div class="panorama-badge">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          360°
-        </div>
-        <div class="gallery-item-overlay">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
-        </div>
-      </div>
-      <div class="gallery-item panorama-item" onclick="openPanorama('images/portfolio/360/2026-06-13 22-35-32_00_005.webp', 'Selfie 360 en Recepción de Casamiento — Sabores y Motores')">
-        <img src="images/portfolio/360/2026-06-13 22-35-32_00_005.webp" alt="Selfie 360 interactiva en la recepción del casamiento en Sabores y Motores, Canning" loading="lazy">
-        <div class="panorama-badge">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          360°
-        </div>
-        <div class="gallery-item-overlay">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
-        </div>
-      </div>
-      <div class="gallery-item panorama-item" onclick="openPanorama('images/portfolio/360/2026-06-13 23-03-17_00_006.webp', 'Recepción en Sabores y Motores (Canning)')">
-        <img src="images/portfolio/360/2026-06-13 23-03-17_00_006.webp" alt="Fotografía general 360 de la recepción de casamiento en Sabores y Motores en Canning" loading="lazy">
-        <div class="panorama-badge">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          360°
-        </div>
-        <div class="gallery-item-overlay">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-section-title reveal" style="margin-top: 3rem;">Video montaje con música &amp; corporativos</div>
-    <div class="video-grid reveal">
-      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/1056932047?autoplay=1')">
-        <img src="https://vumbnail.com/1056932047.jpg" alt="Jessyca y Juan | Casamiento (4K)" loading="lazy">
-        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="video-title">Jessyca y Juan | Casamiento (4K)</div>
-      </div>
-      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/874028752?autoplay=1')">
-        <img src="https://vumbnail.com/874028752.jpg" alt="Kuky | 80 años [4K]" loading="lazy">
-        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="video-title">Kuky | 80 años [4K]</div>
-      </div>
-      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/608951360?autoplay=1')">
-        <img src="https://vumbnail.com/608951360.jpg" alt="Constanza | 15 años" loading="lazy">
-        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="video-title">Constanza | 15 años</div>
-      </div>
-      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/372260688?autoplay=1')">
-        <img src="https://vumbnail.com/372260688.jpg" alt="Guada y Franco | 1 año" loading="lazy">
-        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="video-title">Guada y Franco | 1 año</div>
-      </div>
-      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/703657225?autoplay=1')">
-        <img src="https://vumbnail.com/703657225.jpg" alt="Briana | 4 años y Bautismo" loading="lazy">
-        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="video-title">Briana | 4 años y Bautismo</div>
-      </div>
-      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/1066422074?autoplay=1')">
-        <img src="https://vumbnail.com/1066422074.jpg" alt="Lautaro | 1 año" loading="lazy">
-        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="video-title">Lautaro | 1 año</div>
-      </div>
-      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/709958518?autoplay=1')">
-        <img src="https://vumbnail.com/709958518.jpg" alt="Saludos para Alan | Bar Mitzva" loading="lazy">
-        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="video-title">Saludos para Alan | Bar Mitzva</div>
-      </div>
-      <div class="video-thumb" onclick="openVideo('https://player.vimeo.com/video/1066421993?autoplay=1')">
-        <img src="https://vumbnail.com/1066421993.jpg" alt="Priscila | 15 años (Infancia + Recientes)" loading="lazy">
-        <div class="video-thumb-overlay"><div class="play-btn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="video-title">Priscila | 15 años (Infancia + Recientes)</div>
-      </div>
-<div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=_CtuFKRt46Y', '_blank')">
-  <img src="https://img.youtube.com/vi/_CtuFKRt46Y/maxresdefault.jpg" alt="DevSecOps Day" loading="lazy">
-  <div class="video-thumb-overlay">
-    <div class="play-btn">
-      <svg fill="currentColor" viewBox="0 0 24 24">
-        <path d="M8 5v14l11-7z"/>
-      </svg>
-    </div>
-  </div>
-  <div class="video-title">Corporativo — DevSecOps Day</div>
-</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── CONDICIONES ─── -->
-<section id="condiciones">
-  <div class="container">
-    <div class="reveal" style="max-width: 540px; margin-bottom: 0.5rem;">
-      <p class="section-label">Lo que debés saber</p>
-      <h2 class="section-title">Condiciones de<br><span class="grad">Contratación</span></h2>
-      <div class="divider"></div>
-    </div>
-    <div class="condiciones-grid">
-      <div class="condicion-card reveal">
-        <div class="condicion-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75"/></svg>
-        </div>
-        <h3 class="condicion-title">Reserva y Pago</h3>
-        <p class="condicion-desc">Para confirmar tu fecha, se requiere un depósito del 50% del presupuesto total. El saldo restante debe abonarse antes de la entrega final del material editado.</p>
-      </div>
-      <div class="condicion-card reveal reveal-delay-1">
-        <div class="condicion-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-        </div>
-        <h3 class="condicion-title">Entrega del Material</h3>
-        <p class="condicion-desc">Todas las fotografías y videos seleccionados se entregan en alta resolución a través de un enlace seguro en Google Drive, listo para compartir o imprimir.</p>
-      </div>
-      <div class="condicion-card reveal reveal-delay-2">
-        <div class="condicion-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
-        </div>
-        <h3 class="condicion-title">Servicios Adicionales</h3>
-        <p class="condicion-desc">Ofrecemos opciones como alquiler de proyector, impresiones en diversos formatos, souvenirs personalizados y tiempo extra de cobertura durante el evento.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CONTACTO ─── -->
-<section id="contacto">
-  <div class="contacto-bg"></div>
-  <div class="container contacto-inner">
-    <div class="reveal" style="max-width: 540px;">
-      <p class="section-label">Escribinos</p>
-      <h2 class="section-title">Contactanos</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="contacto-grid">
-      <a href="https://wa.me/541140686925" target="_blank" class="contacto-card reveal">
-        <div class="contacto-icon">
-          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </div>
-        <div>
-          <div class="contacto-label">Teléfono / WhatsApp</div>
-          <div class="contacto-value">(011) 15-4068-6925</div>
-        </div>
-      </a>
-      <a href="mailto:jorgeotripodi@hotmail.com" class="contacto-card reveal reveal-delay-1">
-        <div class="contacto-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-        </div>
-        <div>
-          <div class="contacto-label">Correo Electrónico</div>
-          <div class="contacto-value">jorgeotripodi@hotmail.com</div>
-        </div>
-      </a>
-      <a href="https://www.facebook.com/neoproduccionestm/" target="_blank" class="contacto-card reveal reveal-delay-2">
-        <div class="contacto-icon">
-          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </div>
-        <div>
-          <div class="contacto-label">Facebook</div>
-          <div class="contacto-value">neoproduccionestm</div>
-        </div>
-      </a>
-      <a href="https://www.instagram.com/neo_producciones_tm/" target="_blank" class="contacto-card reveal reveal-delay-3">
-        <div class="contacto-icon">
-          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </div>
-        <div>
-          <div class="contacto-label">Instagram</div>
-          <div class="contacto-value">@neo_producciones_tm</div>
-        </div>
-      </a>
-    </div>
-
-    <div class="contacto-cta reveal">
-      <h3>¿Listo para capturar tus momentos?</h3>
-      <p>Contactanos para una consulta personalizada. Respondemos en menos de 24 horas y te ofrecemos un presupuesto adaptado a tus necesidades.</p>
-      <a href="https://wa.me/541140686925" target="_blank" class="btn-primary">
-        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Escribinos por WhatsApp
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ─── FOOTER ─── -->
+<!-- Pie de Página -->
 <footer>
   <div class="footer-inner">
     <a href="#inicio" class="footer-logo">
@@ -644,22 +117,15 @@
   </div>
 </footer>
 
-<!-- ─── LIGHTBOX ─── -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
-  </button>
-  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" onclick="navigateLightbox(-1)" aria-label="Anterior">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
-  </button>
+<!-- Visor Modal Multimedia (Lightbox) -->
+<div class="lightbox" id="lightbox" onclick="cerrarVisor(event)">
+  <button class="lightbox-close" onclick="cerrarVisor()" aria-label="Cerrar"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" onclick="navegarVisor(-1)" aria-label="Anterior"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg></button>
   <div class="lightbox-content" id="lightboxContent"></div>
-  <button class="lightbox-nav lightbox-next" id="lightboxNext" onclick="navigateLightbox(1)" aria-label="Siguiente">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-  </button>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" onclick="navegarVisor(1)" aria-label="Siguiente"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
   <div class="lightbox-counter" id="lightboxCounter"></div>
 </div>
 
-<script src="script.js" defer></script>
-
+<script type="module" src="scripts/principal.js"></script>
 </body>
 </html>
