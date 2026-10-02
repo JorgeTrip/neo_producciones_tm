@@ -66,7 +66,7 @@ async function renderizarVistaAcercaDe() {
       'Emprendimiento profesional de fotografía y producciones audiovisuales fundado en 2006, especializado en capturar eventos sociales, corporativos y recorridos interactivos 360° en Buenos Aires.'
     ]),
     crearElemento('p', { style: { color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: '0.4rem' } }, [
-      `Titular y Fotógrafo Principal: `,
+      `Titular, Fotógrafo y Creador del Sitio Web: `,
       crearElemento('strong', { style: { color: 'var(--text)' } }, [info.autor])
     ]),
     crearElemento('p', { style: { color: 'var(--text-muted)', fontSize: '0.85rem' } }, [
