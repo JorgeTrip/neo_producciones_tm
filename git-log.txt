@@ -1,3 +1,5 @@
+* 2026-10-09 [eb261f9] feat: Se agrega script de inicio y lanzador local de desarrollo (Jorge O. Tripodi)
+* 2026-10-02 [a9ad235] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-02 [d4baba5] fix: Se actualiza credito de autoria en modal Acerca de (Jorge O. Tripodi)
 * 2026-10-02 [37659ba] feat: Se agrega modal Acerca de y pipeline de versionado CI/CD (Jorge O. Tripodi)
 * 2026-10-02 [c75a73b] refactor: Se modulariza proyecto, estilos y scripts conforme a reglas de gobernanza (Jorge O. Tripodi)
