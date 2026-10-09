@@ -1,0 +1,13 @@
+{
+  "name": "neo-producciones-tm",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/iniciarDesarrollo.mjs",
+    "start": "node scripts/iniciarDesarrollo.mjs"
+  },
+  "devDependencies": {
+    "qrcode-terminal": "^0.12.0"
+  }
+}
