@@ -68,12 +68,26 @@ function obtenerIpRedLocal() {
     return ipCandidata || "localhost";
 }
 
+const ARCHIVO_LOCK = path.join(os.tmpdir(), `iniciar_dev_neo_producciones_${PUERTO}.lock`);
+
 /**
  * Abre el navegador predeterminado en la URL especificada.
+ * Protegido con lock efímero para evitar abrir pestañas en reinicios automáticos.
  *
  * @param {string} url - Dirección a abrir.
  */
 function abrirNavegador(url) {
+    if (fs.existsSync(ARCHIVO_LOCK)) {
+        console.log("🔄 Servidor reiniciado automáticamente por cambios en el código.");
+        return;
+    }
+
+    try {
+        fs.writeFileSync(ARCHIVO_LOCK, Date.now().toString());
+    } catch {
+        // En caso de error al crear lock, se continúa normalmente
+    }
+
     const comando = process.platform === "win32"
         ? `start "" "${url}"`
         : process.platform === "darwin"
@@ -98,6 +112,8 @@ function despacharArchivo(rutaArchivo, res, req) {
         const rango = req.headers.range;
 
         res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+        res.setHeader("Pragma", "no-cache");
 
         if (rango) {
             const partes = rango.replace(/bytes=/, "").split("-");
@@ -158,6 +174,25 @@ servidor.listen(PUERTO, "0.0.0.0", () => {
     abrirNavegador(URL_LOCAL);
 });
 
+/**
+ * Elimina el archivo de bloqueo al cerrar el servidor.
+ */
+function limpiarLock() {
+    try {
+        if (fs.existsSync(ARCHIVO_LOCK)) {
+            fs.unlinkSync(ARCHIVO_LOCK);
+        }
+    } catch {
+        // En caso de error al limpiar lock, se ignora
+    }
+}
+
 process.on("SIGINT", () => {
+    limpiarLock();
+    servidor.close(() => process.exit(0));
+});
+
+process.on("SIGTERM", () => {
+    limpiarLock();
     servidor.close(() => process.exit(0));
 });

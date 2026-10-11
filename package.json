@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/iniciarDesarrollo.mjs",
+    "dev": "node --watch-path=index.html --watch-path=styles.css --watch-path=script.js --watch-path=componentes --watch-path=estilos --watch scripts/iniciarDesarrollo.mjs",
     "start": "node scripts/iniciarDesarrollo.mjs"
   },
   "devDependencies": {
