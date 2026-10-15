@@ -1,3 +1,5 @@
+* 2026-10-15 [201aa28] feat: Se implementa deteccion de instancia unica y auto-cierre en lanzador (Jorge O. Tripodi)
+* 2026-10-15 [47dcdbd] feat: Se implementan skeletons de carga con efecto shimmer en portafolio (Jorge O. Tripodi)
 * 2026-10-11 [be1f7f5] feat: Se agrega hot-reloading y proteccion anti-cache en servidor local (Jorge O. Tripodi)
 * 2026-10-09 [1244485] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-09 [eb261f9] feat: Se agrega script de inicio y lanzador local de desarrollo (Jorge O. Tripodi)
