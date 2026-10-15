@@ -54,3 +54,27 @@ export function crearElementoSvg(etiqueta, atributos = {}, hijos = []) {
   }
   return el;
 }
+
+/**
+ * Divide un arreglo de elementos en fragmentos o filas de tamaño fijo.
+ * Permite que cada fila de la cuadrícula actúe como un bloque reveal independiente
+ * para una entrada progresiva al desplazarse.
+ * @template T
+ * @param {T[]} lista - Lista de elementos a particionar.
+ * @param {number} tamanoFila - Cantidad de columnas o tarjetas por fila.
+ * @returns {T[][]} Arreglo bidimensional con las filas resultantes.
+ */
+export function dividirEnFilas(lista, tamanoFila) {
+  if (!Array.isArray(lista) || lista.length === 0) {
+    return [];
+  }
+  if (!tamanoFila || tamanoFila <= 0) {
+    return [lista];
+  }
+
+  const filas = [];
+  for (let i = 0; i < lista.length; i += tamanoFila) {
+    filas.push(lista.slice(i, i + tamanoFila));
+  }
+  return filas;
+}

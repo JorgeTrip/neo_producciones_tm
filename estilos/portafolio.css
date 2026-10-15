@@ -36,6 +36,14 @@
   gap: 6px;
 }
 
+.gallery-row {
+  margin-bottom: 6px;
+}
+
+.gallery-row:last-child {
+  margin-bottom: 0;
+}
+
 .gallery-item {
   position: relative;
   width: 100%;
@@ -81,6 +89,14 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-top: 0.5rem;
+}
+
+.video-row {
+  margin-bottom: 1rem;
+}
+
+.video-row:last-child {
+  margin-bottom: 0;
 }
 
 .video-thumb {

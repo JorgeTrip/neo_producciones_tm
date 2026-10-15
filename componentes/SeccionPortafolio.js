@@ -2,7 +2,7 @@
  * Componente Declarativo: Sección Portafolio Multimedia.
  * Renderiza dinámicamente las grillas de fotografías previas, eventos, 360 y videos.
  */
-import { crearElemento, crearElementoSvg } from '../scripts/utilidadesDom.js';
+import { crearElemento, crearElementoSvg, dividirEnFilas } from '../scripts/utilidadesDom.js';
 import { FOTOS_PREVIA, FOTOS_EVENTOS, ENTORNOS_360, VIDEOS } from '../scripts/datosPortafolio.js';
 import { configurarEsqueleto } from '../scripts/gestorEsqueletos.js';
 
@@ -21,24 +21,32 @@ export function renderizarSeccionPortafolio(contenedor) {
       ])
     ]),
 
-    // 1. Fotografía previa
+    // 1. Fotografía previa (filas de 4 como bloques reveal independientes)
     crearElemento('div', { className: 'portfolio-section-title reveal' }, ['Fotografía previa']),
-    crearElemento('div', { className: 'gallery-grid' }, FOTOS_PREVIA.map(crearItemFoto)),
+    ...dividirEnFilas(FOTOS_PREVIA, 4).map(fila =>
+      crearElemento('div', { className: 'gallery-grid gallery-row reveal' }, fila.map(crearItemFoto))
+    ),
 
-    // 2. Fotografía en eventos
+    // 2. Fotografía en eventos (filas de 4 como bloques reveal independientes)
     crearElemento('div', { className: 'portfolio-section-title reveal', style: { marginTop: '3rem' } }, ['Fotografía en eventos']),
-    crearElemento('div', { className: 'gallery-grid', style: { gridTemplateColumns: 'repeat(4,1fr)' } }, FOTOS_EVENTOS.map(crearItemFoto)),
+    ...dividirEnFilas(FOTOS_EVENTOS, 4).map(fila =>
+      crearElemento('div', { className: 'gallery-grid gallery-row reveal', style: { gridTemplateColumns: 'repeat(4,1fr)' } }, fila.map(crearItemFoto))
+    ),
 
-    // 3. Recorridos 360
+    // 3. Recorridos 360 (filas de 4 como bloques reveal independientes)
     crearElemento('div', { className: 'portfolio-section-title reveal', style: { marginTop: '3rem' } }, ['Fotografía Interactiva & Recorridos 360°']),
     crearElemento('p', { className: 'reveal', style: { color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '1.5rem' } }, [
       'Experiencias inmersivas capturadas con tecnología Insta360 X4. Esta técnica es ideal tanto para recorridos virtuales de arquitectura e inmobiliaria como para registrar la escala y la energía de eventos masivos, capturando salones completos y grandes multitudes de forma interactiva.'
     ]),
-    crearElemento('div', { className: 'gallery-grid' }, ENTORNOS_360.map(crearItemPanorama)),
+    ...dividirEnFilas(ENTORNOS_360, 4).map(fila =>
+      crearElemento('div', { className: 'gallery-grid gallery-row reveal' }, fila.map(crearItemPanorama))
+    ),
 
-    // 4. Videos
+    // 4. Videos (filas de 3 como bloques reveal independientes)
     crearElemento('div', { className: 'portfolio-section-title reveal', style: { marginTop: '3rem' } }, ['Video montaje con música & corporativos']),
-    crearElemento('div', { className: 'video-grid' }, VIDEOS.map(crearItemVideo))
+    ...dividirEnFilas(VIDEOS, 3).map(fila =>
+      crearElemento('div', { className: 'video-grid video-row reveal' }, fila.map(crearItemVideo))
+    )
   ]);
 
   contenedor.replaceChildren(nodoContenido);
