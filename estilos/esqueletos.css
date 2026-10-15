@@ -54,13 +54,17 @@
   opacity: 0.2;
 }
 
-/* Tratamiento visual de tarjetas de video en carga: ocultar controles hasta estar listas */
+/* Tratamiento visual de tarjetas en carga: ocultar badges y controles hasta estar listas */
+.gallery-item.esqueleto-activo .panorama-badge,
+.gallery-item.esqueleto-activo .gallery-item-overlay,
 .video-thumb.esqueleto-activo .video-thumb-overlay,
 .video-thumb.esqueleto-activo .video-title {
   opacity: 0;
   pointer-events: none;
 }
 
+.panorama-badge,
+.gallery-item-overlay,
 .video-thumb .video-thumb-overlay,
 .video-thumb .video-title {
   transition: opacity 0.35s ease;

@@ -23,22 +23,22 @@ export function renderizarSeccionPortafolio(contenedor) {
 
     // 1. Fotografía previa
     crearElemento('div', { className: 'portfolio-section-title reveal' }, ['Fotografía previa']),
-    crearElemento('div', { className: 'gallery-grid reveal' }, FOTOS_PREVIA.map(crearItemFoto)),
+    crearElemento('div', { className: 'gallery-grid' }, FOTOS_PREVIA.map(crearItemFoto)),
 
     // 2. Fotografía en eventos
     crearElemento('div', { className: 'portfolio-section-title reveal', style: { marginTop: '3rem' } }, ['Fotografía en eventos']),
-    crearElemento('div', { className: 'gallery-grid reveal', style: { gridTemplateColumns: 'repeat(4,1fr)' } }, FOTOS_EVENTOS.map(crearItemFoto)),
+    crearElemento('div', { className: 'gallery-grid', style: { gridTemplateColumns: 'repeat(4,1fr)' } }, FOTOS_EVENTOS.map(crearItemFoto)),
 
     // 3. Recorridos 360
     crearElemento('div', { className: 'portfolio-section-title reveal', style: { marginTop: '3rem' } }, ['Fotografía Interactiva & Recorridos 360°']),
     crearElemento('p', { className: 'reveal', style: { color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '1.5rem' } }, [
       'Experiencias inmersivas capturadas con tecnología Insta360 X4. Esta técnica es ideal tanto para recorridos virtuales de arquitectura e inmobiliaria como para registrar la escala y la energía de eventos masivos, capturando salones completos y grandes multitudes de forma interactiva.'
     ]),
-    crearElemento('div', { className: 'gallery-grid reveal' }, ENTORNOS_360.map(crearItemPanorama)),
+    crearElemento('div', { className: 'gallery-grid' }, ENTORNOS_360.map(crearItemPanorama)),
 
     // 4. Videos
     crearElemento('div', { className: 'portfolio-section-title reveal', style: { marginTop: '3rem' } }, ['Video montaje con música & corporativos']),
-    crearElemento('div', { className: 'video-grid reveal' }, VIDEOS.map(crearItemVideo))
+    crearElemento('div', { className: 'video-grid' }, VIDEOS.map(crearItemVideo))
   ]);
 
   contenedor.replaceChildren(nodoContenido);
@@ -50,9 +50,9 @@ export function renderizarSeccionPortafolio(contenedor) {
 }
 
 function crearItemFoto(item) {
-  const nodoImagen = crearElemento('img', { src: item.ruta, alt: item.alt, loading: 'lazy' });
+  const nodoImagen = crearElemento('img', { src: item.ruta, alt: item.alt, className: 'img-cargando', loading: 'lazy' });
   const el = crearElemento('div', {
-    className: 'gallery-item',
+    className: 'gallery-item esqueleto-activo',
     onclick: `abrirVisorImagen('${item.ruta}')`
   }, [
     nodoImagen,
@@ -70,9 +70,9 @@ function crearItemFoto(item) {
 }
 
 function crearItemPanorama(item) {
-  const nodoImagen = crearElemento('img', { src: item.ruta, alt: item.alt, loading: 'lazy' });
+  const nodoImagen = crearElemento('img', { src: item.ruta, alt: item.alt, className: 'img-cargando', loading: 'lazy' });
   const el = crearElemento('div', {
-    className: 'gallery-item panorama-item',
+    className: 'gallery-item panorama-item esqueleto-activo',
     onclick: `abrirVisorPanorama('${item.ruta}', '${item.titulo}')`
   }, [
     nodoImagen,
@@ -101,8 +101,8 @@ function crearItemVideo(item) {
     ? () => { if (typeof window.abrirVisorVideo === 'function') window.abrirVisorVideo(item.url); }
     : () => { window.open(item.url, '_blank'); };
 
-  const nodoImagen = crearElemento('img', { src: item.thumb, alt: item.titulo, loading: 'lazy' });
-  const el = crearElemento('div', { className: 'video-thumb' }, [
+  const nodoImagen = crearElemento('img', { src: item.thumb, alt: item.titulo, className: 'img-cargando', loading: 'lazy' });
+  const el = crearElemento('div', { className: 'video-thumb esqueleto-activo' }, [
     nodoImagen,
     crearElemento('div', { className: 'video-thumb-overlay' }, [
       crearElemento('div', { className: 'play-btn' }, [
