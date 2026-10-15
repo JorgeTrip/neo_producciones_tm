@@ -5,47 +5,34 @@ import os from "node:os";
 import { exec } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import qrcode from "qrcode-terminal";
+import {
+    generarRutaLock, guardarLock, eliminarLock,
+    leerDatosLock, esInstanciaViva, verificarInstanciaExistente
+} from "./gestorInstancia.mjs";
 
 /**
  * Servidor de desarrollo local para NEO Producciones.
- * Sirve archivos estáticos con módulos ES, soporte CORS y streaming,
- * muestra código QR en consola y abre automáticamente el navegador.
+ * Sirve estáticos con módulos ES, streaming, QR, detección de instancia única y auto-apertura.
  */
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DIRECTORIO_RAIZ = path.resolve(__dirname, "..");
-
-const PUERTO = process.env.PORT || 8000;
-const URL_LOCAL = `http://localhost:${PUERTO}`;
-const IP_RED = obtenerIpRedLocal();
-const URL_RED = `http://${IP_RED}:${PUERTO}`;
+const PUERTO_BASE = Number(process.env.PORT) || 8000;
+const RUTA_LOCK = generarRutaLock(DIRECTORIO_RAIZ);
 
 const TIPOS_MIME = {
-    ".html": "text/html; charset=utf-8",
-    ".css": "text/css; charset=utf-8",
-    ".js": "application/javascript; charset=utf-8",
-    ".mjs": "application/javascript; charset=utf-8",
-    ".json": "application/json; charset=utf-8",
-    ".png": "image/png",
-    ".jpg": "image/jpeg",
-    ".jpeg": "image/jpeg",
-    ".gif": "image/gif",
-    ".svg": "image/svg+xml",
-    ".ico": "image/x-icon",
-    ".webp": "image/webp",
-    ".mp3": "audio/mpeg",
-    ".mp4": "video/mp4",
-    ".woff": "font/woff",
-    ".woff2": "font/woff2",
-    ".ttf": "font/ttf",
-    ".xml": "application/xml; charset=utf-8",
+    ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8",
+    ".js": "application/javascript; charset=utf-8", ".mjs": "application/javascript; charset=utf-8",
+    ".json": "application/json; charset=utf-8", ".png": "image/png",
+    ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif",
+    ".svg": "image/svg+xml", ".ico": "image/x-icon", ".webp": "image/webp",
+    ".mp3": "audio/mpeg", ".mp4": "video/mp4", ".woff": "font/woff",
+    ".woff2": "font/woff2", ".ttf": "font/ttf", ".xml": "application/xml; charset=utf-8",
     ".txt": "text/plain; charset=utf-8"
 };
 
 /**
  * Detecta la dirección IPv4 local del equipo en la red (LAN/Wi-Fi).
- *
  * @returns {string} Dirección IP o 'localhost'.
  */
 function obtenerIpRedLocal() {
@@ -68,47 +55,31 @@ function obtenerIpRedLocal() {
     return ipCandidata || "localhost";
 }
 
-const ARCHIVO_LOCK = path.join(os.tmpdir(), `iniciar_dev_neo_producciones_${PUERTO}.lock`);
-
 /**
  * Abre el navegador predeterminado en la URL especificada.
- * Protegido con lock efímero para evitar abrir pestañas en reinicios automáticos.
- *
  * @param {string} url - Dirección a abrir.
  */
 function abrirNavegador(url) {
-    if (fs.existsSync(ARCHIVO_LOCK)) {
+    const datos = leerDatosLock(RUTA_LOCK);
+    if (datos && esInstanciaViva(datos) && datos.pidWorker !== process.pid) {
         console.log("🔄 Servidor reiniciado automáticamente por cambios en el código.");
         return;
     }
-
-    try {
-        fs.writeFileSync(ARCHIVO_LOCK, Date.now().toString());
-    } catch {
-        // En caso de error al crear lock, se continúa normalmente
-    }
-
-    const comando = process.platform === "win32"
-        ? `start "" "${url}"`
-        : process.platform === "darwin"
-        ? `open "${url}"`
-        : `xdg-open "${url}"`;
+    const comando = process.platform === "win32" ? `start "" "${url}"`
+        : process.platform === "darwin" ? `open "${url}"` : `xdg-open "${url}"`;
     exec(comando);
 }
 
 /**
- * Despacha un archivo estático al cliente HTTP.
+ * Despacha un archivo estático al cliente HTTP con cabeceras anti-caché y soporte Range.
  */
 function despacharArchivo(rutaArchivo, res, req) {
     fs.stat(rutaArchivo, (err, stats) => {
         if (err || !stats.isFile()) {
             res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-            res.end("404 No Encontrado");
-            return;
+            return res.end("404 No Encontrado");
         }
-
-        const ext = path.extname(rutaArchivo).toLowerCase();
-        const tipoMime = TIPOS_MIME[ext] || "application/octet-stream";
+        const tipoMime = TIPOS_MIME[path.extname(rutaArchivo).toLowerCase()] || "application/octet-stream";
         const rango = req.headers.range;
 
         res.setHeader("Access-Control-Allow-Origin", "*");
@@ -121,19 +92,12 @@ function despacharArchivo(rutaArchivo, res, req) {
             const fin = partes[1] ? parseInt(partes[1], 10) : stats.size - 1;
             res.writeHead(206, {
                 "Content-Range": `bytes ${inicio}-${fin}/${stats.size}`,
-                "Accept-Ranges": "bytes",
-                "Content-Length": fin - inicio + 1,
-                "Content-Type": tipoMime
+                "Accept-Ranges": "bytes", "Content-Length": fin - inicio + 1, "Content-Type": tipoMime
             });
-            fs.createReadStream(rutaArchivo, { start: inicio, end: fin }).pipe(res);
-            return;
+            return fs.createReadStream(rutaArchivo, { start: inicio, end: fin }).pipe(res);
         }
 
-        res.writeHead(200, {
-            "Content-Length": stats.size,
-            "Content-Type": tipoMime,
-            "Accept-Ranges": "bytes"
-        });
+        res.writeHead(200, { "Content-Length": stats.size, "Content-Type": tipoMime, "Accept-Ranges": "bytes" });
         fs.createReadStream(rutaArchivo).pipe(res);
     });
 }
@@ -145,8 +109,7 @@ const servidor = http.createServer((req, res) => {
 
     if (!rutaAbsoluta.startsWith(DIRECTORIO_RAIZ)) {
         res.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
-        res.end("403 Prohibido");
-        return;
+        return res.end("403 Prohibido");
     }
 
     fs.stat(rutaAbsoluta, (err, stats) => {
@@ -158,41 +121,59 @@ const servidor = http.createServer((req, res) => {
     });
 });
 
-servidor.listen(PUERTO, "0.0.0.0", () => {
-    console.log("\n====================================================");
-    console.log("🚀 Entorno de desarrollo local - NEO Producciones");
-    console.log("====================================================");
-    console.log(`💻 Local (PC):        ${URL_LOCAL}`);
-    console.log(`📱 Red local (Móvil):  ${URL_RED}\n`);
-
-    if (IP_RED !== "localhost") {
-        console.log("📷 Escanea este código QR con tu móvil (debe estar conectado en la misma red Wi-Fi que esta PC):");
-        qrcode.generate(URL_RED, { small: true });
+servidor.on("error", (err) => {
+    if (err.code === "EADDRINUSE") {
+        console.error(`\n❌ Error: El puerto ${PUERTO_BASE} ya está en uso.`);
+        process.exit(1);
     }
-    console.log("====================================================\n");
-
-    abrirNavegador(URL_LOCAL);
+    console.error("Error en servidor HTTP:", err);
 });
 
 /**
- * Elimina el archivo de bloqueo al cerrar el servidor.
+ * Inicia el servidor de desarrollo y expone las rutas locales y de red.
  */
-function limpiarLock() {
-    try {
-        if (fs.existsSync(ARCHIVO_LOCK)) {
-            fs.unlinkSync(ARCHIVO_LOCK);
-        }
-    } catch {
-        // En caso de error al limpiar lock, se ignora
+async function iniciarServidor() {
+    const { estaActiva } = await verificarInstanciaExistente({
+        directorioRaiz: DIRECTORIO_RAIZ, puertoBase: PUERTO_BASE
+    });
+
+    if (estaActiva) {
+        console.log("\n⚠️  El entorno de desarrollo ya se encuentra en ejecución en otra ventana.");
+        process.exit(0);
     }
+
+    const ipRed = obtenerIpRedLocal();
+    const urlLocal = `http://localhost:${PUERTO_BASE}`;
+    const urlRed = `http://${ipRed}:${PUERTO_BASE}`;
+
+    servidor.listen(PUERTO_BASE, "0.0.0.0", () => {
+        console.log("\n====================================================");
+        console.log("🚀 Entorno de desarrollo local - NEO Producciones");
+        console.log("====================================================");
+        console.log(`💻 Local (PC):        ${urlLocal}`);
+        console.log(`📱 Red local (Móvil):  ${urlRed}\n`);
+
+        if (ipRed !== "localhost") {
+            console.log("📷 Escanea este código QR con tu móvil (debe estar conectado en la misma red Wi-Fi):");
+            qrcode.generate(urlRed, { small: true });
+        }
+        console.log("====================================================\n");
+
+        abrirNavegador(urlLocal);
+        guardarLock(RUTA_LOCK, {
+            pid: process.pid, pidSupervisor: process.ppid || process.pid,
+            pidWorker: process.pid, puerto: PUERTO_BASE,
+            directorio: DIRECTORIO_RAIZ, iniciadoEn: Date.now()
+        });
+    });
 }
 
-process.on("SIGINT", () => {
-    limpiarLock();
+function limpiarYSalir() {
+    eliminarLock(RUTA_LOCK);
     servidor.close(() => process.exit(0));
-});
+}
 
-process.on("SIGTERM", () => {
-    limpiarLock();
-    servidor.close(() => process.exit(0));
-});
+process.on("SIGINT", limpiarYSalir);
+process.on("SIGTERM", limpiarYSalir);
+
+iniciarServidor();
