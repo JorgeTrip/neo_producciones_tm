@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch-path=index.html --watch-path=styles.css --watch-path=script.js --watch-path=componentes --watch-path=estilos --watch scripts/iniciarDesarrollo.mjs",
-    "start": "node scripts/iniciarDesarrollo.mjs"
+    "start": "node scripts/iniciarDesarrollo.mjs",
+    "test": "node --test tests/**/*.test.js"
   },
   "devDependencies": {
     "qrcode-terminal": "^0.12.0"

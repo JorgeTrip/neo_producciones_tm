@@ -1,0 +1,75 @@
+/**
+ * Estilos y Animaciones de Pantallas Esqueleto (Skeleton Screens) - NEO Producciones.
+ * Implementa el efecto shimmer en paleta Grises Pro para mitigar el tiempo de carga percibido
+ * y garantizar estabilidad visual sin saltos de maquetación (CLS).
+ */
+
+.esqueleto-activo {
+  position: relative;
+  background-color: var(--card) !important;
+  overflow: hidden;
+}
+
+.esqueleto-activo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 30%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 70%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: esqueletoBrillo 1.6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes esqueletoBrillo {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Transición suave de aparición al culminar la descarga */
+.gallery-item img.img-cargando,
+.video-thumb img.img-cargando {
+  opacity: 0;
+}
+
+.gallery-item img.img-cargada,
+.video-thumb img.img-cargada {
+  opacity: 1;
+  transition: opacity 0.45s ease-out, transform 0.5s ease;
+}
+
+.gallery-item img.img-fallida,
+.video-thumb img.img-fallida {
+  opacity: 0.2;
+}
+
+/* Tratamiento visual de tarjetas de video en carga: ocultar controles hasta estar listas */
+.video-thumb.esqueleto-activo .video-thumb-overlay,
+.video-thumb.esqueleto-activo .video-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-thumb .video-thumb-overlay,
+.video-thumb .video-title {
+  transition: opacity 0.35s ease;
+}
+
+/* Accesibilidad: Respetar preferencias de reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .esqueleto-activo::before {
+    animation: none;
+    background: rgba(255, 255, 255, 0.04);
+  }
+}

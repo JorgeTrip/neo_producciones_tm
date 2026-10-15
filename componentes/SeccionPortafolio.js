@@ -4,6 +4,7 @@
  */
 import { crearElemento, crearElementoSvg } from '../scripts/utilidadesDom.js';
 import { FOTOS_PREVIA, FOTOS_EVENTOS, ENTORNOS_360, VIDEOS } from '../scripts/datosPortafolio.js';
+import { configurarEsqueleto } from '../scripts/gestorEsqueletos.js';
 
 export function renderizarSeccionPortafolio(contenedor) {
   if (!contenedor) return;
@@ -49,17 +50,19 @@ export function renderizarSeccionPortafolio(contenedor) {
 }
 
 function crearItemFoto(item) {
+  const nodoImagen = crearElemento('img', { src: item.ruta, alt: item.alt, loading: 'lazy' });
   const el = crearElemento('div', {
     className: 'gallery-item',
     onclick: `abrirVisorImagen('${item.ruta}')`
   }, [
-    crearElemento('img', { src: item.ruta, alt: item.alt, loading: 'lazy' }),
+    nodoImagen,
     crearElemento('div', { className: 'gallery-item-overlay' }, [
       crearElementoSvg('svg', { fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', viewBox: '0 0 24 24' }, [
         crearElementoSvg('path', { d: 'M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6' })
       ])
     ])
   ]);
+  configurarEsqueleto(el, nodoImagen);
   el.addEventListener('click', () => {
     if (typeof window.abrirVisorImagen === 'function') window.abrirVisorImagen(item.ruta);
   });
@@ -67,11 +70,12 @@ function crearItemFoto(item) {
 }
 
 function crearItemPanorama(item) {
+  const nodoImagen = crearElemento('img', { src: item.ruta, alt: item.alt, loading: 'lazy' });
   const el = crearElemento('div', {
     className: 'gallery-item panorama-item',
     onclick: `abrirVisorPanorama('${item.ruta}', '${item.titulo}')`
   }, [
-    crearElemento('img', { src: item.ruta, alt: item.alt, loading: 'lazy' }),
+    nodoImagen,
     crearElemento('div', { className: 'panorama-badge' }, [
       crearElementoSvg('svg', { fill: 'none', stroke: 'currentColor', 'stroke-width': '2', viewBox: '0 0 24 24' }, [
         crearElementoSvg('circle', { cx: '12', cy: '12', r: '10' }),
@@ -85,6 +89,7 @@ function crearItemPanorama(item) {
       ])
     ])
   ]);
+  configurarEsqueleto(el, nodoImagen);
   el.addEventListener('click', () => {
     if (typeof window.abrirVisorPanorama === 'function') window.abrirVisorPanorama(item.ruta, item.titulo);
   });
@@ -96,8 +101,9 @@ function crearItemVideo(item) {
     ? () => { if (typeof window.abrirVisorVideo === 'function') window.abrirVisorVideo(item.url); }
     : () => { window.open(item.url, '_blank'); };
 
+  const nodoImagen = crearElemento('img', { src: item.thumb, alt: item.titulo, loading: 'lazy' });
   const el = crearElemento('div', { className: 'video-thumb' }, [
-    crearElemento('img', { src: item.thumb, alt: item.titulo, loading: 'lazy' }),
+    nodoImagen,
     crearElemento('div', { className: 'video-thumb-overlay' }, [
       crearElemento('div', { className: 'play-btn' }, [
         crearElementoSvg('svg', { fill: 'currentColor', viewBox: '0 0 24 24' }, [
@@ -107,6 +113,7 @@ function crearItemVideo(item) {
     ]),
     crearElemento('div', { className: 'video-title' }, [item.titulo])
   ]);
+  configurarEsqueleto(el, nodoImagen);
   el.addEventListener('click', accion);
   return el;
 }
