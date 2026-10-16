@@ -2,7 +2,7 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-import { exec } from "node:child_process";
+import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import qrcode from "qrcode-terminal";
 import {
@@ -65,9 +65,13 @@ function abrirNavegador(url) {
         console.log("🔄 Servidor reiniciado automáticamente por cambios en el código.");
         return;
     }
-    const comando = process.platform === "win32" ? `start "" "${url}"`
-        : process.platform === "darwin" ? `open "${url}"` : `xdg-open "${url}"`;
-    exec(comando);
+    if (process.platform === "win32") {
+        spawn("cmd.exe", ["/c", "start", "", url], { detached: true, stdio: "ignore" }).unref();
+    } else if (process.platform === "darwin") {
+        spawn("open", [url], { detached: true, stdio: "ignore" }).unref();
+    } else {
+        spawn("xdg-open", [url], { detached: true, stdio: "ignore" }).unref();
+    }
 }
 
 /**
@@ -174,6 +178,8 @@ function limpiarYSalir() {
 }
 
 process.on("SIGINT", limpiarYSalir);
-process.on("SIGTERM", limpiarYSalir);
+process.on("SIGTERM", () => {
+    servidor.close(() => process.exit(0));
+});
 
 iniciarServidor();
