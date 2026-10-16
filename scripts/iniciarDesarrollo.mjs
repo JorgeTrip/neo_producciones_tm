@@ -61,7 +61,8 @@ function obtenerIpRedLocal() {
  */
 function abrirNavegador(url) {
     const datos = leerDatosLock(RUTA_LOCK);
-    if (datos && esInstanciaViva(datos) && datos.pidWorker !== process.pid) {
+    const esReinicio = datos && (datos.pidSupervisor === process.ppid || datos.pidWorker !== process.pid);
+    if (esReinicio && esInstanciaViva(datos)) {
         console.log("🔄 Servidor reiniciado automáticamente por cambios en el código.");
         return;
     }

@@ -113,9 +113,27 @@ describe("Gestor de Instancia Única - Ciclo TDD", () => {
         assert.equal(fs.existsSync(RUTA_LOCK_PRUEBA), false);
     });
 
-    it("debe reportar instancia activa cuando el lock corresponde a un proceso vivo", async () => {
+    it("debe identificar reinicio en caliente cuando pidSupervisor coincide con process.ppid", async () => {
+        guardarLock(RUTA_LOCK_PRUEBA, {
+            pid: 99999999,
+            pidSupervisor: process.ppid,
+            puerto: 8000,
+            directorio: DIRECTORIO_PRUEBA
+        });
+
+        const resultado = await verificarInstanciaExistente({
+            directorioRaiz: DIRECTORIO_PRUEBA,
+            puertoBase: 8000
+        });
+
+        assert.equal(resultado.estaActiva, false);
+        assert.equal(resultado.esReinicioEnCaliente, true);
+    });
+
+    it("debe reportar instancia activa cuando el lock corresponde a un proceso vivo de otra ventana", async () => {
         guardarLock(RUTA_LOCK_PRUEBA, {
             pid: process.pid,
+            pidSupervisor: 99999999,
             puerto: 8000,
             directorio: DIRECTORIO_PRUEBA
         });
@@ -126,6 +144,7 @@ describe("Gestor de Instancia Única - Ciclo TDD", () => {
         });
 
         assert.equal(resultado.estaActiva, true);
-        assert.equal(resultado.datosLock?.pid, process.pid);
+        assert.equal(resultado.esReinicioEnCaliente, false);
     });
 });
+

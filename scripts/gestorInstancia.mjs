@@ -50,18 +50,9 @@ export function esProcesoActivo(pid) {
 export function verificarSocketEnUso(puerto, host = "127.0.0.1") {
     return new Promise((resolve) => {
         const socket = net.createConnection({ port: puerto, host, timeout: 300 });
-        socket.on("connect", () => {
-            socket.destroy();
-            resolve(true);
-        });
-        socket.on("error", () => {
-            socket.destroy();
-            resolve(false);
-        });
-        socket.on("timeout", () => {
-            socket.destroy();
-            resolve(false);
-        });
+        socket.on("connect", () => { socket.destroy(); resolve(true); });
+        socket.on("error", () => { socket.destroy(); resolve(false); });
+        socket.on("timeout", () => { socket.destroy(); resolve(false); });
     });
 }
 
@@ -74,8 +65,7 @@ export function verificarSocketEnUso(puerto, host = "127.0.0.1") {
 export function leerDatosLock(rutaLock) {
     try {
         if (!fs.existsSync(rutaLock)) return null;
-        const contenido = fs.readFileSync(rutaLock, "utf-8");
-        return JSON.parse(contenido);
+        return JSON.parse(fs.readFileSync(rutaLock, "utf-8"));
     } catch {
         return null;
     }
@@ -90,9 +80,7 @@ export function leerDatosLock(rutaLock) {
 export function guardarLock(rutaLock, datos) {
     try {
         fs.writeFileSync(rutaLock, JSON.stringify(datos, null, 2), "utf-8");
-    } catch {
-        // En caso de fallo de escritura, no se interrumpe la ejecución
-    }
+    } catch {}
 }
 
 /**
@@ -102,12 +90,8 @@ export function guardarLock(rutaLock, datos) {
  */
 export function eliminarLock(rutaLock) {
     try {
-        if (fs.existsSync(rutaLock)) {
-            fs.unlinkSync(rutaLock);
-        }
-    } catch {
-        // Ignorar posibles condiciones de carrera en el borrado
-    }
+        if (fs.existsSync(rutaLock)) fs.unlinkSync(rutaLock);
+    } catch {}
 }
 
 /**
@@ -125,24 +109,29 @@ export function esInstanciaViva(datosLock) {
 
 /**
  * Comprueba si ya existe una instancia previa del mismo proyecto activa.
- * Purga de forma transparente cualquier lock obsoleto o huérfano.
+ * Distingue reinicios en caliente (--watch) frente a terminales externas duplicadas.
  *
  * @param {object} opciones - Parámetros de configuración.
- * @param {string} opciones.directorioRaiz - Directorio del proyecto.
- * @param {number} [opciones.puertoBase=8000] - Puerto base a verificar.
- * @returns {Promise<{estaActiva: boolean, datosLock: object|null, rutaLock: string}>}
+ * @returns {Promise<{estaActiva: boolean, esReinicioEnCaliente: boolean, datosLock: object|null, rutaLock: string}>}
  */
-export async function verificarInstanciaExistente({ directorioRaiz, puertoBase = 8000 }) {
+export async function verificarInstanciaExistente({
+    directorioRaiz,
+    puertoBase = 8000,
+    pidSupervisorActual = process.ppid
+}) {
     const rutaLock = generarRutaLock(directorioRaiz);
     const datosLock = leerDatosLock(rutaLock);
 
     if (datosLock) {
+        if (datosLock.pidSupervisor && pidSupervisorActual && datosLock.pidSupervisor === pidSupervisorActual) {
+            return { estaActiva: false, esReinicioEnCaliente: true, datosLock, rutaLock };
+        }
         const estaViva = esInstanciaViva(datosLock);
         if (!estaViva) {
             eliminarLock(rutaLock);
-            return { estaActiva: false, datosLock: null, rutaLock };
+            return { estaActiva: false, esReinicioEnCaliente: false, datosLock: null, rutaLock };
         }
-        return { estaActiva: true, datosLock, rutaLock };
+        return { estaActiva: true, esReinicioEnCaliente: false, datosLock, rutaLock };
     }
 
     const nombreBase = path.basename(directorioRaiz).replace(/[^a-zA-Z0-9_-]/g, "_");
@@ -155,13 +144,13 @@ export async function verificarInstanciaExistente({ directorioRaiz, puertoBase =
         if (fs.existsSync(rutaLegacy)) {
             const socketActivo = await verificarSocketEnUso(puertoBase);
             if (socketActivo) {
-                return { estaActiva: true, datosLock: { puerto: puertoBase, legacy: true }, rutaLock: rutaLegacy };
+                return { estaActiva: true, esReinicioEnCaliente: false, datosLock: { puerto: puertoBase, legacy: true }, rutaLock: rutaLegacy };
             }
             eliminarLock(rutaLegacy);
         }
     }
 
-    return { estaActiva: false, datosLock: null, rutaLock };
+    return { estaActiva: false, esReinicioEnCaliente: false, datosLock: null, rutaLock };
 }
 
 /**
