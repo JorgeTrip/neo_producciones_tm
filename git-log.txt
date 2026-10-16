@@ -1,3 +1,5 @@
+* 2026-10-15 [8f58e56] feat: Se actualiza script de desarrollo con proteccion spawn y puerto (Jorge O. Tripodi)
+* 2026-10-15 [17a589d] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-15 [5b8b283] feat: Se implementa reveal por filas de skeletons en portafolio (Jorge O. Tripodi)
 * 2026-10-15 [6babbcf] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-15 [e484dc9] fix: Se garantiza visualizacion inicial de skeletons en portafolio (Jorge O. Tripodi)
