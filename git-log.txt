@@ -1,3 +1,5 @@
+* 2026-10-20 [b5c2051] feat: Se modulariza wizard de presupuesto en 3 pasos y capsula dividida (Jorge O. Tripodi)
+* 2026-10-20 [9d2bdff] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-20 [3768b89] feat: Se implementa sección de presupuesto con wizard en dos pasos (Jorge O. Tripodi)
 * 2026-10-16 [dca12a0] fix: Se distingue reinicio en caliente de sesiones externas en gestor de instancia (Jorge O. Tripodi)
 * 2026-10-16 [c8420c0] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
