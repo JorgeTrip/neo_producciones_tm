@@ -1,10 +1,13 @@
 /**
  * @file estadoWizardPresupuesto.js
  * @description Gestor de estado (Store) desacoplado para el Wizard de Presupuesto.
- * Administra el paso actual, ítems seleccionados, datos del formulario y observadores reactivos.
+ * Administra el paso actual (1: Cobertura, 2: Adicionales, 3: Contacto),
+ * ítems seleccionados, datos del formulario y observadores reactivos.
  */
 
 import { validarDatosContacto } from '../dominio/validadorPresupuesto.js';
+
+const TOTAL_PASOS = 3;
 
 /**
  * Crea una nueva instancia del gestor de estado para el wizard de presupuesto.
@@ -39,6 +42,7 @@ export function crearEstadoWizard(configuracionInicial = {}) {
   function obtenerEstado() {
     return {
       pasoActual: estado.pasoActual,
+      totalPasos: TOTAL_PASOS,
       servicioSeleccionado: estado.servicioSeleccionado,
       adicionalesSeleccionados: [...estado.adicionalesSeleccionados],
       datosContacto: { ...estado.datosContacto },
@@ -78,21 +82,21 @@ export function crearEstadoWizard(configuracionInicial = {}) {
   }
 
   function avanzarPaso() {
-    if (estado.pasoActual < 2) {
-      estado.pasoActual = 2;
+    if (estado.pasoActual < TOTAL_PASOS) {
+      estado.pasoActual += 1;
       notificar();
     }
   }
 
   function retrocederPaso() {
     if (estado.pasoActual > 1) {
-      estado.pasoActual = 1;
+      estado.pasoActual -= 1;
       notificar();
     }
   }
 
   function irAPaso(paso) {
-    if (paso >= 1 && paso <= 2 && estado.pasoActual !== paso) {
+    if (paso >= 1 && paso <= TOTAL_PASOS && estado.pasoActual !== paso) {
       estado.pasoActual = paso;
       notificar();
     }

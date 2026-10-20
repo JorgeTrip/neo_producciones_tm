@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Estilos del Módulo de Navegación.
  * Controla la barra superior fija, enlaces de escritorio y el menú desplegable móvil.
  */
@@ -80,6 +80,44 @@ nav {
 }
 
 .btn-nav:hover { opacity: 0.88; background: unset; }
+
+/* ─── PÍLDORA DUAL RESALTADA (SPLIT PILL) ─── */
+.nav-split-pill {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent-gradient);
+  border-radius: 9999px;
+  padding: 2px 4px;
+  box-shadow: 0 2px 12px rgba(205, 167, 141, 0.28);
+  margin-left: 0.5rem;
+}
+
+.split-pill-item {
+  padding: 0.45rem 1.05rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  text-decoration: none !important;
+  color: #111 !important;
+  -webkit-text-fill-color: #111 !important;
+  transition: background 0.2s ease, opacity 0.2s ease !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.split-pill-item:hover {
+  background: rgba(0, 0, 0, 0.09) !important;
+}
+
+.split-pill-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(17, 17, 17, 0.22);
+  flex-shrink: 0;
+}
 
 .nav-hamburger {
   display: none;

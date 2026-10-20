@@ -1,13 +1,14 @@
 /**
  * @file SeccionPresupuesto.js
- * @description Componente Orquestador de la Sección de Presupuesto con Asistente Wizard en 2 Pasos.
- * Vincula el gestor de estado con los componentes visuales de presentación.
+ * @description Componente Orquestador de la Sección de Presupuesto con Asistente Wizard en 3 Pasos.
+ * Desacopla la selección en Cobertura Base, Adicionales Opcionales y Contacto para optimizar el viewport vertical.
  */
 
 import { crearElemento } from '../scripts/utilidadesDom.js';
 import { crearEstadoWizard } from '../scripts/aplicacion/estadoWizardPresupuesto.js';
 import { renderizarBarraProgresoWizard } from './wizard/BarraProgresoWizard.js';
-import { renderizarPasoSeleccionItems } from './wizard/PasoSeleccionItems.js';
+import { renderizarPasoTipoCobertura } from './wizard/PasoTipoCobertura.js';
+import { renderizarPasoAdicionales } from './wizard/PasoAdicionales.js';
 import { renderizarPasoContactoPresupuesto } from './wizard/PasoContactoPresupuesto.js';
 
 /**
@@ -23,8 +24,7 @@ export function renderizarSeccionPresupuesto(contenedor) {
     crearElemento('div', { className: 'presupuesto-intro reveal' }, [
       crearElemento('p', { className: 'section-label' }, ['Presupuesto']),
       crearElemento('h2', { className: 'section-title' }, [
-        'Cotizá tu',
-        crearElemento('br'),
+        'Cotizá tu ',
         crearElemento('span', { className: 'grad' }, ['Cobertura'])
       ]),
       crearElemento('div', { className: 'divider' }),
@@ -39,6 +39,36 @@ export function renderizarSeccionPresupuesto(contenedor) {
 
   const contenedorWizard = nodoContenido.querySelector('#contenedorWizard');
 
+  function renderizarPasoPorNumero(estado) {
+    if (estado.pasoActual === 1) {
+      return renderizarPasoTipoCobertura({
+        servicioSeleccionado: estado.servicioSeleccionado,
+        alSeleccionarServicio: (id) => store.seleccionarServicio(id),
+        alAvanzar: () => store.avanzarPaso()
+      });
+    }
+
+    if (estado.pasoActual === 2) {
+      return renderizarPasoAdicionales({
+        servicioSeleccionado: estado.servicioSeleccionado,
+        adicionalesSeleccionados: estado.adicionalesSeleccionados,
+        alAlternarAdicional: (id) => store.alternarAdicional(id),
+        alRetroceder: () => store.retrocederPaso(),
+        alAvanzar: () => store.avanzarPaso()
+      });
+    }
+
+    return renderizarPasoContactoPresupuesto({
+      servicioSeleccionado: estado.servicioSeleccionado,
+      adicionalesSeleccionados: estado.adicionalesSeleccionados,
+      datosContacto: estado.datosContacto,
+      erroresValidacion: estado.erroresValidacion,
+      alModificarDato: (campo, valor) => store.actualizarDatosContacto(campo, valor),
+      alRetroceder: () => store.retrocederPaso(),
+      alValidar: () => store.validarPasoContacto().esValido
+    });
+  }
+
   function actualizarVista() {
     const estado = store.obtenerEstado();
 
@@ -47,24 +77,7 @@ export function renderizarSeccionPresupuesto(contenedor) {
       alSeleccionarPaso: (paso) => store.irAPaso(paso)
     });
 
-    const pasoNodo = estado.pasoActual === 1
-      ? renderizarPasoSeleccionItems({
-          servicioSeleccionado: estado.servicioSeleccionado,
-          adicionalesSeleccionados: estado.adicionalesSeleccionados,
-          alSeleccionarServicio: (id) => store.seleccionarServicio(id),
-          alAlternarAdicional: (id) => store.alternarAdicional(id),
-          alAvanzar: () => store.avanzarPaso()
-        })
-      : renderizarPasoContactoPresupuesto({
-          servicioSeleccionado: estado.servicioSeleccionado,
-          adicionalesSeleccionados: estado.adicionalesSeleccionados,
-          datosContacto: estado.datosContacto,
-          erroresValidacion: estado.erroresValidacion,
-          alModificarDato: (campo, valor) => store.actualizarDatosContacto(campo, valor),
-          alRetroceder: () => store.retrocederPaso(),
-          alValidar: () => store.validarPasoContacto().esValido
-        });
-
+    const pasoNodo = renderizarPasoPorNumero(estado);
     contenedorWizard.replaceChildren(barraProgreso, pasoNodo);
   }
 

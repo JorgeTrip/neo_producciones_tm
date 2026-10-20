@@ -1,4 +1,4 @@
-# Especificación Funcional: Wizard Consultivo de Presupuesto
+﻿# Especificación Funcional: Wizard Consultivo de Presupuesto
 
 **Identificador**: SPEC-UI-002  
 **Módulo**: Asistente de Presupuesto Consultivo (`componentes/wizard/`, `componentes/SeccionPresupuesto.js`, `estilos/presupuesto.css`)  

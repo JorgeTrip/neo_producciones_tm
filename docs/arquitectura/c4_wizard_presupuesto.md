@@ -1,4 +1,4 @@
-# Arquitectura C4: Wizard Consultivo de Presupuesto
+﻿# Arquitectura C4: Wizard Consultivo de Presupuesto
 
 **Proyecto**: NEO Producciones  
 **Módulo**: Asistente Wizard de Presupuesto (`componentes/wizard/`, `componentes/SeccionPresupuesto.js`, `estilos/presupuesto.css`)  

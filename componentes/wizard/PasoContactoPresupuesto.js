@@ -123,7 +123,7 @@ export function renderizarPasoContactoPresupuesto({
         type: 'button',
         className: 'btn-outline btn-wizard-back',
         onclick: alRetroceder
-      }, ['← Volver al Paso 1']),
+      }, ['← Volver a Adicionales']),
 
       crearElemento('button', {
         type: 'button',
@@ -172,7 +172,7 @@ function crearCampoTextarea({ id, etiqueta, valor, placeholder, onChange }) {
     crearElemento('textarea', {
       id,
       name: id,
-      rows: '3',
+      rows: '2',
       placeholder,
       className: 'wizard-input-control textarea',
       oninput: (e) => onChange(e.target.value)

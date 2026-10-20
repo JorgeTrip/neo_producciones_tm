@@ -8,14 +8,15 @@ import { crearElemento } from '../../scripts/utilidadesDom.js';
 /**
  * Renderiza la barra de progreso del wizard con accesibilidad ARIA.
  * @param {object} opciones
- * @param {number} opciones.pasoActual - Paso activo (1 o 2).
+ * @param {number} opciones.pasoActual - Paso activo (1, 2 o 3).
  * @param {function(number): void} opciones.alSeleccionarPaso - Callback para saltar entre pasos.
  * @returns {HTMLElement}
  */
 export function renderizarBarraProgresoWizard({ pasoActual, alSeleccionarPaso }) {
   const pasos = [
-    { numero: 1, etiqueta: 'Selección de Cobertura' },
-    { numero: 2, etiqueta: 'Datos del Evento y Envío' }
+    { numero: 1, etiqueta: 'Cobertura' },
+    { numero: 2, etiqueta: 'Adicionales' },
+    { numero: 3, etiqueta: 'Contacto' }
   ];
 
   return crearElemento('div', {
