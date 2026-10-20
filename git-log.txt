@@ -1,3 +1,6 @@
+* 2026-10-20 [baedb7f] fix: Se implementa ajuste dinamico y centrado de titulo hero en pantallas moviles (Jorge O. Tripodi)
+* 2026-10-20 [5780ff3] fix: Se ajusta posición de bloque hero y botones en pantallas móviles (Jorge O. Tripodi)
+* 2026-10-20 [ecc100c] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-20 [b5c2051] feat: Se modulariza wizard de presupuesto en 3 pasos y capsula dividida (Jorge O. Tripodi)
 * 2026-10-20 [9d2bdff] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-20 [3768b89] feat: Se implementa sección de presupuesto con wizard en dos pasos (Jorge O. Tripodi)
