@@ -17,9 +17,14 @@
   --accent-gradient: linear-gradient(135deg, #E3E3E3 0%, #cda78d 100%);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; width: 100%; }
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 body {
   background: var(--bg);
@@ -29,6 +34,7 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   width: 100%;
+  max-width: 100%;
 }
 
 

@@ -27,6 +27,39 @@
   .video-grid { grid-template-columns: 1fr 1fr; }
 }
 
+@media (max-width: 768px) {
+  .hero-content {
+    margin-top: -2.5rem;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-title {
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    margin: 0 auto 1.5rem;
+    line-height: 1.55;
+  }
+
+  .hero-ctas {
+    gap: 0.75rem;
+  }
+
+  .hero-scroll {
+    bottom: 1.35rem;
+  }
+
+  .scroll-line {
+    height: 32px;
+  }
+}
+
 @media (max-width: 600px) {
   section { padding: 4rem 0; }
   .container { padding: 0 1.25rem; }
@@ -48,5 +81,37 @@
 
   .footer-inner { flex-direction: column; text-align: center; }
 
-  .hero-title { font-size: 2.6rem; }
+  .hero-content {
+    margin-top: -3.5rem;
+    padding: 1rem 1.25rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.85rem, 8.5vw, 2.5rem);
+    margin-bottom: 0.85rem;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .hero-sub {
+    font-size: 0.98rem;
+    margin: 0 auto 1.25rem;
+    line-height: 1.5;
+  }
+
+  .hero-scroll {
+    bottom: 1rem;
+  }
+
+  .scroll-line {
+    height: 28px;
+  }
 }
