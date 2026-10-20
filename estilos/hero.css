@@ -47,7 +47,7 @@
   z-index: 2;
   text-align: center;
   padding: 2rem;
-  max-width: 860px;
+  max-width: 1100px;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
@@ -70,20 +70,22 @@
 
 .hero-title {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
   font-weight: 800;
-  line-height: 1.0;
+  line-height: 1.05;
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
+  width: 100%;
   max-width: 100%;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   opacity: 0;
   animation: fadeUp 0.8s 0.5s ease forwards;
-  text-align: center;
 }
 
 .hero-title .gradient-text {
+  display: inline;
   background: linear-gradient(135deg, #E3E3E3 0%, #d8c5b8 30%, #cda78d 70%, #b8906e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

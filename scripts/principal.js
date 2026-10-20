@@ -7,4 +7,7 @@ import './animacionesScroll.js';
 import './visorMultimedia.js';
 import './visorPanoramico.js';
 import './inicializarComponentes.js';
+import { inicializarAjustadorTituloHero } from './ajustadorTituloHero.js';
 import '../componentes/ModalAcercaDe.js';
+
+inicializarAjustadorTituloHero();
