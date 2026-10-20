@@ -20,7 +20,7 @@ export function renderizarSeccionNosotros(contenedor) {
         crearElemento('div', { className: 'divider' }),
         crearElemento('div', { className: 'historia-text' }, [
           crearElemento('p', {}, [
-            'Desde 2006, NEO Producciones ha sido testigo de los momentos más significativos en la vida de nuestros clientes. Con casi dos décadas de experiencia, hemos perfeccionado el arte de transformar instantes fugaces en memorias tangibles que perduran por generaciones.'
+            'Desde 2006, NEO Producciones ha sido testigo de los momentos más importantes en la vida de nuestros clientes. Con más de dos décadas de experiencia, hemos perfeccionado el arte de transformar instantes fugaces en memorias tangibles que perduran por generaciones.'
           ]),
           crearElemento('p', {}, [
             'Es un emprendimiento personal de fotografía de Jorge O. Tripodi, con un equipo dedicado que brinda servicios para eventos, books, fotografía comercial, de inmuebles y muchos más, siempre acordes a tus necesidades.'
