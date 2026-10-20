@@ -1,0 +1,175 @@
+/**
+ * Estilos del Asistente Wizard de Presupuesto - NEO Producciones (Parte 1: Base y Selección).
+ * Estética de alta fidelidad Apple con paleta "Grises Pro" y modo oscuro.
+ */
+
+.presupuesto-intro { margin-bottom: 2.5rem; }
+.presupuesto-lead { color: var(--text-muted); max-width: 600px; font-size: 1.05rem; }
+
+.wizard-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── BARRA DE PROGRESO ─── */
+.wizard-progress-bar {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border2);
+  padding-bottom: 1.5rem;
+}
+.wizard-steps-track { display: flex; gap: 1.5rem; align-items: center; }
+.wizard-step-node {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  color: var(--text-muted);
+  font-family: inherit;
+}
+.wizard-step-node:focus-visible { outline: 2px solid var(--gold2); outline-offset: 2px; }
+
+.step-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 0.25s ease;
+}
+.step-label { font-size: 0.95rem; font-weight: 500; letter-spacing: 0.02em; }
+.wizard-step-node.active .step-badge {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: #141416;
+}
+.wizard-step-node.active .step-label { color: var(--text); font-weight: 600; }
+.wizard-step-node.completed .step-badge {
+  background: var(--gold3);
+  border-color: transparent;
+  color: #141416;
+}
+
+/* ─── PASO 1: SELECCIÓN DE ITEMS ─── */
+.wizard-step-body.fade-in {
+  animation: wizardFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes wizardFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.wizard-group-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+.wizard-group-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+
+.wizard-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.wizard-card-radio {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all 0.25s ease;
+  position: relative;
+}
+.wizard-card-radio:hover { border-color: var(--border); transform: translateY(-2px); }
+.wizard-card-radio.selected {
+  border-color: var(--gold2);
+  background: rgba(205, 167, 141, 0.08);
+  box-shadow: 0 0 0 1px var(--gold2);
+}
+
+.card-radio-indicator {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wizard-card-radio.selected .card-radio-indicator { border-color: var(--gold2); }
+.radio-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+.wizard-card-radio.selected .radio-dot { background: var(--gold2); }
+
+.card-radio-title { font-size: 1.05rem; font-weight: 600; color: var(--text); }
+.card-radio-sub {
+  font-size: 0.78rem;
+  color: var(--gold2);
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.card-radio-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.45; }
+
+.wizard-extras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.85rem;
+}
+.wizard-card-checkbox {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  transition: all 0.2s ease;
+}
+.wizard-card-checkbox input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
+.checkbox-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #141416;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+}
+.wizard-card-checkbox.checked { border-color: var(--gold2); background: rgba(205, 167, 141, 0.05); }
+.wizard-card-checkbox.checked .checkbox-box { background: var(--gold2); border-color: var(--gold2); }
+.checkbox-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+.checkbox-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.35; }

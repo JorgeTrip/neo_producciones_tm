@@ -7,6 +7,7 @@ import { renderizarSeccionServicios } from '../componentes/SeccionServicios.js';
 import { renderizarSeccionEventos } from '../componentes/SeccionEventos.js';
 import { renderizarSeccionProceso } from '../componentes/SeccionProceso.js';
 import { renderizarSeccionPortafolio } from '../componentes/SeccionPortafolio.js';
+import { renderizarSeccionPresupuesto } from '../componentes/SeccionPresupuesto.js';
 import { renderizarSeccionCondiciones } from '../componentes/SeccionCondiciones.js';
 import { renderizarSeccionContacto } from '../componentes/SeccionContacto.js';
 import { inicializarAnimacionesScroll } from './animacionesScroll.js';
@@ -17,6 +18,7 @@ export function montarAplicacion() {
   renderizarSeccionEventos(document.getElementById('contenedor-eventos'));
   renderizarSeccionProceso(document.getElementById('proceso'));
   renderizarSeccionPortafolio(document.getElementById('portfolio'));
+  renderizarSeccionPresupuesto(document.getElementById('presupuesto'));
   renderizarSeccionCondiciones(document.getElementById('condiciones'));
   renderizarSeccionContacto(document.getElementById('contacto'));
 
