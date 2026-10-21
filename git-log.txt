@@ -1,3 +1,5 @@
+* 2026-10-20 [1f2de77] fix: Se optimizan miniaturas 360 y espaciado de seccion videos (Jorge O. Tripodi)
+* 2026-10-20 [c314cbc] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-20 [0642078] fix: Se actualiza texto descriptivo a mas de dos decadas de experiencia (Jorge O. Tripodi)
 * 2026-10-20 [6deb396] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-20 [baedb7f] fix: Se implementa ajuste dinamico y centrado de titulo hero en pantallas moviles (Jorge O. Tripodi)
