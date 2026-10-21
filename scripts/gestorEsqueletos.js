@@ -56,3 +56,39 @@ export function configurarEsqueleto(contenedor, imagen, retardoMinimoMs = 250) {
     imagen.addEventListener('error', alFallar, { once: true });
   }
 }
+
+/**
+ * Activa la carga diferida de imágenes y skeletons en una fila del portafolio.
+ * Transfiere el atributo data-src a src e inicia el ciclo de vida del placeholder.
+ * @param {HTMLElement|object} contenedorFila - Contenedor de la fila (.gallery-row o .video-row).
+ * @param {object} [opciones] - Opciones de configuración de tiempos.
+ * @param {number} [opciones.retardoBaseMs=250] - Tiempo base de placeholder.
+ * @param {number} [opciones.desfaseColumnaMs=60] - Retardo incremental por cada columna.
+ * @returns {void}
+ */
+export function activarCargaFila(contenedorFila, opciones = {}) {
+  if (!contenedorFila || typeof contenedorFila.querySelectorAll !== 'function') {
+    return;
+  }
+
+  const { retardoBaseMs = 250, desfaseColumnaMs = 60 } = opciones;
+  const imagenesPendientes = contenedorFila.querySelectorAll('img[data-src]');
+
+  imagenesPendientes.forEach((imagen, indice) => {
+    const rutaOrigen = imagen.getAttribute('data-src');
+    if (!rutaOrigen) return;
+
+    imagen.removeAttribute('data-src');
+
+    // Encontrar el contenedor de la tarjeta multimedia
+    const contenedorTarjeta = (typeof imagen.closest === 'function' && imagen.closest('.gallery-item, .video-thumb'))
+      || imagen.parentElement
+      || contenedorFila;
+
+    const retardoFila = retardoBaseMs + (indice * desfaseColumnaMs);
+
+    // Asignar el origen e iniciar el ciclo de vida del esqueleto
+    imagen.src = rutaOrigen;
+    configurarEsqueleto(contenedorTarjeta, imagen, retardoFila);
+  });
+}

@@ -1,10 +1,10 @@
 /**
  * Componente Declarativo: Sección Portafolio Multimedia.
- * Renderiza dinámicamente las grillas de fotografías previas, eventos, 360 y videos.
+ * Renderiza dinámicamente las grillas de fotografías previas, eventos, 360 y videos
+ * utilizando carga diferida por filas (data-src) y placeholders tipo esqueleto.
  */
 import { crearElemento, crearElementoSvg, dividirEnFilas } from '../scripts/utilidadesDom.js';
 import { FOTOS_PREVIA, FOTOS_EVENTOS, ENTORNOS_360, VIDEOS } from '../scripts/datosPortafolio.js';
-import { configurarEsqueleto } from '../scripts/gestorEsqueletos.js';
 
 export function renderizarSeccionPortafolio(contenedor) {
   if (!contenedor) return;
@@ -59,7 +59,11 @@ export function renderizarSeccionPortafolio(contenedor) {
 
 function crearItemFoto(item) {
   const rutaMiniatura = item.thumb || item.ruta;
-  const nodoImagen = crearElemento('img', { src: rutaMiniatura, alt: item.alt, className: 'img-cargando', loading: 'lazy' });
+  const nodoImagen = crearElemento('img', {
+    'data-src': rutaMiniatura,
+    alt: item.alt,
+    className: 'img-cargando'
+  });
   const el = crearElemento('div', {
     className: 'gallery-item esqueleto-activo',
     onclick: `abrirVisorImagen('${item.ruta}')`
@@ -71,7 +75,6 @@ function crearItemFoto(item) {
       ])
     ])
   ]);
-  configurarEsqueleto(el, nodoImagen);
   el.addEventListener('click', () => {
     if (typeof window.abrirVisorImagen === 'function') window.abrirVisorImagen(item.ruta);
   });
@@ -80,7 +83,11 @@ function crearItemFoto(item) {
 
 function crearItemPanorama(item) {
   const rutaMiniatura = item.thumb || item.ruta;
-  const nodoImagen = crearElemento('img', { src: rutaMiniatura, alt: item.alt, className: 'img-cargando', loading: 'lazy' });
+  const nodoImagen = crearElemento('img', {
+    'data-src': rutaMiniatura,
+    alt: item.alt,
+    className: 'img-cargando'
+  });
   const el = crearElemento('div', {
     className: 'gallery-item panorama-item esqueleto-activo',
     onclick: `abrirVisorPanorama('${item.ruta}', '${item.titulo}')`
@@ -99,7 +106,6 @@ function crearItemPanorama(item) {
       ])
     ])
   ]);
-  configurarEsqueleto(el, nodoImagen);
   el.addEventListener('click', () => {
     if (typeof window.abrirVisorPanorama === 'function') window.abrirVisorPanorama(item.ruta, item.titulo);
   });
@@ -111,7 +117,11 @@ function crearItemVideo(item) {
     ? () => { if (typeof window.abrirVisorVideo === 'function') window.abrirVisorVideo(item.url); }
     : () => { window.open(item.url, '_blank'); };
 
-  const nodoImagen = crearElemento('img', { src: item.thumb, alt: item.titulo, className: 'img-cargando', loading: 'lazy' });
+  const nodoImagen = crearElemento('img', {
+    'data-src': item.thumb,
+    alt: item.titulo,
+    className: 'img-cargando'
+  });
   const el = crearElemento('div', { className: 'video-thumb esqueleto-activo' }, [
     nodoImagen,
     crearElemento('div', { className: 'video-thumb-overlay' }, [
@@ -123,7 +133,6 @@ function crearItemVideo(item) {
     ]),
     crearElemento('div', { className: 'video-title' }, [item.titulo])
   ]);
-  configurarEsqueleto(el, nodoImagen);
   el.addEventListener('click', accion);
   return el;
 }
