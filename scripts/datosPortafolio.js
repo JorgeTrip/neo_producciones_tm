@@ -38,10 +38,30 @@ export const FOTOS_EVENTOS = [
 ];
 
 export const ENTORNOS_360 = [
-  { ruta: 'images/portfolio/360/2025-02-15 19-40-37 - IMG_20250215_194037_00_008.webp', alt: 'Exterior de la Parroquia San Bernardo en Buenos Aires - Fotografía Interactiva 360°', titulo: 'Exterior de la Parroquia San Bernardo (CABA)' },
-  { ruta: 'images/portfolio/360/2025-02-15 21-47-25 - IMG_20250215_214725_00_010.webp', alt: 'Selfie 360 interactiva en el interior de la Parroquia San Bernardo con los novios', titulo: 'Interior de la Parroquia San Bernardo con Novios' },
-  { ruta: 'images/portfolio/360/2026-06-13 22-35-32_00_005.webp', alt: 'Selfie 360 interactiva en la recepción del casamiento en Sabores y Motores, Canning', titulo: 'Selfie 360 en Recepción de Casamiento — Sabores y Motores' },
-  { ruta: 'images/portfolio/360/2026-06-13 23-03-17_00_006.webp', alt: 'Fotografía general 360 de la recepción de casamiento en Sabores y Motores en Canning', titulo: 'Recepción en Sabores y Motores (Canning)' }
+  {
+    ruta: 'images/portfolio/360/2025-02-15 19-40-37 - IMG_20250215_194037_00_008.webp',
+    thumb: 'images/portfolio/360/2025-02-15 19-40-37 - IMG_20250215_194037_00_008_thumb.webp',
+    alt: 'Exterior de la Parroquia San Bernardo en Buenos Aires - Fotografía Interactiva 360°',
+    titulo: 'Exterior de la Parroquia San Bernardo (CABA)'
+  },
+  {
+    ruta: 'images/portfolio/360/2025-02-15 21-47-25 - IMG_20250215_214725_00_010.webp',
+    thumb: 'images/portfolio/360/2025-02-15 21-47-25 - IMG_20250215_214725_00_010_thumb.webp',
+    alt: 'Selfie 360 interactiva en el interior de la Parroquia San Bernardo con los novios',
+    titulo: 'Interior de la Parroquia San Bernardo con Novios'
+  },
+  {
+    ruta: 'images/portfolio/360/2026-06-13 22-35-32_00_005.webp',
+    thumb: 'images/portfolio/360/2026-06-13 22-35-32_00_005_thumb.webp',
+    alt: 'Selfie 360 interactiva en la recepción del casamiento en Sabores y Motores, Canning',
+    titulo: 'Selfie 360 en Recepción de Casamiento — Sabores y Motores'
+  },
+  {
+    ruta: 'images/portfolio/360/2026-06-13 23-03-17_00_006.webp',
+    thumb: 'images/portfolio/360/2026-06-13 23-03-17_00_006_thumb.webp',
+    alt: 'Fotografía general 360 de la recepción de casamiento en Sabores y Motores en Canning',
+    titulo: 'Recepción en Sabores y Motores (Canning)'
+  }
 ];
 
 export const VIDEOS = [

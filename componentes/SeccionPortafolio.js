@@ -43,7 +43,7 @@ export function renderizarSeccionPortafolio(contenedor) {
     ),
 
     // 4. Videos (filas de 3 como bloques reveal independientes)
-    crearElemento('div', { className: 'portfolio-section-title reveal', style: { marginTop: '3rem' } }, ['Video montaje con música & corporativos']),
+    crearElemento('div', { className: 'portfolio-section-title reveal', style: { marginTop: '4.5rem' } }, ['Video montaje con música & corporativos']),
     ...dividirEnFilas(VIDEOS, 3).map(fila =>
       crearElemento('div', { className: 'video-grid video-row reveal' }, fila.map(crearItemVideo))
     )
@@ -58,7 +58,8 @@ export function renderizarSeccionPortafolio(contenedor) {
 }
 
 function crearItemFoto(item) {
-  const nodoImagen = crearElemento('img', { src: item.ruta, alt: item.alt, className: 'img-cargando', loading: 'lazy' });
+  const rutaMiniatura = item.thumb || item.ruta;
+  const nodoImagen = crearElemento('img', { src: rutaMiniatura, alt: item.alt, className: 'img-cargando', loading: 'lazy' });
   const el = crearElemento('div', {
     className: 'gallery-item esqueleto-activo',
     onclick: `abrirVisorImagen('${item.ruta}')`
@@ -78,7 +79,8 @@ function crearItemFoto(item) {
 }
 
 function crearItemPanorama(item) {
-  const nodoImagen = crearElemento('img', { src: item.ruta, alt: item.alt, className: 'img-cargando', loading: 'lazy' });
+  const rutaMiniatura = item.thumb || item.ruta;
+  const nodoImagen = crearElemento('img', { src: rutaMiniatura, alt: item.alt, className: 'img-cargando', loading: 'lazy' });
   const el = crearElemento('div', {
     className: 'gallery-item panorama-item esqueleto-activo',
     onclick: `abrirVisorPanorama('${item.ruta}', '${item.titulo}')`
