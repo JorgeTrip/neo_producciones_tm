@@ -1,13 +1,13 @@
 /**
  * @file estadoWizardPresupuesto.js
  * @description Gestor de estado (Store) desacoplado para el Wizard de Presupuesto.
- * Administra el paso actual (1: Cobertura, 2: Adicionales, 3: Contacto),
- * ítems seleccionados, datos del formulario y observadores reactivos.
+ * Administra el paso actual (1: Cobertura, 2: Adicionales y Envío),
+ * ítems seleccionados, datos opcionales y observadores reactivos.
  */
 
 import { validarDatosContacto } from '../dominio/validadorPresupuesto.js';
 
-const TOTAL_PASOS = 3;
+const TOTAL_PASOS = 2;
 
 /**
  * Crea una nueva instancia del gestor de estado para el wizard de presupuesto.

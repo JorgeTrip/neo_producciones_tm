@@ -1,6 +1,6 @@
 /**
  * @file BarraProgresoWizard.js
- * @description Componente declarativo que renderiza la barra de progreso e indicador de pasos del Wizard.
+ * @description Componente declarativo que renderiza la barra de progreso e indicador de pasos del Wizard en 2 etapas.
  */
 
 import { crearElemento } from '../../scripts/utilidadesDom.js';
@@ -8,15 +8,14 @@ import { crearElemento } from '../../scripts/utilidadesDom.js';
 /**
  * Renderiza la barra de progreso del wizard con accesibilidad ARIA.
  * @param {object} opciones
- * @param {number} opciones.pasoActual - Paso activo (1, 2 o 3).
+ * @param {number} opciones.pasoActual - Paso activo (1 o 2).
  * @param {function(number): void} opciones.alSeleccionarPaso - Callback para saltar entre pasos.
  * @returns {HTMLElement}
  */
 export function renderizarBarraProgresoWizard({ pasoActual, alSeleccionarPaso }) {
   const pasos = [
     { numero: 1, etiqueta: 'Cobertura' },
-    { numero: 2, etiqueta: 'Adicionales' },
-    { numero: 3, etiqueta: 'Contacto' }
+    { numero: 2, etiqueta: 'Adicionales' }
   ];
 
   return crearElemento('div', {

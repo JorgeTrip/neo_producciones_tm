@@ -1,4 +1,4 @@
-import test from 'node:test';
+﻿import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   generarTextoPresupuesto,
@@ -50,18 +50,33 @@ test('Generador de Mensaje de Presupuesto - Ciclo TDD', async (t) => {
     assert.ok(!texto.includes('✉️ Email:')); // no se incluyó email
   });
 
-  await t.test('debe generar un enlace https://wa.me válido codificado en URL', () => {
+  await t.test('debe generar un enlace https://api.whatsapp.com/send válido codificado en URL', () => {
     const enlace = generarEnlaceWhatsApp({
       servicioId: 'sesiones',
       adicionalesIds: ['fotolibro'],
       datosContacto
     });
 
-    assert.ok(enlace.startsWith('https://wa.me/541140686925?text='));
+    assert.ok(enlace.startsWith('https://api.whatsapp.com/send?phone=541140686925&text='));
     const url = new URL(enlace);
     const parametroTexto = url.searchParams.get('text');
     assert.ok(parametroTexto.includes('📌 Servicio: Sesiones & Books'));
     assert.ok(parametroTexto.includes('• Fotolibro / Photobook Impreso'));
+  });
+
+  await t.test('debe generar texto limpio sin datos de contacto cuando no se proveen (flujo directo de 2 pasos)', () => {
+    const texto = generarTextoPresupuesto({
+      servicioId: 'sociales',
+      adicionalesIds: ['sesion_previa']
+    });
+
+    assert.ok(texto.includes('📌 Servicio: Eventos Sociales'));
+    assert.ok(texto.includes('• Sesión de Fotos Previa'));
+    assert.ok(!texto.includes('👤 Nombre:'));
+    assert.ok(!texto.includes('📱 Contacto:'));
+    assert.ok(!texto.includes('📅 Fecha estimada:'));
+    assert.ok(!texto.includes('📍 Zona / Salón:'));
+    assert.ok(texto.includes('Quedo a la espera de tu cotización y disponibilidad.'));
   });
 
   await t.test('debe permitir sobreescribir el teléfono de destino en caso de ser necesario', () => {
@@ -72,6 +87,6 @@ test('Generador de Mensaje de Presupuesto - Ciclo TDD', async (t) => {
       telefonoDestino: '5491100000000'
     });
 
-    assert.ok(enlace.startsWith('https://wa.me/5491100000000?text='));
+    assert.ok(enlace.startsWith('https://api.whatsapp.com/send?phone=5491100000000&text='));
   });
 });

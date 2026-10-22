@@ -2,9 +2,9 @@
 
 **Proyecto**: NEO Producciones  
 **Módulo**: Asistente Wizard de Presupuesto (`componentes/wizard/`, `componentes/SeccionPresupuesto.js`, `estilos/presupuesto.css`)  
-**Fecha**: 2026-10-16  
+**Fecha**: 2026-10-22  
 **Autor**: Asistente de IA (Antigravity) / Jorge  
-**Estado**: En Revisión (Esperando Aprobación de Compuerta C4)
+**Estado**: Aprobado por el Usuario  
 
 ---
 
@@ -12,9 +12,9 @@
 
 ```mermaid
 flowchart TD
-    Cliente["Cliente Potencial / Visitante"] -->|Configura cobertura y datos| WebNEO["Sitio Web NEO Producciones"]
-    WebNEO -->|Abre mensaje estructurado| WhatsAppAPI["API WhatsApp (wa.me)"]
-    WebNEO -->|Opcional: Envío asíncrono| CorreoContacto["Canal de Contacto Directo"]
+    Cliente["Cliente Potencial / Visitante"] -->|Configura cobertura y adicionales| WebNEO["Sitio Web NEO Producciones"]
+    WebNEO -->|Abre mensaje estructurado directamente| WhatsAppAPI["API WhatsApp (api.whatsapp.com/send)"]
+    WhatsAppAPI -->|Recepción directa| Profesional["Jorge (NEO Producciones)"]
 ```
 
 ---
@@ -41,77 +41,54 @@ flowchart TD
 flowchart TD
     subgraph CapaPresentacion["Capa de Presentación (UI)"]
         SeccionPresupuesto["componentes/SeccionPresupuesto.js"]
-        BarraProgreso["componentes/wizard/BarraProgresoWizard.js"]
-        PasoItems["componentes/wizard/PasoSeleccionItems.js"]
-        PasoContacto["componentes/wizard/PasoContactoPresupuesto.js"]
+        BarraProgreso["componentes/wizard/BarraProgresoWizard.js (2 pasos)"]
+        PasoTipoCobertura["componentes/wizard/PasoTipoCobertura.js (Paso 1)"]
+        PasoAdicionales["componentes/wizard/PasoAdicionales.js (Paso 2 con CTA WhatsApp)"]
         PresupuestoCSS["estilos/presupuesto.css"]
     end
 
     subgraph CapaAplicacion["Capa de Aplicación (Estado)"]
-        EstadoWizard["scripts/aplicacion/estadoWizardPresupuesto.js"]
+        EstadoWizard["scripts/aplicacion/estadoWizardPresupuesto.js (TOTAL_PASOS = 2)"]
     end
 
     subgraph CapaDominio["Capa de Dominio (Pura / Sin DOM)"]
         Catalogo["scripts/dominio/catalogoPresupuesto.js"]
-        Validador["scripts/dominio/validadorPresupuesto.js"]
         GeneradorMensaje["scripts/dominio/generadorMensajePresupuesto.js"]
     end
 
     SeccionPresupuesto --> BarraProgreso
-    SeccionPresupuesto --> PasoItems
-    SeccionPresupuesto --> PasoContacto
-    PasoItems --> EstadoWizard
-    PasoContacto --> EstadoWizard
+    SeccionPresupuesto --> PasoTipoCobertura
+    SeccionPresupuesto --> PasoAdicionales
+    PasoTipoCobertura --> EstadoWizard
+    PasoAdicionales --> EstadoWizard
+    PasoAdicionales --> GeneradorMensaje
     EstadoWizard --> Catalogo
-    EstadoWizard --> Validador
-    EstadoWizard --> GeneradorMensaje
     SeccionPresupuesto -.-> PresupuestoCSS
 ```
 
 ---
 
-## Nivel 4: Flujo y Máquina de Estados del Wizard
+## Nivel 4: Flujo y Máquina de Estados del Wizard (2 Pasos)
 
 ```mermaid
 sequenceDiagram
     autonumber
     actor U as Usuario
-    participant UI as SeccionPresupuesto.js
+    participant UI as SeccionPresupuesto.js / PasoAdicionales.js
     participant EW as estadoWizardPresupuesto.js
-    participant VAL as validadorPresupuesto.js
     participant GEN as generadorMensajePresupuesto.js
     participant WA as WhatsApp Web/App
 
-    U->>UI: Selecciona Servicio Base y Extras
-    UI->>EW: alternarServicio(id) / alternarExtra(id)
-    U->>UI: Clic en "Continuar al Paso 2"
+    U->>UI: 1. Selecciona Servicio Base (Paso 1)
+    UI->>EW: seleccionarServicio(id)
+    U->>UI: Clic en "Continuar a Adicionales"
     UI->>EW: avanzarPaso()
-    EW-->>UI: Notifica cambio a Paso 2
-    UI->>UI: Renderiza PasoContactoPresupuesto con resumen
-    U->>UI: Completa Nombre, Teléfono, Fecha, Zona
-    U->>UI: Clic en "Solicitar Presupuesto por WhatsApp"
-    UI->>VAL: validarDatosContacto(datos)
-    alt Datos incompletos
-        VAL-->>UI: Errores de validación
-        UI->>UI: Marca campos con aria-invalid y foco visual
-    else Datos válidos
-        VAL-->>UI: Validación exitosa
-        UI->>GEN: construirEnlaceWhatsApp(servicio, extras, datos)
-        GEN-->>UI: URL wa.me con texto estructurado
-        UI->>WA: window.open(urlWhatsApp, '_blank')
-    end
+    EW-->>UI: Notifica pasoActual = 2
+    UI->>UI: Renderiza PasoAdicionales
+    U->>UI: 2. Tilda adicionales deseados (opcional)
+    UI->>EW: alternarAdicional(id)
+    U->>UI: 3. Clic en "Solicitar Presupuesto por WhatsApp"
+    UI->>GEN: generarEnlaceWhatsApp({ servicioId, adicionalesIds })
+    GEN-->>UI: URL api.whatsapp.com/send con texto estructurado
+    UI->>WA: window.open(enlaceWhatsApp, '_blank')
 ```
-
----
-
-## Invariantes y Reglas de Diseño
-
-1. **Aislamiento del Dominio**:
-   - `catalogoPresupuesto.js`, `validadorPresupuesto.js` y `generadorMensajePresupuesto.js` son funciones y constantes puras sin acceso a `document`, `window` ni dependencias externas.
-   - Son 100% testeables de forma determinista mediante `node --test tests/presupuesto/*.test.js`.
-2. **Límite Estricto de 200 Líneas**:
-   - Cada componente del wizard (`BarraProgresoWizard.js`, `PasoSeleccionItems.js`, `PasoContactoPresupuesto.js`, `SeccionPresupuesto.js`) se mantiene por debajo de 150 líneas.
-3. **UX Reactiva y Accesibilidad (WCAG 2.1 AA)**:
-   - Anillos de foco visibles (`focus-visible`).
-   - Transiciones suaves entre pasos sin parpadeos.
-   - Respaldo de navegación por teclado completa (`Tab`, `Space`, `Enter`).

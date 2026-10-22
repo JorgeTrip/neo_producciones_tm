@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file generadorMensajePresupuesto.js
  * @description Construcción determinista y formateo del mensaje de presupuesto para WhatsApp.
  * Transforma las entidades de dominio y datos de contacto en texto legible y URL codificada.
@@ -13,7 +13,7 @@ const TELEFONO_WHATSAPP_DEFECTO = '541140686925';
  * @param {object} parametros
  * @param {string} parametros.servicioId - Identificador del servicio base.
  * @param {Array<string>} [parametros.adicionalesIds] - Arreglo de identificadores de adicionales.
- * @param {object} parametros.datosContacto - Datos ingresados por el usuario.
+ * @param {object} [parametros.datosContacto] - Datos ingresados por el usuario (opcional).
  * @returns {string}
  */
 export function generarTextoPresupuesto({ servicioId, adicionalesIds = [], datosContacto = {} }) {
@@ -34,20 +34,32 @@ export function generarTextoPresupuesto({ servicioId, adicionalesIds = [], datos
     '¡Hola Jorge! Estuve armando una solicitud de presupuesto en la web de NEO Producciones:',
     '',
     `📌 Servicio: ${nombreServicio}`,
-    seccionExtras,
-    '',
-    `📅 Fecha estimada: ${datosContacto.fechaEvento || 'A convenir'}`,
-    `📍 Zona / Salón: ${datosContacto.zonaEvento || 'A convenir'}`,
-    `👤 Nombre: ${datosContacto.nombre || ''}`,
-    `📱 Contacto: ${datosContacto.telefono || ''}`
+    seccionExtras
   ];
 
+  const lineasContacto = [];
+  if (datosContacto.fechaEvento && datosContacto.fechaEvento.trim().length > 0) {
+    lineasContacto.push(`📅 Fecha estimada: ${datosContacto.fechaEvento.trim()}`);
+  }
+  if (datosContacto.zonaEvento && datosContacto.zonaEvento.trim().length > 0) {
+    lineasContacto.push(`📍 Zona / Salón: ${datosContacto.zonaEvento.trim()}`);
+  }
+  if (datosContacto.nombre && datosContacto.nombre.trim().length > 0) {
+    lineasContacto.push(`👤 Nombre: ${datosContacto.nombre.trim()}`);
+  }
+  if (datosContacto.telefono && datosContacto.telefono.trim().length > 0) {
+    lineasContacto.push(`📱 Contacto: ${datosContacto.telefono.trim()}`);
+  }
   if (datosContacto.email && datosContacto.email.trim().length > 0) {
-    lineas.push(`✉️ Email: ${datosContacto.email.trim()}`);
+    lineasContacto.push(`✉️ Email: ${datosContacto.email.trim()}`);
+  }
+  if (datosContacto.comentarios && datosContacto.comentarios.trim().length > 0) {
+    lineasContacto.push(`💬 Comentarios: ${datosContacto.comentarios.trim()}`);
   }
 
-  if (datosContacto.comentarios && datosContacto.comentarios.trim().length > 0) {
-    lineas.push(`💬 Comentarios: ${datosContacto.comentarios.trim()}`);
+  if (lineasContacto.length > 0) {
+    lineas.push('');
+    lineas.push(...lineasContacto);
   }
 
   lineas.push('');
@@ -61,7 +73,7 @@ export function generarTextoPresupuesto({ servicioId, adicionalesIds = [], datos
  * @param {object} parametros
  * @param {string} parametros.servicioId - Identificador del servicio base.
  * @param {Array<string>} [parametros.adicionalesIds] - Arreglo de identificadores de adicionales.
- * @param {object} parametros.datosContacto - Datos ingresados por el usuario.
+ * @param {object} [parametros.datosContacto] - Datos opcionales ingresados por el usuario.
  * @param {string} [parametros.telefonoDestino] - Teléfono opcional de destino en formato internacional.
  * @returns {string}
  */
@@ -72,5 +84,5 @@ export function generarEnlaceWhatsApp({
   telefonoDestino = TELEFONO_WHATSAPP_DEFECTO
 }) {
   const texto = generarTextoPresupuesto({ servicioId, adicionalesIds, datosContacto });
-  return `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(texto)}`;
+  return `https://api.whatsapp.com/send?phone=${telefonoDestino}&text=${encodeURIComponent(texto)}`;
 }

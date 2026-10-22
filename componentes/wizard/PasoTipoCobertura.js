@@ -48,11 +48,13 @@ export function renderizarPasoTipoCobertura({
             }
           }
         }, [
-          crearElemento('div', { className: 'card-radio-indicator' }, [
-            crearElemento('span', { className: 'radio-dot' })
+          crearElemento('div', { className: 'card-radio-header' }, [
+            crearElemento('div', { className: 'card-radio-indicator' }, [
+              crearElemento('span', { className: 'radio-dot' })
+            ]),
+            crearElemento('div', { className: 'card-radio-title' }, [s.titulo])
           ]),
-          crearElemento('div', { className: 'card-radio-content' }, [
-            crearElemento('div', { className: 'card-radio-title' }, [s.titulo]),
+          crearElemento('div', { className: 'card-radio-body' }, [
             crearElemento('div', { className: 'card-radio-sub' }, [s.subtitulo]),
             crearElemento('p', { className: 'card-radio-desc' }, [s.descripcion])
           ])

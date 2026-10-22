@@ -1,15 +1,15 @@
 /**
  * @file SeccionPresupuesto.js
- * @description Componente Orquestador de la Sección de Presupuesto con Asistente Wizard en 3 Pasos.
- * Desacopla la selección en Cobertura Base, Adicionales Opcionales y Contacto para optimizar el viewport vertical.
+ * @description Componente Orquestador de la Sección de Presupuesto con Asistente Wizard en 2 Pasos.
+ * Permite seleccionar Cobertura Base, Adicionales Opcionales y enviar directamente la consulta a WhatsApp.
  */
 
 import { crearElemento } from '../scripts/utilidadesDom.js';
 import { crearEstadoWizard } from '../scripts/aplicacion/estadoWizardPresupuesto.js';
+import { generarEnlaceWhatsApp } from '../scripts/dominio/generadorMensajePresupuesto.js';
 import { renderizarBarraProgresoWizard } from './wizard/BarraProgresoWizard.js';
 import { renderizarPasoTipoCobertura } from './wizard/PasoTipoCobertura.js';
 import { renderizarPasoAdicionales } from './wizard/PasoAdicionales.js';
-import { renderizarPasoContactoPresupuesto } from './wizard/PasoContactoPresupuesto.js';
 
 /**
  * Renderiza la sección completa de presupuesto en el contenedor provisto.
@@ -39,6 +39,15 @@ export function renderizarSeccionPresupuesto(contenedor) {
 
   const contenedorWizard = nodoContenido.querySelector('#contenedorWizard');
 
+  function dispararWhatsApp(estado) {
+    const enlace = generarEnlaceWhatsApp({
+      servicioId: estado.servicioSeleccionado,
+      adicionalesIds: estado.adicionalesSeleccionados
+    });
+
+    window.open(enlace, '_blank');
+  }
+
   function renderizarPasoPorNumero(estado) {
     if (estado.pasoActual === 1) {
       return renderizarPasoTipoCobertura({
@@ -48,24 +57,12 @@ export function renderizarSeccionPresupuesto(contenedor) {
       });
     }
 
-    if (estado.pasoActual === 2) {
-      return renderizarPasoAdicionales({
-        servicioSeleccionado: estado.servicioSeleccionado,
-        adicionalesSeleccionados: estado.adicionalesSeleccionados,
-        alAlternarAdicional: (id) => store.alternarAdicional(id),
-        alRetroceder: () => store.retrocederPaso(),
-        alAvanzar: () => store.avanzarPaso()
-      });
-    }
-
-    return renderizarPasoContactoPresupuesto({
+    return renderizarPasoAdicionales({
       servicioSeleccionado: estado.servicioSeleccionado,
       adicionalesSeleccionados: estado.adicionalesSeleccionados,
-      datosContacto: estado.datosContacto,
-      erroresValidacion: estado.erroresValidacion,
-      alModificarDato: (campo, valor) => store.actualizarDatosContacto(campo, valor),
+      alAlternarAdicional: (id) => store.alternarAdicional(id),
       alRetroceder: () => store.retrocederPaso(),
-      alValidar: () => store.validarPasoContacto().esValido
+      alEnviarWhatsApp: () => dispararWhatsApp(estado)
     });
   }
 

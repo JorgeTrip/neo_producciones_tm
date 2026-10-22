@@ -3,8 +3,8 @@
  * Estética de alta fidelidad Apple con paleta "Grises Pro" y modo oscuro.
  */
 
-.presupuesto-intro { margin-bottom: 2.5rem; }
-.presupuesto-lead { color: var(--text-muted); max-width: 600px; font-size: 1.05rem; }
+.presupuesto-intro { margin-bottom: 1.25rem; }
+.presupuesto-lead { color: var(--text-muted); max-width: 580px; font-size: 0.92rem; line-height: 1.4; }
 
 .wizard-card {
   background: var(--card);
@@ -83,29 +83,19 @@
 }
 .wizard-context-pill strong { color: var(--gold2); }
 
-.wizard-group-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.25rem;
-  color: var(--text);
-  margin-bottom: 0.25rem;
-}
+.wizard-group-title { font-family: 'Syne', sans-serif; font-size: 1.25rem; color: var(--text); margin-bottom: 0.25rem; }
 .wizard-group-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem; }
 
-.wizard-services-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
+.wizard-services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 .wizard-card-radio {
   background: var(--bg2);
   border: 1px solid var(--border2);
   border-radius: 12px;
-  padding: 1.25rem;
+  padding: 0.85rem 1.1rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.35rem;
   transition: all 0.25s ease;
   position: relative;
 }
@@ -116,14 +106,18 @@
   box-shadow: 0 0 0 1px var(--gold2);
 }
 
+.card-radio-header { display: flex; align-items: center; gap: 0.65rem; }
 .card-radio-indicator {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 2px solid var(--border);
+  border: 1.5px solid rgba(244, 192, 103, 0.45);
+  background: rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 .wizard-card-radio.selected .card-radio-indicator { border-color: var(--gold2); }
 .radio-dot {
@@ -137,13 +131,13 @@
 
 .card-radio-title { font-size: 1.05rem; font-weight: 600; color: var(--text); }
 .card-radio-sub {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--gold2);
   font-family: 'Barlow Condensed', sans-serif;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-.card-radio-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.45; }
+.card-radio-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.4; }
 
 /* ─── TARJETAS COMPRIMIDAS DE ADICIONALES (PASO 2) ─── */
 .wizard-extras-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
@@ -158,12 +152,15 @@
   gap: 0.65rem;
   transition: all 0.2s ease;
 }
+.wizard-card-checkbox:hover { border-color: var(--border); }
 .wizard-card-checkbox input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
 .checkbox-box {
   width: 18px;
   height: 18px;
   border-radius: 5px;
-  border: 1px solid var(--border);
+  border: 1.5px solid rgba(244, 192, 103, 0.45);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -173,6 +170,7 @@
   flex-shrink: 0;
   transition: all 0.2s ease;
 }
+.wizard-card-checkbox:hover .checkbox-box { border-color: var(--gold2); background: rgba(244, 192, 103, 0.12); }
 .wizard-card-checkbox.checked { border-color: var(--gold2); background: rgba(205, 167, 141, 0.05); }
 .wizard-card-checkbox.checked .checkbox-box { background: var(--gold2); border-color: var(--gold2); }
 
