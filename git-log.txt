@@ -1,3 +1,5 @@
+* 2026-10-22 [67a7929] feat: Se simplifica presupuesto a dos pasos con envío por WhatsApp (Jorge O. Tripodi)
+* 2026-10-21 [0b2a5ad] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-20 [e9c749c] fix: Se optimiza carga diferida y skeletons por fila en portafolio (Jorge O. Tripodi)
 * 2026-10-21 [85a1bdc] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-20 [cafd63b] feat: Se agrega bloque de datos estructurados Schema.org para SEO (Jorge O. Tripodi)
