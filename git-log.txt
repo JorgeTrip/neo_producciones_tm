@@ -1,3 +1,5 @@
+* 2026-10-26 [bd7f361] fix: Se actualiza endpoint de mensajería Graph API con Page Token (Jorge O. Tripodi)
+* 2026-10-26 [711e3a7] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-26 [7ca2d1f] fix: Se optimiza persistencia serverless y despacho síncrono en webhook (Jorge O. Tripodi)
 * 2026-10-26 [ad750a3] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-26 [3fbe415] feat: Se integra función serverless para webhook del chatbot de Meta (Jorge O. Tripodi)
