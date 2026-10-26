@@ -1,45 +1,56 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 
 /**
  * @fileoverview Repositorio de infraestructura: Persiste y recupera el estado de las conversaciones
- * y las marcas de tiempo de intervención humana en un archivo JSON local.
+ * y las marcas de tiempo de intervención humana en un archivo JSON local o almacenamiento efímero.
  */
-
 export class RepositorioConversacionesLocal {
   /**
    * @param {string} [rutaArchivo] - Ruta al archivo de almacenamiento JSON.
    */
   constructor(rutaArchivo) {
-    this.rutaArchivo = rutaArchivo || path.resolve(process.cwd(), '.datos', 'conversaciones.json');
+    if (rutaArchivo) {
+      this.rutaArchivo = rutaArchivo;
+    } else if (process.env.NETLIFY || process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.LAMBDA_TASK_ROOT) {
+      this.rutaArchivo = path.resolve(os.tmpdir(), 'conversaciones_meta.json');
+    } else {
+      this.rutaArchivo = path.resolve(process.cwd(), '.datos', 'conversaciones.json');
+    }
+    this.memoria = {};
     this.asegurarDirectorio();
   }
 
   /**
-   * Garantiza la existencia del directorio contenedor.
+   * Garantiza la existencia del directorio contenedor de manera segura.
    * @private
    */
   asegurarDirectorio() {
-    const dir = path.dirname(this.rutaArchivo);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+    try {
+      const dir = path.dirname(this.rutaArchivo);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+    } catch {
+      // Continúa en memoria si el sistema de archivos no es escribible
     }
   }
 
   /**
-   * Lee la totalidad del almacén desde el disco.
+   * Lee la totalidad del almacén desde el disco con fallback en memoria.
    * @private
    * @returns {Record<string, Object>}
    */
   leerTodos() {
-    if (!fs.existsSync(this.rutaArchivo)) {
-      return {};
-    }
     try {
+      if (!fs.existsSync(this.rutaArchivo)) {
+        return this.memoria || {};
+      }
       const contenido = fs.readFileSync(this.rutaArchivo, 'utf-8');
-      return JSON.parse(contenido || '{}');
+      return { ...this.memoria, ...JSON.parse(contenido || '{}') };
     } catch {
-      return {};
+      return this.memoria || {};
     }
   }
 
@@ -49,25 +60,28 @@ export class RepositorioConversacionesLocal {
    * @param {string} datosConversacion.id
    */
   guardar(datosConversacion) {
-    if (!datosConversacion?.id) return;
+    if (!datosConversacion || !datosConversacion.id) {
+      return;
+    }
 
-    const todos = this.leerTodos();
-    todos[datosConversacion.id] = {
-      ...todos[datosConversacion.id],
-      ...datosConversacion,
-      actualizadoEn: Date.now()
-    };
+    this.memoria[datosConversacion.id] = datosConversacion;
 
-    fs.writeFileSync(this.rutaArchivo, JSON.stringify(todos), 'utf-8');
+    try {
+      const todos = this.leerTodos();
+      todos[datosConversacion.id] = datosConversacion;
+      fs.writeFileSync(this.rutaArchivo, JSON.stringify(todos), 'utf-8');
+    } catch {
+      // Mantiene en memoria si el sistema de archivos bloquea la escritura
+    }
   }
 
   /**
-   * Obtiene los datos persistidos de una conversación por su identificador.
+   * Recupera una conversación por su identificador.
    * @param {string} id
    * @returns {Object|null}
    */
   obtenerPorId(id) {
     const todos = this.leerTodos();
-    return todos[id] || null;
+    return todos[id] || this.memoria[id] || null;
   }
 }

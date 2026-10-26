@@ -61,10 +61,10 @@ export async function manejarPeticionWebhook(request) {
             instagramAccountId: igId
           });
 
-          // Procesa en segundo plano los mensajes sin bloquear la respuesta HTTP
-          orquestador.procesarMensajesNuevos({ canal: 'ambos', enviarRespuestasReales: true }).catch((err) => {
-            console.error('Error al procesar eventos en segundo plano:', err.message);
-          });
+          // Procesa de inmediato cada mensaje entrante antes de responder a Meta
+          for (const msg of mensajes) {
+            await orquestador.procesarMensajeDirectoWebhook(msg);
+          }
         }
       }
 

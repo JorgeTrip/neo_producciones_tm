@@ -27,16 +27,9 @@ export class OrquestadorChatbotServicio {
    * @private
    */
   async obtenerTodasLasConversaciones(canal) {
-    const conversaciones = [];
-    if (canal === 'facebook' || canal === 'ambos') {
-      const fbConvs = await this.cliente.obtenerConversacionesFacebook(15);
-      conversaciones.push(...fbConvs);
-    }
-    if (canal === 'instagram' || canal === 'ambos') {
-      const igConvs = await this.cliente.obtenerConversacionesInstagram(15);
-      conversaciones.push(...igConvs);
-    }
-    return conversaciones;
+    const fb = (canal === 'facebook' || canal === 'ambos') ? await this.cliente.obtenerConversacionesFacebook(15) : [];
+    const ig = (canal === 'instagram' || canal === 'ambos') ? await this.cliente.obtenerConversacionesInstagram(15) : [];
+    return [...fb, ...ig];
   }
 
   /**
@@ -166,5 +159,38 @@ export class OrquestadorChatbotServicio {
     }
 
     return { totalInactivas: seguimientosSugeridos.length, seguimientosSugeridos };
+  }
+
+  /**
+   * Procesa un mensaje directo entrante desde el webhook de Meta y envía la respuesta.
+   */
+  async procesarMensajeDirectoWebhook({ emisorId, receptorId, texto, canal }) {
+    const miId = canal === 'facebook' ? this.pageId : this.igId;
+
+    if (emisorId === miId) {
+      const conv = new Conversacion({ id: receptorId || emisorId, canal });
+      conv.registrarIntervencionHumana(24, Date.now());
+      this.repo.guardar({ ...conv, pausaHumanaHasta: conv.pausaHumanaHasta });
+      return { accion: 'PAUSA_HUMANA_REGISTRADA' };
+    }
+
+    const guardado = this.repo.obtenerPorId(emisorId) || {};
+    const conv = new Conversacion({
+      id: emisorId,
+      canal,
+      pasoActual: guardado.pasoActual || 'SALUDO_Y_CALIFICACION',
+      pausaHumanaHasta: guardado.pausaHumanaHasta || 0,
+      prospecto: guardado.prospecto || {}
+    });
+
+    const res = this.gestorDialogo.procesarTurno({ conversacion: conv, textoMensaje: texto });
+    if (res.accion === 'OMITIDO_EN_PAUSA_HUMANA') return { accion: res.accion };
+
+    if (res.respuesta?.texto && emisorId) {
+      await this.cliente.enviarMensaje({ destinatarioId: emisorId, texto: res.respuesta.texto, canal });
+    }
+
+    this.repo.guardar({ ...conv, actualizadoEn: Date.now() });
+    return { accion: res.accion, respuestaTexto: res.respuesta?.texto };
   }
 }
