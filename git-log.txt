@@ -1,3 +1,5 @@
+* 2026-10-26 [7ca2d1f] fix: Se optimiza persistencia serverless y despacho síncrono en webhook (Jorge O. Tripodi)
+* 2026-10-26 [ad750a3] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-26 [3fbe415] feat: Se integra función serverless para webhook del chatbot de Meta (Jorge O. Tripodi)
 * 2026-10-22 [4f3ad7c] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-22 [67a7929] feat: Se simplifica presupuesto a dos pasos con envío por WhatsApp (Jorge O. Tripodi)
