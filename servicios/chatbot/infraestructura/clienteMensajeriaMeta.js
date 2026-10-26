@@ -99,13 +99,13 @@ export class ClienteMensajeriaMeta {
       throw new Error('Se requiere destinatarioId y texto para enviar un mensaje.');
     }
 
-    const token = canal === 'facebook' ? await this.obtenerPageToken() : this.tokenAcceso;
+    const token = await this.obtenerPageToken();
     const cuerpoPeticion = {
       recipient: { id: destinatarioId },
       message: { text: texto }
     };
 
-    const endpoint = canal === 'facebook' ? `${this.facebookPageId}/messages` : 'me/messages';
+    const endpoint = `${this.facebookPageId}/messages`;
 
     const res = await this.ejecutarPeticion(endpoint, token, {
       method: 'POST',
