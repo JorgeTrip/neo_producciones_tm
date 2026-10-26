@@ -1,3 +1,5 @@
+* 2026-10-26 [08aadd9] feat: Se agrega pagina de politica de privacidad institucional (Jorge O. Tripodi)
+* 2026-10-26 [19451bb] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-26 [bd7f361] fix: Se actualiza endpoint de mensajería Graph API con Page Token (Jorge O. Tripodi)
 * 2026-10-26 [711e3a7] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-26 [7ca2d1f] fix: Se optimiza persistencia serverless y despacho síncrono en webhook (Jorge O. Tripodi)
