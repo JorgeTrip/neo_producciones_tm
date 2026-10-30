@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 70px 0 0 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -149,7 +149,7 @@
 
 .hero-scroll {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 2rem;
   left: 0;
   right: 0;
   z-index: 2;
@@ -170,7 +170,7 @@
 
 .scroll-line {
   width: 1px;
-  height: 40px;
+  height: 35px;
   background: linear-gradient(to bottom, var(--gold2), transparent);
   animation: scrollPulse 2s ease-in-out infinite;
 }
