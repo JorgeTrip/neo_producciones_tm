@@ -1,3 +1,6 @@
+* 2026-10-30 [094854a] fix: Se corrige centrado vertical del hero en pantallas de baja altura (Jorge O. Tripodi)
+* 2026-10-30 [47f479f] feat: Se incorpora especificación y arquitectura del asistente web (Jorge O. Tripodi)
+* 2026-10-27 [80aee06] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-26 [934f564] feat: Se incorpora documentación técnica y arquitectura del chatbot (Jorge O. Tripodi)
 * 2026-10-26 [17875de] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-26 [08aadd9] feat: Se agrega pagina de politica de privacidad institucional (Jorge O. Tripodi)
