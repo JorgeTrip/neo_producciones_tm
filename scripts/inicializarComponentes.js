@@ -10,6 +10,7 @@ import { renderizarSeccionPortafolio } from '../componentes/SeccionPortafolio.js
 import { renderizarSeccionPresupuesto } from '../componentes/SeccionPresupuesto.js';
 import { renderizarSeccionCondiciones } from '../componentes/SeccionCondiciones.js';
 import { renderizarSeccionContacto } from '../componentes/SeccionContacto.js';
+import { montarBarraInferiorMovil } from '../componentes/BarraInferiorMovil.js';
 import { inicializarAnimacionesScroll } from './animacionesScroll.js';
 
 export function montarAplicacion() {
@@ -21,6 +22,7 @@ export function montarAplicacion() {
   renderizarSeccionPresupuesto(document.getElementById('presupuesto'));
   renderizarSeccionCondiciones(document.getElementById('condiciones'));
   renderizarSeccionContacto(document.getElementById('contacto'));
+  montarBarraInferiorMovil();
 
   // Disparar las animaciones de scroll para los nuevos nodos generados
   inicializarAnimacionesScroll();

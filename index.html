@@ -89,13 +89,14 @@
       </li>
       <li><button class="btn-ayuda-nav" onclick="abrirModalAcercaDe()" aria-label="Acerca de NEO Producciones">?</button></li>
     </ul>
-    <div class="nav-hamburger" onclick="conmutarMenu()" aria-label="Menú">
+    <button type="button" id="navHamburger" class="nav-hamburger" onclick="conmutarMenu()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
-    </div>
+    </button>
   </div>
 </nav>
 
 <!-- Menú Desplegable Móvil -->
+<div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#nosotros" onclick="conmutarMenu()">Nosotros</a>
   <a href="#servicios" onclick="conmutarMenu()">Servicios</a>

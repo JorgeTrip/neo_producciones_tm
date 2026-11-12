@@ -8,21 +8,30 @@ import { obtenerInformacionVersion, obtenerHistorialCambios } from '../scripts/g
 let modalBackdrop = null;
 let cuerpoModal = null;
 let tituloModal = null;
+let botonCerrarModal = null;
+let ultimoFocoPrevio = null;
 
 export function inicializarModalAcercaDe() {
   if (document.getElementById('modalAcercaDeBackdrop')) return;
 
-  tituloModal = crearElemento('h3', { className: 'modal-acerca-titulo' }, ['Acerca de NEO Producciones']);
-  const btnCerrar = crearElemento('button', {
+  const tiradorSheet = crearElemento('div', { className: 'modal-acerca-handle', 'aria-hidden': 'true' });
+  tituloModal = crearElemento('h3', { id: 'modalAcercaDeTitulo', className: 'modal-acerca-titulo' }, ['Acerca de NEO Producciones']);
+  botonCerrarModal = crearElemento('button', {
+    type: 'button',
     className: 'modal-acerca-cerrar',
     'aria-label': 'Cerrar ventana modal',
     onclick: cerrarModalAcercaDe
   }, ['×']);
 
-  const cabecera = crearElemento('div', { className: 'modal-acerca-header' }, [tituloModal, btnCerrar]);
+  const cabecera = crearElemento('div', { className: 'modal-acerca-header' }, [tituloModal, botonCerrarModal]);
   cuerpoModal = crearElemento('div', { className: 'modal-acerca-cuerpo' });
 
-  const tarjeta = crearElemento('div', { className: 'modal-acerca-tarjeta' }, [cabecera, cuerpoModal]);
+  const tarjeta = crearElemento('div', {
+    className: 'modal-acerca-tarjeta',
+    role: 'dialog',
+    'aria-modal': 'true',
+    'aria-labelledby': 'modalAcercaDeTitulo'
+  }, [tiradorSheet, cabecera, cuerpoModal]);
 
   modalBackdrop = crearElemento('div', {
     id: 'modalAcercaDeBackdrop',
@@ -40,16 +49,19 @@ export function inicializarModalAcercaDe() {
 }
 
 export async function abrirModalAcercaDe() {
+  ultimoFocoPrevio = document.activeElement instanceof HTMLElement ? document.activeElement : null;
   inicializarModalAcercaDe();
   modalBackdrop.classList.add('activo');
   document.body.style.overflow = 'hidden';
   await renderizarVistaAcercaDe();
+  botonCerrarModal?.focus();
 }
 
 export function cerrarModalAcercaDe() {
   if (modalBackdrop) {
     modalBackdrop.classList.remove('activo');
     document.body.style.overflow = '';
+    ultimoFocoPrevio?.focus?.();
   }
 }
 

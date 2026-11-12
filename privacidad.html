@@ -4,43 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Política de Privacidad | NEO Producciones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-principal: #1C1C1E;
-      --bg-tarjeta: #2C2C2E;
-      --texto-principal: #F5F5F7;
-      --texto-secundario: #A1A1A6;
-      --dorado: #D4AF37;
+      --bg-principal: #141416;
+      --bg-tarjeta: #212124;
+      --texto-principal: #EEEFF5;
+      --texto-secundario: rgba(238, 239, 245, 0.72);
+      --gold: #D8C5B8;
+      --gold2: #CDA78D;
+      --border: rgba(216, 197, 184, 0.14);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background-color: var(--bg-principal);
       color: var(--texto-principal);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
-      padding: 40px 20px;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.65;
+      padding: 28px 16px;
       display: flex;
       justify-content: center;
     }
     .contenedor {
+      width: 100%;
       max-width: 800px;
       background: var(--bg-tarjeta);
-      border-radius: 16px;
-      padding: 36px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border-radius: 18px;
+      padding: 28px 22px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
     }
-    h1 { color: var(--dorado); margin-bottom: 12px; font-size: 1.8rem; }
-    h2 { color: var(--texto-principal); margin: 24px 0 8px; font-size: 1.2rem; }
+    .btn-volver {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0 1rem;
+      margin-bottom: 1.25rem;
+      border-radius: 999px;
+      background: rgba(216, 197, 184, 0.08);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .btn-volver:hover { background: rgba(216, 197, 184, 0.16); text-decoration: none; }
+    h1 { font-family: 'Syne', sans-serif; color: var(--gold); margin-bottom: 10px; font-size: clamp(1.45rem, 5vw, 1.9rem); }
+    h2 { font-family: 'Syne', sans-serif; color: var(--texto-principal); margin: 22px 0 8px; font-size: 1.15rem; }
     p, li { color: var(--texto-secundario); font-size: 0.95rem; margin-bottom: 12px; }
     ul { padding-left: 20px; margin-bottom: 16px; }
-    a { color: var(--dorado); text-decoration: none; }
+    a { color: var(--gold2); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .fecha { font-size: 0.85rem; color: var(--texto-secundario); margin-bottom: 24px; }
+    .fecha { font-size: 0.85rem; color: var(--texto-secundario); margin-bottom: 22px; }
   </style>
 </head>
 <body>
-  <div class="contenedor">
+  <main class="contenedor">
+    <a href="index.html" class="btn-volver">← Volver al sitio</a>
     <h1>Política de Privacidad</h1>
     <div class="fecha">Última actualización: 26 de octubre de 2026</div>
 
@@ -69,6 +93,6 @@
 
     <h2>5. Contacto</h2>
     <p>Para cualquier consulta referente a esta política o al tratamiento de sus datos, puede contactarnos a través de nuestro sitio web: <a href="https://neoproduccionestm.netlify.app/">neoproduccionestm.netlify.app</a> o al canal de atención telefónica oficial de NEO Producciones.</p>
-  </div>
+  </main>
 </body>
 </html>

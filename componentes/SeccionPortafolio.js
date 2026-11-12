@@ -30,7 +30,7 @@ export function renderizarSeccionPortafolio(contenedor) {
     // 2. Fotografía en eventos (filas de 4 como bloques reveal independientes)
     crearElemento('div', { className: 'portfolio-section-title reveal', style: { marginTop: '3rem' } }, ['Fotografía en eventos']),
     ...dividirEnFilas(FOTOS_EVENTOS, 4).map(fila =>
-      crearElemento('div', { className: 'gallery-grid gallery-row reveal', style: { gridTemplateColumns: 'repeat(4,1fr)' } }, fila.map(crearItemFoto))
+      crearElemento('div', { className: 'gallery-grid gallery-row reveal' }, fila.map(crearItemFoto))
     ),
 
     // 3. Recorridos 360 (filas de 4 como bloques reveal independientes)
@@ -57,6 +57,22 @@ export function renderizarSeccionPortafolio(contenedor) {
   }
 }
 
+function crearAtributosInteractivos(clase, etiquetaAccesible, alActivar) {
+  return {
+    className: clase,
+    role: 'button',
+    tabindex: '0',
+    'aria-label': etiquetaAccesible,
+    onclick: alActivar,
+    onkeydown: (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        alActivar();
+      }
+    }
+  };
+}
+
 function crearItemFoto(item) {
   const rutaMiniatura = item.thumb || item.ruta;
   const nodoImagen = crearElemento('img', {
@@ -64,21 +80,21 @@ function crearItemFoto(item) {
     alt: item.alt,
     className: 'img-cargando'
   });
-  const el = crearElemento('div', {
-    className: 'gallery-item esqueleto-activo',
-    onclick: `abrirVisorImagen('${item.ruta}')`
-  }, [
-    nodoImagen,
-    crearElemento('div', { className: 'gallery-item-overlay' }, [
-      crearElementoSvg('svg', { fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', viewBox: '0 0 24 24' }, [
-        crearElementoSvg('path', { d: 'M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6' })
-      ])
-    ])
-  ]);
-  el.addEventListener('click', () => {
+  const abrir = () => {
     if (typeof window.abrirVisorImagen === 'function') window.abrirVisorImagen(item.ruta);
-  });
-  return el;
+  };
+  return crearElemento(
+    'div',
+    crearAtributosInteractivos('gallery-item esqueleto-activo', `Ampliar fotografía: ${item.alt}`, abrir),
+    [
+      nodoImagen,
+      crearElemento('div', { className: 'gallery-item-overlay' }, [
+        crearElementoSvg('svg', { fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', viewBox: '0 0 24 24', 'aria-hidden': 'true' }, [
+          crearElementoSvg('path', { d: 'M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6' })
+        ])
+      ])
+    ]
+  );
 }
 
 function crearItemPanorama(item) {
@@ -88,28 +104,28 @@ function crearItemPanorama(item) {
     alt: item.alt,
     className: 'img-cargando'
   });
-  const el = crearElemento('div', {
-    className: 'gallery-item panorama-item esqueleto-activo',
-    onclick: `abrirVisorPanorama('${item.ruta}', '${item.titulo}')`
-  }, [
-    nodoImagen,
-    crearElemento('div', { className: 'panorama-badge' }, [
-      crearElementoSvg('svg', { fill: 'none', stroke: 'currentColor', 'stroke-width': '2', viewBox: '0 0 24 24' }, [
-        crearElementoSvg('circle', { cx: '12', cy: '12', r: '10' }),
-        crearElementoSvg('path', { d: 'M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z' })
-      ]),
-      ' 360°'
-    ]),
-    crearElemento('div', { className: 'gallery-item-overlay' }, [
-      crearElementoSvg('svg', { fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', viewBox: '0 0 24 24' }, [
-        crearElementoSvg('path', { d: 'M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99' })
-      ])
-    ])
-  ]);
-  el.addEventListener('click', () => {
+  const abrir = () => {
     if (typeof window.abrirVisorPanorama === 'function') window.abrirVisorPanorama(item.ruta, item.titulo);
-  });
-  return el;
+  };
+  return crearElemento(
+    'div',
+    crearAtributosInteractivos('gallery-item panorama-item esqueleto-activo', `Abrir recorrido 360°: ${item.titulo}`, abrir),
+    [
+      nodoImagen,
+      crearElemento('div', { className: 'panorama-badge' }, [
+        crearElementoSvg('svg', { fill: 'none', stroke: 'currentColor', 'stroke-width': '2', viewBox: '0 0 24 24', 'aria-hidden': 'true' }, [
+          crearElementoSvg('circle', { cx: '12', cy: '12', r: '10' }),
+          crearElementoSvg('path', { d: 'M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z' })
+        ]),
+        ' 360°'
+      ]),
+      crearElemento('div', { className: 'gallery-item-overlay' }, [
+        crearElementoSvg('svg', { fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', viewBox: '0 0 24 24', 'aria-hidden': 'true' }, [
+          crearElementoSvg('path', { d: 'M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99' })
+        ])
+      ])
+    ]
+  );
 }
 
 function crearItemVideo(item) {
@@ -122,17 +138,19 @@ function crearItemVideo(item) {
     alt: item.titulo,
     className: 'img-cargando'
   });
-  const el = crearElemento('div', { className: 'video-thumb esqueleto-activo' }, [
-    nodoImagen,
-    crearElemento('div', { className: 'video-thumb-overlay' }, [
-      crearElemento('div', { className: 'play-btn' }, [
-        crearElementoSvg('svg', { fill: 'currentColor', viewBox: '0 0 24 24' }, [
-          crearElementoSvg('path', { d: 'M8 5v14l11-7z' })
+  return crearElemento(
+    'div',
+    crearAtributosInteractivos('video-thumb esqueleto-activo', `Reproducir video: ${item.titulo}`, accion),
+    [
+      nodoImagen,
+      crearElemento('div', { className: 'video-thumb-overlay' }, [
+        crearElemento('div', { className: 'play-btn' }, [
+          crearElementoSvg('svg', { fill: 'currentColor', viewBox: '0 0 24 24', 'aria-hidden': 'true' }, [
+            crearElementoSvg('path', { d: 'M8 5v14l11-7z' })
+          ])
         ])
-      ])
-    ]),
-    crearElemento('div', { className: 'video-title' }, [item.titulo])
-  ]);
-  el.addEventListener('click', accion);
-  return el;
+      ]),
+      crearElemento('div', { className: 'video-title' }, [item.titulo])
+    ]
+  );
 }

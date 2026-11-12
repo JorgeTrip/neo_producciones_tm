@@ -62,13 +62,13 @@ export async function obtenerHistorialCambios() {
  * @param {string} textoLog - Contenido textual de git-log.txt.
  * @returns {Array<{ hash: string, fecha: string, autor: string, mensaje: string, tipo: string }>}
  */
-function parsearLogGit(textoLog) {
-  const lineas = textoLog.split('\n').filter(l => l.trim().length > 0);
+export function parsearLogGit(textoLog) {
+  const lineas = String(textoLog || '').split(/\r?\n/).filter(l => l.trim().length > 0);
   const entradas = [];
 
   for (const linea of lineas) {
     const regex = /^\*\s+(\d{4}-\d{2}-\d{2})\s+\[([a-f0-9]+)\]\s+(.*?)(?:\s+\((.*?)\))?$/;
-    const coincidencia = linea.match(regex);
+    const coincidencia = linea.trim().match(regex);
 
     if (coincidencia) {
       const [, fecha, hash, mensaje, autor] = coincidencia;
