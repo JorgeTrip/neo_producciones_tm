@@ -1,3 +1,5 @@
+* 2026-11-11 [b965eee] feat: Se adapta interfaz móvil integral y barra inferior táctil (Jorge O. Tripodi)
+* 2026-11-12 [9cc67fe] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-11-11 [bc70c23] fix: Se actualiza lanzador local a estandar scriptinicio (Jorge O. Tripodi)
 * 2026-10-30 [859b79d] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-10-30 [094854a] fix: Se corrige centrado vertical del hero en pantallas de baja altura (Jorge O. Tripodi)
