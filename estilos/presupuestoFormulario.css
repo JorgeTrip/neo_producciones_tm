@@ -72,7 +72,7 @@
   .wizard-card-radio { padding: 0.65rem 0.85rem; gap: 0.25rem; border-radius: 10px; }
   .card-radio-title { font-size: 0.95rem; line-height: 1.2; }
   .card-radio-sub { font-size: 0.72rem; }
-  .card-radio-desc { font-size: 0.8rem; line-height: 1.35; }
+  .card-radio-desc { display: none; }
 
   /* Paso 2: Adicionales en columna única con scroll interno */
   .wizard-extras-grid {
