@@ -23,13 +23,13 @@ test('Archivos de crossfade, bloqueo de renderizado y retorno al pie están conf
   assert.match(cssTransicion, /::view-transition-old\(root\)/);
   assert.match(cssTransicion, /::view-transition-new\(root\)/);
   assert.match(cssPrincipal, /@import url\(['"]transicionPaginas\.css['"]\);/);
-  assert.match(indexHtml, /<script[^>]*src="scripts\/principal\.js"[^>]*blocking="render"/);
+  assert.match(indexHtml, /<script[^>]*type="module"[^>]*src="scripts\/principal\.js"/);
   assert.match(indexHtml, /<footer\s+id="footer"/);
 
   for (const archivo of ['privacidad.html', 'terminos.html']) {
     const html = leer(archivo);
     assert.match(html, /href="estilos\/transicionPaginas\.css"/);
-    assert.match(html, /<script[^>]*src="scripts\/paginaLegal\.js"[^>]*blocking="render"/);
+    assert.match(html, /<script[^>]*type="module"[^>]*src="scripts\/paginaLegal\.js"/);
     assert.match(html, /class="cabecera-legal-acciones"/);
     assert.match(html, /class="btn-volver"/);
     assert.match(html, /href="index\.html#footer"[^>]*class="btn-cerrar-legal"/);

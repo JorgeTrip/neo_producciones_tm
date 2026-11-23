@@ -64,8 +64,6 @@
   text-transform: uppercase;
   color: var(--gold2);
   margin-bottom: 1.2rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.3s ease forwards;
 }
 
 .hero-title {
@@ -80,8 +78,6 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.5s ease forwards;
 }
 
 .hero-title .gradient-text {

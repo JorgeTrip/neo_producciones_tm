@@ -29,7 +29,7 @@ const ACCESOS_BARRA_MOVIL = [
     id: 'presupuesto',
     etiqueta: 'Presupuesto',
     href: '#presupuesto',
-    ariaLabel: 'Ir al presupuestador',
+    ariaLabel: 'Ir a Presupuesto',
     esStroke: true,
     paths: [
       'M9 6.75h6M9 10.5h6M9 14.25h3.75',

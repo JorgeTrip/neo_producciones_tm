@@ -81,12 +81,18 @@ function calcularObjetivoDesdeNodos(nodos) {
  * @returns {Function} Función de limpieza de oyentes y observadores.
  */
 export function inicializarDockPresupuesto() {
-  if (typeof window === 'undefined' || typeof document === 'undefined' || window.innerWidth > 768) {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return () => {};
+  }
+  const esMovil = typeof window.matchMedia === 'function'
+    ? window.matchMedia('(max-width: 768px)').matches
+    : window.innerWidth <= 768;
+  if (!esMovil) {
     return () => {};
   }
 
   let temporizadorAsentamiento = null;
-  let ultimoScrollY = window.scrollY;
+  let ultimoScrollY = 0;
   let ultimoTiempo = Date.now();
   let velocidadActual = 0;
   let direccionDescendente = false;
@@ -95,6 +101,11 @@ export function inicializarDockPresupuesto() {
   let yaDisparadoEnEntrada = false;
   let estabaAcoplado = false;
   let scrollYUltimoDock = 0;
+
+  // Sincroniza scrollY inicial fuera del tick de montaje DOM para evitar forced reflow
+  if (typeof window.requestAnimationFrame === 'function') {
+    window.requestAnimationFrame(() => { ultimoScrollY = window.scrollY; });
+  }
 
   const ejecutarSnap = (scrollYObjetivo) => {
     animandoDock = true;

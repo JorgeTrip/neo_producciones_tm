@@ -113,12 +113,14 @@ ul {
 }
 
 a {
-  color: var(--gold2);
-  text-decoration: none;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: var(--gold2);
 }
 
 /* Indicador de foco accesible para navegación por teclado (WCAG AA) */

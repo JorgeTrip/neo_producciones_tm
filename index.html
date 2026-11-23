@@ -61,22 +61,38 @@
   }
   </script>
 
-  <!-- Iconos del sitio y tipografías -->
-  <link rel="icon" href="images/logo/logo_obturador.svg">
+  <!-- Iconos del sitio, precarga LCP y tipografías -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/logo/favicon-32x32.png">
+  <link rel="icon" href="images/logo/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/logo/apple-touch-icon.png">
+  <link rel="preload" as="image" href="images/secciones/camara.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
-  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-  <link rel="stylesheet" href="estilos/principal.css">
-  <script type="module" src="scripts/principal.js" blocking="render"></script>
+  <link rel="stylesheet" href="estilos/variablesYBase.css">
+  <link rel="stylesheet" href="estilos/transicionPaginas.css">
+  <link rel="stylesheet" href="estilos/navegacion.css">
+  <link rel="stylesheet" href="estilos/hero.css">
+  <link rel="stylesheet" href="estilos/nosotrosYServicios.css">
+  <link rel="stylesheet" href="estilos/eventosYProceso.css">
+  <link rel="stylesheet" href="estilos/portafolio.css">
+  <link rel="stylesheet" href="estilos/esqueletos.css">
+  <link rel="stylesheet" href="estilos/visorMultimedia.css">
+  <link rel="stylesheet" href="estilos/presupuesto.css">
+  <link rel="stylesheet" href="estilos/presupuestoFormulario.css">
+  <link rel="stylesheet" href="estilos/condicionesYContacto.css">
+  <link rel="stylesheet" href="estilos/pieDePagina.css">
+  <link rel="stylesheet" href="estilos/responsivo.css">
+  <link rel="stylesheet" href="estilos/modalAcercaDe.css">
+  <link rel="stylesheet" href="estilos/movilExperiencia.css">
+  <link rel="stylesheet" href="estilos/barraInferiorMovil.css">
+  <script type="module" src="scripts/principal.js"></script>
 </head>
 <body>
-
-<!-- Navegación Principal -->
 <nav>
   <div class="nav-inner">
     <a href="#inicio" class="nav-logo">
-      <img src="images/logo/NEO Producciones Obturador.webp" alt="NEO Producciones Logo">
+      <img src="images/logo/logo-nav.webp" alt="NEO Producciones Logo" width="37" height="37" decoding="async">
       <span>NEO Producciones</span>
     </a>
     <ul class="nav-links">
@@ -104,10 +120,9 @@
   <a href="#portfolio" onclick="conmutarMenu()">Portfolio</a>
   <a href="#presupuesto" onclick="conmutarMenu()">Presupuesto</a>
   <a href="#contacto" onclick="conmutarMenu()">Contacto</a>
-  <a href="javascript:void(0)" onclick="conmutarMenu(); abrirModalAcercaDe()">ℹ️ Acerca de</a>
+  <button type="button" class="mobile-menu-btn" onclick="conmutarMenu(); abrirModalAcercaDe()">ℹ️ Acerca de</button>
 </div>
-
-<!-- Sección Hero de Bienvenida -->
+<main>
 <section id="inicio">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -135,12 +150,11 @@
 <section id="presupuesto"></section>
 <section id="condiciones"></section>
 <section id="contacto"></section>
-
-<!-- Pie de Página -->
+</main>
 <footer id="footer">
   <div class="footer-inner">
     <a href="#inicio" class="footer-logo">
-      <img src="images/logo/NEO Producciones Obturador.webp" alt="NEO Producciones Logo Footer">
+      <img src="images/logo/logo-nav.webp" alt="NEO Producciones Logo Footer" width="20" height="20" loading="lazy" decoding="async">
       <span>NEO Producciones™</span>
     </a>
     <div class="footer-centro">

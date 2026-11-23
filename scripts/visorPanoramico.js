@@ -4,8 +4,44 @@
  * con destrucción de recursos en memoria al cerrar.
  */
 
-// Instancia activa del visor de Pannellum
+// Instancia activa del visor de Pannellum y promesa de carga diferida
 let visorActivo = null;
+let promesaPannellum = null;
+
+const PANNELLUM_CSS = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css';
+const PANNELLUM_JS = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js';
+
+/**
+ * Carga Pannellum (CSS + JS) bajo demanda la primera vez que se solicita un 360°.
+ * Evita bloquear el renderizado inicial del sitio en el primer pintado.
+ * @returns {Promise<object>} Instancia global `window.pannellum`.
+ */
+function cargarPannellumBajoDemanda() {
+  if (typeof window !== 'undefined' && typeof window.pannellum !== 'undefined') {
+    return Promise.resolve(window.pannellum);
+  }
+  if (promesaPannellum) return promesaPannellum;
+
+  promesaPannellum = new Promise((resolver, rechazar) => {
+    if (!document.querySelector(`link[href="${PANNELLUM_CSS}"]`)) {
+      const hoja = document.createElement('link');
+      hoja.rel = 'stylesheet';
+      hoja.href = PANNELLUM_CSS;
+      document.head.appendChild(hoja);
+    }
+    const script = document.createElement('script');
+    script.src = PANNELLUM_JS;
+    script.async = true;
+    script.onload = () => resolver(window.pannellum);
+    script.onerror = () => {
+      promesaPannellum = null;
+      rechazar(new Error('No se pudo cargar Pannellum'));
+    };
+    document.head.appendChild(script);
+  });
+
+  return promesaPannellum;
+}
 
 /**
  * Renderiza un entorno equirrectangular interactivo de 360 grados.
@@ -38,18 +74,21 @@ export function abrirVisorPanorama(rutaImagen, titulo) {
   if (btnAnt) btnAnt.style.display = 'none';
   if (btnSig) btnSig.style.display = 'none';
 
-  if (typeof pannellum !== 'undefined') {
-    visorActivo = pannellum.viewer('panorama-viewer', {
-      type: 'equirectangular',
-      panorama: rutaImagen,
-      autoLoad: true,
-      autoRotate: -1.5,
-      compass: false,
-      showZoomCtrl: true,
-      showFullscreenCtrl: true,
-      hotSpotDebug: false
-    });
-  }
+  cargarPannellumBajoDemanda()
+    .then((lib) => {
+      if (!lb.classList.contains('active') || !document.getElementById('panorama-viewer')) return;
+      visorActivo = lib.viewer('panorama-viewer', {
+        type: 'equirectangular',
+        panorama: rutaImagen,
+        autoLoad: true,
+        autoRotate: -1.5,
+        compass: false,
+        showZoomCtrl: true,
+        showFullscreenCtrl: true,
+        hotSpotDebug: false
+      });
+    })
+    .catch((err) => console.warn('Error al cargar visor 360:', err));
 }
 
 /**

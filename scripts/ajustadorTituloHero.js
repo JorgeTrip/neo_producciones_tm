@@ -57,12 +57,11 @@ export function ajustarTamanoTituloHero(
   let tamano = Math.round(calcularTamanoFuenteDinamico({ anchoLibre }));
   elementoTitulo.style.fontSize = `${tamano}px`;
 
-  // Ajuste fino reactivo para garantizar cero desbordamiento horizontal
-  if (elementoTitulo.scrollWidth && anchoLibre > 0) {
-    while (elementoTitulo.scrollWidth > anchoLibre && tamano > 18) {
-      tamano -= 1;
-      elementoTitulo.style.fontSize = `${tamano}px`;
-    }
+  // Ajuste proporcional en una sola pasada para evitar bucles de forced reflow
+  if (elementoTitulo.scrollWidth > anchoLibre && anchoLibre > 0) {
+    const proporcion = anchoLibre / elementoTitulo.scrollWidth;
+    tamano = Math.max(18, Math.floor(tamano * proporcion));
+    elementoTitulo.style.fontSize = `${tamano}px`;
   }
 
   return tamano;
@@ -79,13 +78,25 @@ export function inicializarAjustadorTituloHero() {
 
   if (!elementoTitulo || !contenedor) return;
 
-  const ejecutarAjuste = () => ajustarTamanoTituloHero(elementoTitulo, contenedor, window.innerWidth);
+  let rafPendiente = null;
+  const programarAjuste = () => {
+    if (rafPendiente) return;
+    const ejecutar = () => {
+      rafPendiente = null;
+      ajustarTamanoTituloHero(elementoTitulo, contenedor, window.innerWidth);
+    };
+    if (typeof window.requestAnimationFrame === 'function') {
+      rafPendiente = window.requestAnimationFrame(ejecutar);
+    } else {
+      ejecutar();
+    }
+  };
 
-  ejecutarAjuste();
-  window.addEventListener('resize', ejecutarAjuste, { passive: true });
-  window.addEventListener('orientationchange', ejecutarAjuste, { passive: true });
+  programarAjuste();
+  window.addEventListener('resize', programarAjuste, { passive: true });
+  window.addEventListener('orientationchange', programarAjuste, { passive: true });
 
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(ejecutarAjuste).catch(() => {});
+    document.fonts.ready.then(programarAjuste).catch(() => {});
   }
 }
