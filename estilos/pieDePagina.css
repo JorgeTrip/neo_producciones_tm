@@ -6,12 +6,12 @@
 footer {
   background: var(--bg2);
   border-top: 1px solid var(--border2);
-  padding: 2.5rem 2rem;
+  padding: 1.5rem 2rem;
   text-align: center;
 }
 
 .footer-inner {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -36,9 +36,63 @@ footer {
   color: var(--text-muted);
 }
 
+.footer-centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
 .footer-copy {
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+/* Neutraliza las reglas fijas globales del <nav> principal para mantener los enlaces dentro del footer */
+footer nav.footer-legal {
+  position: static;
+  top: auto;
+  left: auto;
+  right: auto;
+  z-index: auto;
+  height: auto;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.6rem;
+}
+
+.footer-legal a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.25rem;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: rgba(238, 239, 245, 0.72);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-legal a:hover {
+  color: var(--gold2);
+  text-decoration: underline;
+}
+
+.footer-legal a:focus-visible {
+  outline: 2px solid var(--gold2);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.footer-legal-sep {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  user-select: none;
 }
 
 .footer-social {
@@ -60,6 +114,7 @@ footer {
 }
 
 .footer-social a:hover { border-color: var(--gold2); color: var(--gold2); }
+.footer-social a:focus-visible { outline: 2px solid var(--gold2); outline-offset: 2px; }
 .footer-social a svg { width: 16px; height: 16px; }
 
 /* ─── SCROLL REVEAL ─── */

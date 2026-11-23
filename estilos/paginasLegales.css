@@ -1,0 +1,154 @@
+/**
+ * Estilos compartidos para las páginas legales del sitio.
+ * Mantiene coherencia visual con la paleta oscura y tipografía de NEO Producciones.
+ */
+:root {
+  --bg-principal: #141416;
+  --bg-tarjeta: #212124;
+  --texto-principal: #EEEFF5;
+  --texto-secundario: rgba(238, 239, 245, 0.72);
+  --gold: #D8C5B8;
+  --gold2: #CDA78D;
+  --border: rgba(216, 197, 184, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-principal);
+  color: var(--texto-principal);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.65;
+  padding: 28px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 800px;
+  background: var(--bg-tarjeta);
+  border-radius: 18px;
+  padding: 28px 22px;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
+
+.cabecera-legal-acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.btn-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  background: rgba(216, 197, 184, 0.08);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-cerrar-legal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(216, 197, 184, 0.08);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  font-size: 1.1rem;
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-volver:hover,
+.btn-cerrar-legal:hover {
+  background: rgba(216, 197, 184, 0.16);
+  text-decoration: none;
+}
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-size: clamp(1.45rem, 5vw, 1.9rem);
+}
+
+h2 {
+  font-family: 'Syne', sans-serif;
+  color: var(--texto-principal);
+  margin: 22px 0 8px;
+  font-size: 1.15rem;
+}
+
+p,
+li {
+  color: var(--texto-secundario);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+a {
+  color: var(--gold2);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Indicador de foco accesible para navegación por teclado (WCAG AA) */
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.fecha {
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+  margin-bottom: 22px;
+}
+
+/* Navegación cruzada al pie de cada documento legal */
+.nav-legal {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+}
+
+.nav-legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}

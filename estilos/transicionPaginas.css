@@ -1,0 +1,45 @@
+/**
+ * Transiciones Crossfade entre Páginas (index.html ↔ páginas legales).
+ * Utiliza Cross-Document View Transitions nativas y un fallback por opacidad.
+ */
+@view-transition {
+  navigation: auto;
+}
+
+@keyframes transicionCrossfadeSalida {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes transicionCrossfadeEntrada {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+::view-transition-old(root) {
+  animation: transicionCrossfadeSalida 0.3s ease both;
+}
+
+::view-transition-new(root) {
+  animation: transicionCrossfadeEntrada 0.3s ease both;
+}
+
+/* Fallback de desvanecimiento para navegadores sin @view-transition cross-document */
+html.transicion-fade-oculta body {
+  opacity: 0;
+}
+
+body.transicion-fade-activa {
+  transition: opacity 0.24s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01ms;
+  }
+
+  body.transicion-fade-activa {
+    transition-duration: 0.01ms;
+  }
+}

@@ -103,11 +103,22 @@ test('Experiencia móvil CSS y Bottom Sheet: targets >=44px, 360°, compacto 360
 
 test('Privacidad: alineación Grises Pro y botón táctil de retorno >=44px hacia index.html', () => {
   const privacidadHtml = leer('privacidad.html');
+  const estilosLegalesCss = leer('estilos/paginasLegales.css');
 
   assert.equal(privacidadHtml.includes('#D4AF37'), false, 'No debe usar dorado heredado #D4AF37');
-  assert.match(privacidadHtml, /#141416/);
-  assert.match(privacidadHtml, /#D8C5B8/i);
+  assert.equal(estilosLegalesCss.includes('#D4AF37'), false, 'La hoja legal no debe usar #D4AF37');
+  assert.match(privacidadHtml, /href="estilos\/paginasLegales\.css"/);
+  assert.match(estilosLegalesCss, /#141416/);
+  assert.match(estilosLegalesCss, /#D8C5B8/i);
   assert.match(privacidadHtml, /href="index\.html"/);
   assert.match(privacidadHtml, /Volver al sitio/);
-  assert.match(privacidadHtml, /min-height:\s*44px/);
+  assert.match(estilosLegalesCss, /min-height:\s*44px/);
+});
+
+test('Sección Contacto móvil: compacta altura y espaciado de .contacto-card en <=768px', () => {
+  const cssExp = leer('estilos/movilExperiencia.css');
+
+  assert.match(cssExp, /@media\s*\(max-width:\s*768px\)[\s\S]*\.contacto-grid\s*\{[^}]*gap:\s*0\.6rem;/);
+  assert.match(cssExp, /@media\s*\(max-width:\s*768px\)[\s\S]*\.contacto-card\s*\{[^}]*padding:\s*0\.72rem\s+1rem;/);
+  assert.match(cssExp, /@media\s*\(max-width:\s*768px\)[\s\S]*\.contacto-icon\s*\{[^}]*height:\s*36px;/);
 });

@@ -13,6 +13,7 @@ import { renderizarSeccionContacto } from '../componentes/SeccionContacto.js';
 import { montarBarraInferiorMovil } from '../componentes/BarraInferiorMovil.js';
 import { inicializarDockPresupuesto } from './gestorDockPresupuesto.js';
 import { inicializarAnimacionesScroll } from './animacionesScroll.js';
+import { inicializarRegistroSalidaLegal, restaurarPosicionRetorno } from './retornoLegal.js';
 
 export function montarAplicacion() {
   renderizarSeccionNosotros(document.getElementById('nosotros'));
@@ -24,6 +25,8 @@ export function montarAplicacion() {
   renderizarSeccionCondiciones(document.getElementById('condiciones'));
   renderizarSeccionContacto(document.getElementById('contacto'));
   montarBarraInferiorMovil();
+  restaurarPosicionRetorno();
+  inicializarRegistroSalidaLegal();
   inicializarDockPresupuesto();
 
   // Disparar las animaciones de scroll para los nuevos nodos generados
