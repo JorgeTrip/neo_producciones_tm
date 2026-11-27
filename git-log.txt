@@ -1,3 +1,5 @@
+* 2026-11-27 [a57d0de] fix: Se actualiza fecha lastmod en sitemap de Neo Producciones (Jorge O. Tripodi)
+* 2026-11-23 [a601aef] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-11-23 [05de144] feat: Se optimiza rendimiento PageSpeed, SEO y accesibilidad (Jorge O. Tripodi)
 * 2026-11-23 [a79a4c6] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-11-23 [b8f9480] feat: Se integran páginas legales con crossfade y mejoras de footer (Jorge O. Tripodi)
