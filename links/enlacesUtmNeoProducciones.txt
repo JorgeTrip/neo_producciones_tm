@@ -1,0 +1,31 @@
+ENLACES DE SEGUIMIENTO UTM — NEO PRODUCCIONES TM
+================================================
+URL base: https://neoproduccionestm.netlify.app/
+
+INSTAGRAM
+- Bio / Perfil:
+  https://neoproduccionestm.netlify.app/?utm_source=instagram&utm_medium=social&utm_campaign=bio
+- Historias:
+  https://neoproduccionestm.netlify.app/?utm_source=instagram&utm_medium=social&utm_campaign=historias
+- Publicaciones / Reels:
+  https://neoproduccionestm.netlify.app/?utm_source=instagram&utm_medium=social&utm_campaign=post
+
+FACEBOOK
+- Perfil / Página:
+  https://neoproduccionestm.netlify.app/?utm_source=facebook&utm_medium=social&utm_campaign=perfil
+- Publicaciones / Grupos:
+  https://neoproduccionestm.netlify.app/?utm_source=facebook&utm_medium=social&utm_campaign=post
+
+WHATSAPP
+- Mensajes directos / Presupuestos:
+  https://neoproduccionestm.netlify.app/?utm_source=whatsapp&utm_medium=chat&utm_campaign=compartido
+- Estados:
+  https://neoproduccionestm.netlify.app/?utm_source=whatsapp&utm_medium=chat&utm_campaign=estados
+
+GOOGLE BUSINESS PROFILE
+- Ficha de negocio:
+  https://neoproduccionestm.netlify.app/?utm_source=google&utm_medium=organic&utm_campaign=gbp
+
+NOTA
+Podés cambiar el valor de "utm_campaign=" (sin espacios ni tildes, usando guion bajo)
+para medir campañas o eventos específicos en Google Analytics 4 (/seo).
