@@ -1,3 +1,5 @@
+* 2026-11-27 [bcc79a4] fix: Se difiere GA4, se optimizan fuentes y copy SEO del hero (Jorge O. Tripodi)
+* 2026-11-27 [9f79aba] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-11-27 [a57d0de] fix: Se actualiza fecha lastmod en sitemap de Neo Producciones (Jorge O. Tripodi)
 * 2026-11-23 [a601aef] chore: Se actualiza versión y registro de cambios [skip ci] (github-actions[bot])
 * 2026-11-23 [05de144] feat: Se optimiza rendimiento PageSpeed, SEO y accesibilidad (Jorge O. Tripodi)
