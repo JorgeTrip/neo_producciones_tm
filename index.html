@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Analítica web Google Analytics (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN1BCKKZCE"></script>
+  <!-- Analítica web Google Analytics (GA4) diferida post-arranque para optimizar LCP y TBT -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WN1BCKKZCE');
+    window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());
+    (function(){var ok=0,f=function(){if(ok)return;ok=1;var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id=G-WN1BCKKZCE';document.head.appendChild(s);gtag('config','G-WN1BCKKZCE');};
+    'requestIdleCallback'in window?requestIdleCallback(function(){setTimeout(f,2500)}):setTimeout(f,3500);['scroll','pointerdown','keydown'].forEach(function(e){window.addEventListener(e,f,{once:true,passive:true})});})();
   </script>
 
   <title>NEO Producciones | Fotografía Profesional en Buenos Aires</title>
@@ -68,7 +66,8 @@
   <link rel="preload" as="image" href="images/secciones/camara.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="estilos/variablesYBase.css">
   <link rel="stylesheet" href="estilos/transicionPaginas.css">
   <link rel="stylesheet" href="estilos/navegacion.css">
@@ -129,7 +128,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Buenos Aires · Desde 2006</p>
     <h1 class="hero-title"><span class="gradient-text">Fotografía</span><br>profesional</h1>
-    <p class="hero-sub">Capturamos los momentos más importantes de tu vida con más de dos décadas de experiencia y dedicación.</p>
+    <p class="hero-sub">Fotografía profesional para eventos sociales, corporativos, books y publicidad en Buenos Aires, con más de dos décadas de experiencia.</p>
     <div class="hero-ctas">
       <a href="#portfolio" class="btn-primary">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
